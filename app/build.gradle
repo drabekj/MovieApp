@@ -16,9 +16,20 @@ android {
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 	buildTypes {
+		debug {
+			buildConfigField "boolean", "LOGS", "true"
+			buildConfigField "boolean", "DEV_ENVIRONMENT", "true"
+
+			versionNameSuffix "-debug"
+		}
 		release {
+			buildConfigField "boolean", "LOGS", "false"
+			buildConfigField "boolean", "DEV_ENVIRONMENT", "false"
+
+			zipAlignEnabled true
 			minifyEnabled false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			shrinkResources false
+			proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
 		}
 	}
 }
@@ -32,4 +43,8 @@ dependencies {
 	implementation 'com.android.support:appcompat-v7:26.0.0'
 	testImplementation 'junit:junit:4.12'
 	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+	implementation ("org.alfonz:alfonz-utility:0.6.0") {
+		exclude group: 'com.android.support'
+	}
 }
