@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
 	compileSdkVersion 26
 	buildToolsVersion "26.0.0"
@@ -43,15 +45,18 @@ dependencies {
 		exclude group: 'com.android.support', module: 'support-annotations'
 	})
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	testImplementation 'junit:junit:4.12'
+	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 	implementation 'com.android.support:appcompat-v7:26.0.0'
 	implementation 'com.android.support:support-v4:26.0.0'
 	implementation 'com.android.support:design:26.0.0'
-	testImplementation 'junit:junit:4.12'
-	implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
 //	Alfonz
 	implementation ("org.alfonz:alfonz-utility:0.6.0") {
 		exclude group: 'com.android.support'
 	}
 	implementation "org.alfonz:alfonz-mvvm:0.6.0"
+	implementation "org.alfonz:alfonz-view:0.6.0"
+
+	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }
