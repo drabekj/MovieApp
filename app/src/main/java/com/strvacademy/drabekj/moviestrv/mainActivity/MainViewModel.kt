@@ -8,7 +8,6 @@ import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
-import org.alfonz.utility.Logcat
 
 
 class MainViewModel : BaseViewModel<MainView>() {
@@ -31,7 +30,6 @@ class MainViewModel : BaseViewModel<MainView>() {
     private fun loadData() {
         // show progress
         state.set(StatefulLayout.PROGRESS)
-        Logcat.v("Progress state")
 
         // load data from data provider...
         onLoadData(dataSource.getPopularMovies())
@@ -43,17 +41,11 @@ class MainViewModel : BaseViewModel<MainView>() {
         movies.clear()
         movies.addAll(m)
 
-        for (item in movies)
-            Logcat.v(item.name)
-
         // show content
-        if (movies.isEmpty()) {
-            Logcat.v("Empty state")
+        if (movies.isEmpty())
             state.set(StatefulLayout.EMPTY)
-        } else {
-            Logcat.v("Content state")
+        else
             state.set(StatefulLayout.CONTENT)
-        }
     }
 //
 //    fun onResponse(call: Call<MessageEntity>, response: Response<MessageEntity>) {

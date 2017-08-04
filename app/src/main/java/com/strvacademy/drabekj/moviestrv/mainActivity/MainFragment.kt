@@ -1,14 +1,21 @@
 package com.strvacademy.drabekj.moviestrv.mainActivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainBinding
+import com.strvacademy.drabekj.moviestrv.detailActivity.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
 
 class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>(), MainView {
     private var mAdapter: MainActivityAdapter? = null
+
+    companion object {
+        public final val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID"
+    }
+
 
     override fun getViewModelClass(): Class<MainViewModel> {
         return MainViewModel::class.java
@@ -24,8 +31,13 @@ class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>()
     }
 
     override fun onItemClick(movie: Movie) {
-        viewModel.showToast(movie.id.toString())
-//        startMovieDetailActivity(movie.id)
+        startMovieDetailActivity(movie.id)
+    }
+
+    private fun startMovieDetailActivity(id: Int) {
+        val intent = Intent(activity, MovieDetailActivity::class.java)
+        intent.putExtra(EXTRA_KEY_MOVIE_ID, id)
+        startActivity(intent)
     }
 
     private fun setupAdapter() {
