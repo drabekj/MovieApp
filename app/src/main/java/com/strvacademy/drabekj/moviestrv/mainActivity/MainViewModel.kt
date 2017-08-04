@@ -10,7 +10,7 @@ import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
 
 
-class MainViewModel : BaseViewModel<MainView>() {
+abstract class MainViewModel : BaseViewModel<MainView>() {
     val state = ObservableField<Int>()
     var movies = ObservableArrayList<Movie>()
 
@@ -23,19 +23,9 @@ class MainViewModel : BaseViewModel<MainView>() {
             loadData()
     }
 
-    fun showToast(message: String) {
-        view!!.showToast("movie.id = " + message)
-    }
+    abstract fun loadData()
 
-    private fun loadData() {
-        // show progress
-        state.set(StatefulLayout.PROGRESS)
-
-        // load data from data provider...
-        onLoadData(dataSource.getPopularMovies())
-    }
-
-    private fun onLoadData(m: Array<Movie>) {
+    fun onLoadData(m: Array<Movie>) {
         // save data
         // TODO do better (observable array replacement)
         movies.clear()

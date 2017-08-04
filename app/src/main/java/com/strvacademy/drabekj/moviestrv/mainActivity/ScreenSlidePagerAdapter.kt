@@ -3,6 +3,8 @@ package com.strvacademy.drabekj.moviestrv.mainActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.strvacademy.drabekj.moviestrv.mainActivity.nowPlaying.NowPlayingMoviesFragment
+import com.strvacademy.drabekj.moviestrv.mainActivity.popular.PopularMoviesFragment
 
 
 class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -12,11 +14,11 @@ class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
     override fun getItem(position: Int): Fragment {
         when (position) {
 
-            0 -> return MainFragment()
+            0 -> return PopularMoviesFragment()
 
-            1 -> return MainFragment()
+            1 -> return NowPlayingMoviesFragment()
 
-            else -> return MainFragment()
+            else -> return PopularMoviesFragment()
         }
     }
 

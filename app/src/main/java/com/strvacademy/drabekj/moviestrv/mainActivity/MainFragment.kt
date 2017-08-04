@@ -9,17 +9,11 @@ import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
 
-class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>(), MainView {
+abstract class MainFragment<VM: MainViewModel>: BaseFragment<MainView, VM, FragmentMainBinding>(), MainView {
     private var mAdapter: MainActivityAdapter? = null
 
-    companion object {
-        public final val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID"
-    }
+    companion object { val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID" }
 
-
-    override fun getViewModelClass(): Class<MainViewModel> {
-        return MainViewModel::class.java
-    }
 
     override fun inflateBindingLayout(inflater: LayoutInflater?): FragmentMainBinding {
         return FragmentMainBinding.inflate(inflater!!)
