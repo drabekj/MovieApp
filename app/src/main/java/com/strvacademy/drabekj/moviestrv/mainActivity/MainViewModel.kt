@@ -1,52 +1,58 @@
 package com.strvacademy.drabekj.moviestrv.mainActivity
 
+import android.databinding.ObservableArrayList
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import android.databinding.ObservableField
 import org.alfonz.view.StatefulLayout
-import android.support.annotation.NonNull
-import android.telecom.Call
-import org.alfonz.mvvm.AlfonzViewModel
+import com.strvacademy.drabekj.moviestrv.model.Movie
+import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
+import com.strvacademy.drabekj.moviestrv.model.MovieRepository
+import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
+import org.alfonz.utility.Logcat
 
 
 class MainViewModel : BaseViewModel<MainView>() {
     val state = ObservableField<Int>()
-    val message = ObservableField<MessageEntity>()
+    var movies = ObservableArrayList<Movie>()
+
+    val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+
 
     override fun onStart() {
         super.onStart()
-        if (message.get() == null)
+        if (movies.isEmpty())
             loadData()
     }
 
-    fun updateMessage() {
-        val m = message.get()
-
-        var text = m.getText()
-        if (text == "Yes")
-           text = "No"
-        else
-            text = "Yes"
-        m.setText(text)
-        message.notifyChange()
+    fun showToast() {
+        view!!.showToast("Movie Item Clicked!")
     }
 
     private fun loadData() {
         // show progress
         state.set(StatefulLayout.PROGRESS)
+        Logcat.v("Progress state")
 
         // load data from data provider...
-        onLoadData(MessageEntity("No"))
+        onLoadData(dataSource.getPopularMovies())
     }
 
-    private fun onLoadData(m: MessageEntity) {
+    private fun onLoadData(m: Array<Movie>) {
         // save data
-        message.set(m)
+        // TODO do better (observable array replacement)
+        movies.clear()
+        movies.addAll(m)
+
+        for (item in movies)
+            Logcat.v(item.name)
 
         // show content
-        if (message.get() != null) {
-            state.set(StatefulLayout.CONTENT)
-        } else {
+        if (movies.isEmpty()) {
+            Logcat.v("Empty state")
             state.set(StatefulLayout.EMPTY)
+        } else {
+            Logcat.v("Content state")
+            state.set(StatefulLayout.CONTENT)
         }
     }
 //

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.mainActivity.MainView" />
+		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.Movie" />
+	</data>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/global_spacing_16"
+		android:layout_marginRight="@dimen/global_spacing_16"
+		android:layout_marginTop="@dimen/global_spacing_8"
+		android:onClick="@{() -> view.onItemClick(data)}">
+
+		<!-- A CardView that contains a TextView -->
+		<android.support.v7.widget.CardView
+			xmlns:card_view="http://schemas.android.com/apk/res-auto"
+			android:layout_gravity="center"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/card_view_movie_height"
+			card_view:cardCornerRadius="@dimen/cardview_default_radius"
+			app:cardBackgroundColor="@color/colorLightGrey">
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="horizontal">
+
+				<ImageView
+					android:layout_width="0dp"
+					android:layout_height="fill_parent"
+					android:layout_weight="3"
+					android:src="@drawable/dummy_movie_image"
+					android:adjustViewBounds="true"
+					android:scaleType="centerCrop" />
+
+				<RelativeLayout
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_weight="5"
+					android:padding="@dimen/global_spacing_8">
+
+
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:padding="@dimen/global_spacing_8"
+						android:layout_above="@id/button_more_info">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@{data.name}"
+							android:textSize="@dimen/global_text_size_title"/>
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal">
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:textColor="@color/colorSecondaryText"
+								android:text="@{data.releaseDate}"/>
+
+							<ImageView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginStart="@dimen/global_spacing_32"
+								android:layout_gravity="center_vertical"
+								android:src="@drawable/ic_star_yellow_24dp" />
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="@{data.rating}"/>
+
+						</LinearLayout>
+
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="@dimen/global_spacing_16"
+							android:text="@{data.description}"
+							android:ellipsize="end"
+							android:maxLines="4"/>
+
+					</LinearLayout>
+
+					<Button
+						android:id="@+id/button_more_info"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:textColor="@color/colorAccent"
+						android:text="@string/button_more_info"
+						android:background="@android:color/transparent"
+						android:onClick="@{() -> view.onItemClick(data)}" />
+
+				</RelativeLayout>
+			</LinearLayout>
+
+		</android.support.v7.widget.CardView>
+	</LinearLayout>
+</layout>

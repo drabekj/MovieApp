@@ -50,6 +50,7 @@ dependencies {
 	implementation 'com.android.support:appcompat-v7:26.0.0'
 	implementation 'com.android.support:support-v4:26.0.0'
 	implementation 'com.android.support:design:26.0.0'
+	implementation 'com.android.support:cardview-v7:26.0.0'
 
 //	Alfonz
 	implementation ("org.alfonz:alfonz-utility:0.6.0") {
@@ -57,6 +58,7 @@ dependencies {
 	}
 	implementation "org.alfonz:alfonz-mvvm:0.6.0"
 	implementation "org.alfonz:alfonz-view:0.6.0"
+	implementation "org.alfonz:alfonz-adapter:0.6.0"
 
 	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }

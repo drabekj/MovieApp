@@ -2,4 +2,5 @@
 	<string name="app_name">MovieSTRV</string>
 	<string name="placeholder_empty">No data</string>
 	<string name="placeholder_offline">No connection</string>
+	<string name="button_more_info">MORE INFO</string>
 </resources>

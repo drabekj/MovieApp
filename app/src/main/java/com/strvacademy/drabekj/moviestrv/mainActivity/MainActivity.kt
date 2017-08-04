@@ -10,6 +10,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupActionBar(INDICATOR_BACK)
+        setupActionBar(INDICATOR_NONE, "Movies")
     }
 }
