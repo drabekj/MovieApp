@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/action_movies"
+		android:title="@string/menu_movies"
+		android:icon="@drawable/ic_local_movies_white_24dp" />
+	<item android:id="@+id/action_actors"
+		android:title="@string/menu_actors"
+		android:icon="@drawable/ic_recent_actors_white_24px" />
+	<item android:id="@+id/action_profile"
+		android:title="@string/menu_profile"
+		android:icon="@drawable/ic_account_circle_white_24dp" />
+</menu>

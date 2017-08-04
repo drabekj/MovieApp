@@ -17,4 +17,7 @@
 	<string name="full_cast_amp_crew"><![CDATA[FULL CAST & CREW]]></string>
 	<string name="action_share">Share</string>
 	<string name="action_favorite">Mark as favorite</string>
+	<string name="menu_movies">Movies</string>
+	<string name="menu_actors">Actors</string>
+	<string name="menu_profile">Profile</string>
 </resources>
