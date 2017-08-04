@@ -7,4 +7,12 @@
 	<string name="mainToolbarTitle">Movies</string>
 	<string name="tab_popular_movies">POPULAR</string>
 	<string name="tab_now_playing_movies">NOW PLAYING</string>
+	<string name="movie_cover_image">Movie image</string>
+	<string name="subheading_trailers">TRAILERS</string>
+	<string name="trailer_video">trailer videos</string>
+	<string name="subheading_gallery">GALLERY</string>
+	<string name="gallery_image">images from the movie</string>
+	<string name="subheading_cast">CAST</string>
+	<string name="cast_list">list of the actors</string>
+	<string name="full_cast_amp_crew"><![CDATA[FULL CAST & CREW]]></string>
 </resources>

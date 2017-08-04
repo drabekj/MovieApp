@@ -14,10 +14,142 @@
 		app:emptyLayout="@layout/placeholder_empty"
 		app:state="@{viewModel.state}">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@{viewModel.movie.name}"/>
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<ImageView
+					android:id="@+id/image_movie_detail_cover"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:adjustViewBounds="true"
+					android:src="@drawable/dummy_movie_detail"
+					android:contentDescription="@string/movie_cover_image" />
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/global_spacing_16"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/text_detail_name"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@{viewModel.movie.name}"
+						android:textSize="@dimen/global_text_size_title" />
+
+					<TextView
+						android:id="@+id/text_detail_subheading"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text='@{String.format("%s, %s", viewModel.movie.director, viewModel.movie.releaseDate)}'/>
+
+					<TextView
+						android:id="@+id/text_detail_description"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/global_spacing_16"
+						android:text="@{viewModel.movie.description}"/>
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:background="@color/colorLightGrey" />
+
+				<!-- TRAILERS -->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/global_spacing_16"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/text_subheading_trailers"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/subheading_trailers" />
+
+					<ImageView
+						android:layout_width="150dp"
+						android:layout_height="120dp"
+						android:contentDescription="@string/trailer_video" />
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:background="@color/colorLightGrey" />
+
+				<!-- GALLERY -->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/global_spacing_16"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/text_subheading_gallery"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/subheading_gallery" />
+
+					<ImageView
+						android:layout_width="150dp"
+						android:layout_height="200dp"
+						android:contentDescription="@string/gallery_image" />
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:background="@color/colorLightGrey" />
+
+				<!-- CAST -->
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/global_spacing_16"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/text_subheading_cast"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/subheading_cast" />
+
+					<ImageView
+						android:layout_width="150dp"
+						android:layout_height="280dp"
+						android:contentDescription="@string/cast_list" />
+
+					<Button
+						android:id="@+id/button_detail_full_cast"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:text="@string/full_cast_amp_crew"
+						android:textColor="@color/colorAccent"
+						android:background="@android:color/transparent" />
+
+				</LinearLayout>
+
+				<View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:background="@color/colorLightGrey" />
+
+			</LinearLayout>
+		</ScrollView>
 
 	</org.alfonz.view.StatefulLayout>
 
