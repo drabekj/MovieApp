@@ -24,8 +24,8 @@ class MainViewModel : BaseViewModel<MainView>() {
             loadData()
     }
 
-    fun showToast() {
-        view!!.showToast("Movie Item Clicked!")
+    fun showToast(message: String) {
+        view!!.showToast("movie.id = " + message)
     }
 
     private fun loadData() {

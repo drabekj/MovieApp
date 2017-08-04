@@ -24,7 +24,7 @@ class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>()
     }
 
     override fun onItemClick(movie: Movie) {
-        viewModel.showToast()
+        viewModel.showToast(movie.id.toString())
 //        startMovieDetailActivity(movie.id)
     }
 
