@@ -5,4 +5,6 @@
 	<string name="button_more_info">MORE INFO</string>
 	<string name="action_search">Search</string>
 	<string name="mainToolbarTitle">Movies</string>
+	<string name="tab_popular_movies">POPULAR</string>
+	<string name="tab_now_playing_movies">NOW PLAYING</string>
 </resources>

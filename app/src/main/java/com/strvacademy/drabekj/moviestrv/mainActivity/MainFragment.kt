@@ -1,9 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.mainActivity
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
-import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainBinding
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
