@@ -15,4 +15,6 @@
 	<string name="subheading_cast">CAST</string>
 	<string name="cast_list">list of the actors</string>
 	<string name="full_cast_amp_crew"><![CDATA[FULL CAST & CREW]]></string>
+	<string name="action_share">Share</string>
+	<string name="action_favorite">Mark as favorite</string>
 </resources>
