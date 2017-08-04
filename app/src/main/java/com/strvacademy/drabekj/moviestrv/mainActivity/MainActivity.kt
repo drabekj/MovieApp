@@ -12,7 +12,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupActionBar(INDICATOR_NONE, "Movies")
+        setupActionBar(INDICATOR_NONE, getString(R.string.mainToolbarTitle))
     }
 
     // TODO toolbar (Is this how it's supposed to be done with Alfonz?)
