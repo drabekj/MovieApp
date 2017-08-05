@@ -32,5 +32,6 @@
 		android:layout_height="@dimen/bottom_naw_height"
 		android:layout_gravity="start"
 		android:background="@color/colorPrimary"
-		app:itemTextColor="@color/colorSecondaryText" />
+		app:itemIconTint="@color/bottom_nav_item"
+		app:itemTextColor="@color/bottom_nav_item" />
 </LinearLayout>
