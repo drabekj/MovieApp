@@ -1,5 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.mainActivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.Menu
@@ -7,6 +8,8 @@ import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsActivity
+
 
 class MainActivity : BaseActivity() {
 
@@ -16,9 +19,10 @@ class MainActivity : BaseActivity() {
 
         setupActionBar(INDICATOR_NONE, getString(R.string.mainToolbarTitle))
         setupViewPager()
+		setupBottomNavView()
     }
 
-    // TODO toolbar (Is this how it's supposed to be done with Alfonz?)
+	// TODO toolbar (Is this how it's supposed to be done with Alfonz?)
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_toolbar_menu, menu)
         return true
@@ -69,4 +73,22 @@ class MainActivity : BaseActivity() {
             pager.currentItem = pager.currentItem - 1
         }
     }
+
+	private fun setupBottomNavView() {
+		bottom_navigation.setOnNavigationItemSelectedListener(
+				{ item ->
+					when (item.itemId) {
+						R.id.action_movies -> {
+							startActivity(Intent(this, MainActivity::class.java))
+						}
+						R.id.action_actors -> {
+							startActivity(Intent(this, ActorsActivity::class.java))
+						}
+						R.id.action_profile -> {
+							startActivity(Intent(this, MainActivity::class.java))
+						}
+					}
+					true
+				})
+	}
 }
