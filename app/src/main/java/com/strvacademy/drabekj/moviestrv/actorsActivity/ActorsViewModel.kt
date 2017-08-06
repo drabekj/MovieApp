@@ -32,6 +32,15 @@ class ActorsViewModel: BaseViewModel<ActorsView>() {
 	}
 
 	private fun onLoadData(popularActors: Array<Actor>) {
+		// save data
+		// TODO do better (observable array replacement)
+		actors.clear()
+		actors.addAll(popularActors)
 
+		// show content
+		if (actors.isEmpty())
+			state.set(StatefulLayout.EMPTY)
+		else
+			state.set(StatefulLayout.CONTENT)
 	}
 }
