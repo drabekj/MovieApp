@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsView" />
+		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.Actor" />
+	</data>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/global_spacing_16"
+		android:layout_marginRight="@dimen/global_spacing_16"
+		android:layout_marginTop="@dimen/global_spacing_8"
+		android:onClick="@{() -> view.onActorClick(data)}">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@{data.name}" />
+
+	</LinearLayout>
+</layout>
