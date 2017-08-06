@@ -20,4 +20,5 @@
 	<string name="menu_movies">Movies</string>
 	<string name="menu_actors">Actors</string>
 	<string name="menu_profile">Profile</string>
+	<string name="actors_popular_title">POPULAR</string>
 </resources>

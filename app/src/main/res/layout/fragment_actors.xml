@@ -16,11 +16,24 @@
 		app:emptyLayout="@layout/placeholder_empty"
 		app:state="@{viewModel.state}">
 
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/fragment_actors_list_recycler"
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:recyclerLayout="@{BindingUtility.LAYOUT_LINEAR_VERTICAL}" />
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="@dimen/global_spacing_16"
+				android:text="@string/actors_popular_title"/>
+
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/fragment_actors_list_recycler"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
+				app:recyclerLayoutSpanCount="@{2}"/>
+		</LinearLayout>
 
 	</org.alfonz.view.StatefulLayout>
 </layout>

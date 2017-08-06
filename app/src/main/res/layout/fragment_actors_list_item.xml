@@ -6,19 +6,29 @@
 		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.Actor" />
 	</data>
 
-	<LinearLayout
+	<!-- TODO ? How spacing in grid view-->
+	<FrameLayout
 		android:orientation="vertical"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="@dimen/global_spacing_16"
-		android:layout_marginRight="@dimen/global_spacing_16"
-		android:layout_marginTop="@dimen/global_spacing_8"
+		android:layout_marginLeft="@dimen/global_grid_spacing_4"
+		android:layout_marginRight="@dimen/global_grid_spacing_4"
+		android:layout_marginTop="@dimen/global_grid_spacing_4"
 		android:onClick="@{() -> view.onActorClick(data)}">
 
+		<ImageView
+			android:src="@drawable/dummy_actor_profile"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:adjustViewBounds="true" />
+
 		<TextView
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:padding="@dimen/global_spacing_8"
+			android:background="@color/colorSemitransparentLightGrey"
 			android:text="@{data.name}" />
 
-	</LinearLayout>
+	</FrameLayout>
 </layout>
