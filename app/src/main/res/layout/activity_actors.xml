@@ -5,6 +5,8 @@
 	android:orientation="vertical"
 	android:background="@color/colorPrimaryDark">
 
+	<include layout="@layout/toolbar" />
+
 	<fragment
 		android:id="@+id/fragment"
 		android:name="com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsFragment"
