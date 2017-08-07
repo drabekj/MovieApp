@@ -17,8 +17,10 @@ class MainActivity : BaseActivity() {
 		setContentView(R.layout.activity_main)
 
 		setupBottomNavView(savedInstanceState)
+		showFragmentInTab(savedInstanceState, MainFragment.newInstance())
 	}
 
+//	TODO ? How to ignore click if it's on the same item?
 	private fun setupBottomNavView(savedInstanceState: Bundle?) {
 		bottom_navigation.setOnNavigationItemSelectedListener(
 				{ item ->
