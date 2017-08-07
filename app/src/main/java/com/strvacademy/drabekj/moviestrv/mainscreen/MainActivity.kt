@@ -8,6 +8,7 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsFragment
 import com.strvacademy.drabekj.moviestrv.moviesscreen.MoviesFragment
+import com.strvacademy.drabekj.moviestrv.profilescreen.ProfileFragment
 
 
 class MainActivity : BaseActivity() {
@@ -33,7 +34,7 @@ class MainActivity : BaseActivity() {
 							showFragmentInTab(savedInstanceState, ActorsFragment.newInstance())
 						}
 						R.id.action_profile -> {
-							showFragmentInTab(savedInstanceState, ActorsFragment.newInstance())
+							showFragmentInTab(savedInstanceState, ProfileFragment.newInstance())
 						}
 					}
 					true

@@ -24,4 +24,7 @@
 	<string name="actors_popular_title">POPULAR</string>
 	<string name="actor_profile_image">Actor profile picture</string>
 	<string name="actor_detail_known_for_title">KNOWN FOR</string>
+	<string name="profile_favourite_films_title">FAVOURITE FILMS</string>
+	<string name="action_logout">Logout</string>
+	<string name="action_settings">Settings</string>
 </resources>
