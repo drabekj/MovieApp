@@ -1,10 +1,10 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen.popular
+package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.popular
 
-import com.strvacademy.drabekj.moviestrv.mainscreen.MainViewModel
+import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageViewModel
 import org.alfonz.view.StatefulLayout
 
 
-class PopularMoviesViewModel: MainViewModel() {
+class PopularMoviesViewModel: MoviesPageViewModel() {
 
 	override fun loadData() {
 		// show progress

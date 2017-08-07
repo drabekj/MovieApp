@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.mainscreen.MainFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 
 
@@ -54,7 +55,7 @@ class MovieDetailActivity: BaseActivity() {
     private fun setupFragment(savedInstanceState: Bundle?) {
         if (findViewById<View>(R.id.fragment_container) != null && savedInstanceState == null) {
             // get movieId from bundle
-            val movieId = intent.getIntExtra(MainFragment.EXTRA_KEY_MOVIE_ID, -1)
+            val movieId = intent.getIntExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, -1)
 
             // setup fragment
             val movieDetailFragment: MovieDetailFragment = MovieDetailFragment.newInstance(movieId)

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<import type="org.alfonz.adapter.utility.BindingUtility" />
+		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageViewModel" />
+	</data>
+
+	<org.alfonz.view.StatefulLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:progressLayout="@layout/placeholder_progress"
+		app:offlineLayout="@layout/placeholder_offline"
+		app:emptyLayout="@layout/placeholder_empty"
+		app:state="@{viewModel.state}">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/fragment_main_list_recycler"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:recyclerLayout="@{BindingUtility.LAYOUT_LINEAR_VERTICAL}" />
+
+	</org.alfonz.view.StatefulLayout>
+</layout>

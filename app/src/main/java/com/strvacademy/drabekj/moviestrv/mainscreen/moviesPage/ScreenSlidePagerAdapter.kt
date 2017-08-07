@@ -1,10 +1,10 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen
+package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.strvacademy.drabekj.moviestrv.mainscreen.nowPlaying.NowPlayingMoviesFragment
-import com.strvacademy.drabekj.moviestrv.mainscreen.popular.PopularMoviesFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.nowPlaying.NowPlayingMoviesFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.popular.PopularMoviesFragment
 
 
 class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

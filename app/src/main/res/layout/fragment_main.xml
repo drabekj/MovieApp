@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<data>
-		<import type="org.alfonz.adapter.utility.BindingUtility" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.mainscreen.MainViewModel" />
-	</data>
-
-	<org.alfonz.view.StatefulLayout
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:progressLayout="@layout/placeholder_progress"
-		app:offlineLayout="@layout/placeholder_offline"
-		app:emptyLayout="@layout/placeholder_empty"
-		app:state="@{viewModel.state}">
+		android:orientation="vertical">
 
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/fragment_main_list_recycler"
+		<include layout="@layout/toolbar" />
+
+		<android.support.design.widget.TabLayout
+			android:id="@+id/tab_layout"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:recyclerLayout="@{BindingUtility.LAYOUT_LINEAR_VERTICAL}" />
+			android:layout_height="wrap_content"
+			android:elevation="@dimen/global_elevation_4"
+			android:background="?attr/colorPrimary"
+			android:minHeight="?attr/actionBarSize"
+			app:tabTextColor="@color/colorSecondaryText"
+			app:tabSelectedTextColor="@color/colorPrimaryText" />
 
-	</org.alfonz.view.StatefulLayout>
+		<android.support.v4.view.ViewPager
+			android:id="@+id/pager"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" />
+
+	</LinearLayout>
+
 </layout>

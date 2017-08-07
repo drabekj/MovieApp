@@ -14,8 +14,6 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBinding>(), ActorsView {
 	private var mAdapter: ActorsActivityAdapter? = null
 
-	companion object { val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID" }
-
 
 	override fun getViewModelClass(): Class<ActorsViewModel> {
 		return ActorsViewModel::class.java
@@ -44,6 +42,15 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 		if (mAdapter == null) {
 			mAdapter = ActorsActivityAdapter(this, viewModel)
 			binding.fragmentActorsListRecycler.adapter = mAdapter
+		}
+	}
+
+
+	companion object {
+		val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID"
+
+		fun newInstance(): ActorsFragment {
+			return ActorsFragment()
 		}
 	}
 }
