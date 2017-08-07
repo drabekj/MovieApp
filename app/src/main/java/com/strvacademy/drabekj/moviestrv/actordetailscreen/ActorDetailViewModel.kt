@@ -27,7 +27,7 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 		state.set(StatefulLayout.PROGRESS)
 
 		// load data from data provider...
-//		onLoadData(dataSource.getActorById(id))
+		onLoadData(dataSource.getActorById(id))
 	}
 
 	private fun  onLoadData(a: Actor?) {

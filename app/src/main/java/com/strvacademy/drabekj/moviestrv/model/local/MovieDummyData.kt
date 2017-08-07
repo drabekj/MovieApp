@@ -50,7 +50,16 @@ class MovieDummyData: MovieLocalDataSource {
         return null
     }
 
+
 	override fun getPopularActors(): Array<Actor> {
 		return actorArray
+	}
+
+	override fun getActorById(id: Int): Actor? {
+		actorArray
+				.filter { it.id == id }
+				.forEach { return it }
+
+		return null
 	}
 }

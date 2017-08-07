@@ -24,7 +24,12 @@ class MovieRepository: MovieDataSource {
         return mMoviesLocalDataSource.getMovieById(id)
     }
 
+
     override fun getPopularActors(): Array<Actor> {
         return mMoviesLocalDataSource.getPopularActors()
     }
+
+	override fun getActorById(id: Int): Actor? {
+		return mMoviesLocalDataSource.getActorById(id)
+	}
 }

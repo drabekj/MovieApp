@@ -11,5 +11,8 @@ interface MovieLocalDataSource {
 
     fun getMovieById(id: Int): Movie?
 
+
 	fun getPopularActors(): Array<Actor>
+
+	fun getActorById(id: Int): Actor?
 }

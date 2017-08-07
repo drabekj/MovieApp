@@ -8,5 +8,8 @@ interface MovieDataSource {
 
     fun getMovieById(id: Int): Movie?
 
+
 	fun getPopularActors(): Array<Actor>
+
+	fun getActorById(id: Int): Actor?
 }
