@@ -4,7 +4,8 @@
 	<string name="placeholder_offline">No connection</string>
 	<string name="button_more_info">MORE INFO</string>
 	<string name="action_search">Search</string>
-	<string name="mainToolbarTitle">Movies</string>
+	<string name="moviesToolbarTitle">Movies</string>
+	<string name="actorsToolbarTitle">Actors</string>
 	<string name="tab_popular_movies">POPULAR</string>
 	<string name="tab_now_playing_movies">NOW PLAYING</string>
 	<string name="movie_cover_image">Movie image</string>

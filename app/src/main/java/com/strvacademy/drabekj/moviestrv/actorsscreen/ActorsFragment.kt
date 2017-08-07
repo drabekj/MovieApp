@@ -3,12 +3,15 @@ package com.strvacademy.drabekj.moviestrv.actorsscreen
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
-import com.strvacademy.drabekj.moviestrv.MoviesApplication
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailActivity
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorsBinding
 import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import org.alfonz.mvvm.AlfonzActivity
 
 
 class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBinding>(), ActorsView {
@@ -25,7 +28,37 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
+
 		setupAdapter()
+		setupToolbar()
+	}
+
+	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+		inflater!!.inflate(R.menu.main_toolbar_menu, menu)
+		super.onCreateOptionsMenu(menu, inflater)
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+		when (item!!.itemId) {
+			R.id.action_search -> {
+				showToast("Search Action")
+				return true
+			}
+
+			else -> return super.onOptionsItemSelected(item)
+		}
+	}
+
+	private fun setupAdapter() {
+		if (mAdapter == null) {
+			mAdapter = ActorsActivityAdapter(this, viewModel)
+			binding.fragmentActorsListRecycler.adapter = mAdapter
+		}
+	}
+
+	private fun setupToolbar() {
+		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, getString(R.string.actorsToolbarTitle))
+		setHasOptionsMenu(true)
 	}
 
 	override fun onActorClick(actor: Actor) {
@@ -37,14 +70,6 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 		intent.putExtra(EXTRA_KEY_ACTOR_ID, id)
 		startActivity(intent)
 	}
-
-	private fun setupAdapter() {
-		if (mAdapter == null) {
-			mAdapter = ActorsActivityAdapter(this, viewModel)
-			binding.fragmentActorsListRecycler.adapter = mAdapter
-		}
-	}
-
 
 	companion object {
 		val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID"

@@ -4,36 +4,38 @@
 
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
 	</data>
 
-
-	<org.alfonz.view.StatefulLayout
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:progressLayout="@layout/placeholder_progress"
-		app:offlineLayout="@layout/placeholder_offline"
-		app:emptyLayout="@layout/placeholder_empty"
-		app:state="@{viewModel.state}">
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
 
-		<LinearLayout
-			android:layout_width="match_parent"
+		<include layout="@layout/toolbar" />
+
+		<TextView
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:padding="@dimen/global_spacing_16"
+			android:text="@string/actors_popular_title" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:padding="@dimen/global_spacing_16"
-				android:text="@string/actors_popular_title"/>
+		<org.alfonz.view.StatefulLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:progressLayout="@layout/placeholder_progress"
+			app:offlineLayout="@layout/placeholder_offline"
+			app:emptyLayout="@layout/placeholder_empty"
+			app:state="@{viewModel.state}">
 
 			<android.support.v7.widget.RecyclerView
 				android:id="@+id/fragment_actors_list_recycler"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
-				app:recyclerLayoutSpanCount="@{2}"/>
-		</LinearLayout>
+				app:recyclerLayoutSpanCount="@{2}" />
+		</org.alfonz.view.StatefulLayout>
+	</LinearLayout>
 
-	</org.alfonz.view.StatefulLayout>
 </layout>

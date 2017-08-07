@@ -8,7 +8,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesBinding
-import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.MoviesPageFragmentAdapter
 import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.ScreenSlidePagerAdapter
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -27,7 +26,7 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 
-		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, getString(R.string.mainToolbarTitle))
+		setupToolbar()
 		setupViewPager()
 	}
 
@@ -48,7 +47,12 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		}
 	}
 
-	fun setupViewPager() {
+	private fun setupToolbar() {
+		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, getString(R.string.moviesToolbarTitle))
+		setHasOptionsMenu(true)
+	}
+
+	private fun setupViewPager() {
 		tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.tab_popular_movies)))
 		tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.tab_now_playing_movies)))
 		tab_layout.tabGravity = TabLayout.GRAVITY_FILL
