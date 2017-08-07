@@ -18,7 +18,6 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".moviedetailscreen.MovieDetailActivity" />
-		<activity android:name=".actorsscreen.ActorsActivity" />
 		<activity android:name=".actordetailscreen.ActorDetailActivity" />
 	</application>
 
