@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.actorsActivity
+package com.strvacademy.drabekj.moviestrv.actorsscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

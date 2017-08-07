@@ -1,6 +1,6 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity.nowPlaying
+package com.strvacademy.drabekj.moviestrv.mainscreen.nowPlaying
 
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainViewModel
+import com.strvacademy.drabekj.moviestrv.mainscreen.MainViewModel
 import org.alfonz.view.StatefulLayout
 
 

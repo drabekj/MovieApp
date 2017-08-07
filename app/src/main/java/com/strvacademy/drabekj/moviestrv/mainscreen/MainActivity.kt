@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity
+package com.strvacademy.drabekj.moviestrv.mainscreen
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsActivity
+import com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsActivity
 
 
 class MainActivity : BaseActivity() {

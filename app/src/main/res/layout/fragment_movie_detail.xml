@@ -3,7 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.detailActivity.MovieDetailViewModel" />
+		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

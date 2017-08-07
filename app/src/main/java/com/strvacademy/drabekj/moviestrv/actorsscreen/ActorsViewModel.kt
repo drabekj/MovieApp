@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.actorsActivity
+package com.strvacademy.drabekj.moviestrv.actorsscreen
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField

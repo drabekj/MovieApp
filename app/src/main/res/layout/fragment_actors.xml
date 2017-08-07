@@ -4,7 +4,7 @@
 
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsViewModel" />
+		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
 	</data>
 
 

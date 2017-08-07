@@ -10,15 +10,15 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name=".mainActivity.MainActivity">
+		<activity android:name=".mainscreen.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".detailActivity.MovieDetailActivity" />
-		<activity android:name=".actorsActivity.ActorsActivity" />
+		<activity android:name=".moviedetailscreen.MovieDetailActivity" />
+		<activity android:name=".actorsscreen.ActorsActivity" />
 	</application>
 
 </manifest>

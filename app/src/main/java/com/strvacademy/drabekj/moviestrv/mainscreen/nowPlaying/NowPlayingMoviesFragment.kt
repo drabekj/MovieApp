@@ -1,6 +1,6 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity.nowPlaying
+package com.strvacademy.drabekj.moviestrv.mainscreen.nowPlaying
 
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.MainFragment
 
 
 class NowPlayingMoviesFragment: MainFragment<NowPlayingMoviesViewModel>() {

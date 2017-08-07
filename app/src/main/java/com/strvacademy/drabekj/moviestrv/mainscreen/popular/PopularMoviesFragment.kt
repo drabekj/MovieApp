@@ -1,6 +1,6 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity.popular
+package com.strvacademy.drabekj.moviestrv.mainscreen.popular
 
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.MainFragment
 
 
 class PopularMoviesFragment: MainFragment<PopularMoviesViewModel>() {

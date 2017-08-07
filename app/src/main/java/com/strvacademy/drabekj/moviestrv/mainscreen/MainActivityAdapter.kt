@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity
+package com.strvacademy.drabekj.moviestrv.mainscreen
 
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainListItemBinding

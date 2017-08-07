@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.detailActivity
+package com.strvacademy.drabekj.moviestrv.moviedetailscreen
 
 import com.strvacademy.drabekj.moviestrv.utils.BaseView
 

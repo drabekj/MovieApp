@@ -5,7 +5,7 @@
 
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.mainActivity.MainViewModel" />
+		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.mainscreen.MainViewModel" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

@@ -9,7 +9,7 @@
 
 	<fragment
 		android:id="@+id/fragment"
-		android:name="com.strvacademy.drabekj.moviestrv.actorsActivity.ActorsFragment"
+		android:name="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 </LinearLayout>

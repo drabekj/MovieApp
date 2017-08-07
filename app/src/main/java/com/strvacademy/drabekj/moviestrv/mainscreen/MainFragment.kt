@@ -1,10 +1,10 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity
+package com.strvacademy.drabekj.moviestrv.mainscreen
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainBinding
-import com.strvacademy.drabekj.moviestrv.detailActivity.MovieDetailActivity
+import com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 

@@ -1,6 +1,6 @@
-package com.strvacademy.drabekj.moviestrv.mainActivity.popular
+package com.strvacademy.drabekj.moviestrv.mainscreen.popular
 
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainViewModel
+import com.strvacademy.drabekj.moviestrv.mainscreen.MainViewModel
 import org.alfonz.view.StatefulLayout
 
 

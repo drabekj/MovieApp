@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.detailActivity
+package com.strvacademy.drabekj.moviestrv.moviedetailscreen
 
 import android.databinding.ObservableField
 import com.strvacademy.drabekj.moviestrv.model.Movie

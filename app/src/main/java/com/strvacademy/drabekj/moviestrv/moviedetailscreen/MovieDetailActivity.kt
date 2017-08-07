@@ -1,13 +1,12 @@
-package com.strvacademy.drabekj.moviestrv.detailActivity
+package com.strvacademy.drabekj.moviestrv.moviedetailscreen
 
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainFragment
+import com.strvacademy.drabekj.moviestrv.mainscreen.MainFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 
 

@@ -1,10 +1,7 @@
-package com.strvacademy.drabekj.moviestrv.actorsActivity
+package com.strvacademy.drabekj.moviestrv.actorsscreen
 
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorsListItemBinding
-import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainListItemBinding
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainView
-import com.strvacademy.drabekj.moviestrv.mainActivity.MainViewModel
 import org.alfonz.adapter.SimpleDataBoundRecyclerAdapter
 
 
