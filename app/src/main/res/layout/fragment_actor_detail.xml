@@ -34,7 +34,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/global_spacing_8"
 				android:layout_marginBottom="@dimen/global_spacing_8"
-				android:textSize="@dimen/global_text_size_title"
+				style="@style/HeadingText"
 				android:text="@{viewModel.actor.name}" />
 
 			<LinearLayout
@@ -51,6 +51,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="@dimen/global_spacing_8"
+					style="@style/SecondaryText"
 					android:text="@{viewModel.actor.birthDate}" />
 
 				<ImageView
@@ -63,6 +64,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="@dimen/global_spacing_8"
+					style="@style/SecondaryText"
 					android:text="@{Integer.toString(viewModel.actor.moviesArray.length)}" />
 			</LinearLayout>
 
@@ -70,6 +72,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/global_spacing_8"
+				style="@style/SecondaryText"
 				android:text="@{viewModel.actor.description}" />
 
 			<View
@@ -83,7 +86,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textSize="@dimen/global_text_size_subhead"
+				style="@style/SecondaryHeadingText"
 				android:text="@string/actor_detail_known_for_title" />
 
 			<!--placeholder-->

@@ -42,13 +42,14 @@
 						android:id="@+id/text_detail_name"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@{viewModel.movie.name}"
-						android:textSize="@dimen/global_text_size_title" />
+						style="@style/HeadingText"
+						android:text="@{viewModel.movie.name}" />
 
 					<TextView
 						android:id="@+id/text_detail_subheading"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						style="@style/SecondaryText"
 						android:text='@{String.format("%s, %s", viewModel.movie.director, viewModel.movie.releaseDate)}'/>
 
 					<TextView
@@ -56,6 +57,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="@dimen/global_spacing_16"
+						style="@style/SecondaryText"
 						android:text="@{viewModel.movie.description}"/>
 
 				</LinearLayout>
@@ -76,6 +78,7 @@
 						android:id="@+id/text_subheading_trailers"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						style="@style/SecondaryHeadingText"
 						android:text="@string/subheading_trailers" />
 
 					<ImageView
@@ -101,6 +104,7 @@
 						android:id="@+id/text_subheading_gallery"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						style="@style/SecondaryHeadingText"
 						android:text="@string/subheading_gallery" />
 
 					<ImageView
@@ -126,6 +130,7 @@
 						android:id="@+id/text_subheading_cast"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						style="@style/SecondaryHeadingText"
 						android:text="@string/subheading_cast" />
 
 					<ImageView

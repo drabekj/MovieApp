@@ -9,4 +9,15 @@
 		<item name="android:textColor">#FFFFFF</item>
 	</style>
 
+	<style name="HeadingText">
+		<item name="android:textSize">@dimen/global_text_size_title</item>
+		<item name="android:textColor">@color/colorPrimaryText</item>
+	</style>
+	<style name="SecondaryHeadingText">
+		<item name="android:textSize">@dimen/global_text_size_subhead</item>
+		<item name="android:textColor">@color/colorSecondaryText</item>
+	</style>
+	<style name="SecondaryText">
+		<item name="android:textColor">@color/colorSecondaryText</item>
+	</style>
 </resources>
