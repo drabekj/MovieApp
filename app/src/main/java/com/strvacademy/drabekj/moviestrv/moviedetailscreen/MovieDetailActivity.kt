@@ -6,8 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.mainscreen.MainFragment
-import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageFragment
+import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.MoviesPageFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 
 

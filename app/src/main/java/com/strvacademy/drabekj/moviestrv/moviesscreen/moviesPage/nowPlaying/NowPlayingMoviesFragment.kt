@@ -1,6 +1,6 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.nowPlaying
+package com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.nowPlaying
 
-import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageFragment
+import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.MoviesPageFragment
 
 
 class NowPlayingMoviesFragment: MoviesPageFragment<NowPlayingMoviesViewModel>() {

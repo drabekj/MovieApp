@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage
+package com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage
 
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseView

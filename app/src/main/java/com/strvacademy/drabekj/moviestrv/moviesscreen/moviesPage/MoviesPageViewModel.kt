@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage
+package com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage
 
 import android.databinding.ObservableArrayList
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel

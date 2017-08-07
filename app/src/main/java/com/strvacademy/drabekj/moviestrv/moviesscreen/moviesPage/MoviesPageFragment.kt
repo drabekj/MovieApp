@@ -1,19 +1,12 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage
+package com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesPageBinding
 import com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
-import kotlinx.android.synthetic.main.fragment_main.*
-import org.alfonz.mvvm.AlfonzActivity
 
 
 abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<MoviesPageView, VM, FragmentMoviesPageBinding>(), MoviesPageView {

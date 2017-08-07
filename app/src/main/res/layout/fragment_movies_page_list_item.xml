@@ -3,7 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<variable name="view" type="com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageView" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.MoviesPageView" />
 		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.Movie" />
 	</data>
 

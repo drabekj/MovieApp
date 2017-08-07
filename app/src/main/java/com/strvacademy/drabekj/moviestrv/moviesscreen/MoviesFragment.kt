@@ -1,6 +1,5 @@
-package com.strvacademy.drabekj.moviestrv.mainscreen
+package com.strvacademy.drabekj.moviestrv.moviesscreen
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.LayoutInflater
@@ -8,24 +7,21 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.databinding.FragmentMainBinding
-import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.MoviesPageFragmentAdapter
-import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.ScreenSlidePagerAdapter
+import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesBinding
+import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.MoviesPageFragmentAdapter
+import com.strvacademy.drabekj.moviestrv.moviesscreen.moviesPage.ScreenSlidePagerAdapter
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
 
 
-class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>(), MainView {
-	private var mAdapter: MoviesPageFragmentAdapter? = null
-
-
-	override fun getViewModelClass(): Class<MainViewModel> {
-		return MainViewModel::class.java
+class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
+	override fun getViewModelClass(): Class<MoviesViewModel> {
+		return MoviesViewModel::class.java
 	}
 
-	override fun inflateBindingLayout(inflater: LayoutInflater?): FragmentMainBinding {
-		return FragmentMainBinding.inflate(inflater!!)
+	override fun inflateBindingLayout(inflater: LayoutInflater?): FragmentMoviesBinding {
+		return FragmentMoviesBinding.inflate(inflater!!)
 	}
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -76,23 +72,9 @@ class MainFragment: BaseFragment<MainView, MainViewModel, FragmentMainBinding>()
 		})
 	}
 
-
-	//	TODO ! refactoring
-	//	override fun onBackPressed() {
-	//		if (pager.currentItem == 0) {
-	//			// If the user is currently looking at the first step, allow the system to handle the
-	//			// Back button. This calls finish() on this activity and pops the back stack.
-	//			super.onBackPressed()
-	//		} else {
-	//			// Otherwise, select the previous step.
-	//			pager.currentItem = pager.currentItem - 1
-	//		}
-	//	}
-
-
 	companion object {
-		fun newInstance(): MainFragment {
-			return MainFragment()
+		fun newInstance(): MoviesFragment {
+			return MoviesFragment()
 		}
 	}
 }

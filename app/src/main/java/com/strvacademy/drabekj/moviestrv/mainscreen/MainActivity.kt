@@ -7,7 +7,7 @@ import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsFragment
-import com.strvacademy.drabekj.moviestrv.mainscreen.moviesPage.popular.PopularMoviesFragment
+import com.strvacademy.drabekj.moviestrv.moviesscreen.MoviesFragment
 
 
 class MainActivity : BaseActivity() {
@@ -17,16 +17,17 @@ class MainActivity : BaseActivity() {
 		setContentView(R.layout.activity_main)
 
 		setupBottomNavView(savedInstanceState)
-		showFragmentInTab(savedInstanceState, MainFragment.newInstance())
+		showFragmentInTab(savedInstanceState, MoviesFragment.newInstance())
 	}
 
 //	TODO ? How to ignore click if it's on the same item?
+//	TODO ?!! Doesn't work onConfigurationChange
 	private fun setupBottomNavView(savedInstanceState: Bundle?) {
 		bottom_navigation.setOnNavigationItemSelectedListener(
 				{ item ->
 					when (item.itemId) {
 						R.id.action_movies -> {
-							showFragmentInTab(savedInstanceState, MainFragment.newInstance())
+							showFragmentInTab(savedInstanceState, MoviesFragment.newInstance())
 						}
 						R.id.action_actors -> {
 							showFragmentInTab(savedInstanceState, ActorsFragment.newInstance())
