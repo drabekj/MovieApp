@@ -2,6 +2,7 @@ package com.strvacademy.drabekj.moviestrv.model.local
 
 import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.model.Movie
+import com.strvacademy.drabekj.moviestrv.model.Profile
 
 
 class MovieDummyData: MovieLocalDataSource {
@@ -61,5 +62,10 @@ class MovieDummyData: MovieLocalDataSource {
 				.forEach { return it }
 
 		return null
+	}
+
+
+	override fun getProfile(): Profile? {
+		return Profile(1, "John Dow", "dowjohn1", "11/08/2017", arrayOf("Iron Man", "Iron Man 2", "Spider Man", "Batman", "Wonderwoman", "Thor"))
 	}
 }

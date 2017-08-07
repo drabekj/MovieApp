@@ -2,6 +2,7 @@ package com.strvacademy.drabekj.moviestrv.model.local
 
 import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.model.Movie
+import com.strvacademy.drabekj.moviestrv.model.Profile
 
 interface MovieLocalDataSource {
 
@@ -15,4 +16,7 @@ interface MovieLocalDataSource {
 	fun getPopularActors(): Array<Actor>
 
 	fun getActorById(id: Int): Actor?
+
+
+	fun  getProfile(): Profile?
 }

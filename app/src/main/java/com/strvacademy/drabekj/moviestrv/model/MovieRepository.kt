@@ -32,4 +32,9 @@ class MovieRepository: MovieDataSource {
 	override fun getActorById(id: Int): Actor? {
 		return mMoviesLocalDataSource.getActorById(id)
 	}
+
+
+	override fun getProfile(): Profile? {
+		return mMoviesLocalDataSource.getProfile()
+	}
 }

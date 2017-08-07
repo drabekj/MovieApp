@@ -5,6 +5,7 @@
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileViewModel" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileView" />
 	</data>
 
 	<LinearLayout
@@ -13,6 +14,18 @@
 		android:orientation="vertical">
 
 		<include layout="@layout/toolbar" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/HeadingText"
+			android:text="@{viewModel.profile.name}" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/SecondaryText"
+			android:text='@{String.format("Joined %s", @{viewModel.profile.joinedDate})}' />
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -28,12 +41,29 @@
 			app:emptyLayout="@layout/placeholder_empty"
 			app:state="@{viewModel.state}">
 
-			<android.support.v7.widget.RecyclerView
-				android:id="@+id/fragment_profile_list_recycler"
+			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
-				app:recyclerLayoutSpanCount="@{3}" />
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<android.support.v7.widget.RecyclerView
+					android:id="@+id/fragment_profile_list_recycler"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
+					app:recyclerLayoutSpanCount="@{3}" />
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:textColor="@color/colorAccent"
+					android:background="@android:color/transparent"
+					android:text='@{String.format("VIEW ALL %d FAVOURITE", viewModel.profile.favMoviesArray.length)}'
+					android:onClick="@{() -> view.onAllFavouriteClick()}" />
+
+			</LinearLayout>
+
 		</org.alfonz.view.StatefulLayout>
 	</LinearLayout>
 

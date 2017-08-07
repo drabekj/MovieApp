@@ -12,4 +12,7 @@ interface MovieDataSource {
 	fun getPopularActors(): Array<Actor>
 
 	fun getActorById(id: Int): Actor?
+
+
+	fun  getProfile(): Profile?
 }

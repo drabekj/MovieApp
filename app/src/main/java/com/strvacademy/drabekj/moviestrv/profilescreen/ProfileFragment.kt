@@ -7,11 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
+import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {
-//	private var mAdapter: ProfileFragmentAdapter? = null
+	private var mAdapter: ProfileFragmentAdapter? = null
 
 	override fun getViewModelClass(): Class<ProfileViewModel> {
 		return ProfileViewModel::class.java
@@ -24,7 +25,7 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 
-//		setupAdapter()
+		setupAdapter()
 		setupToolbar()
 	}
 
@@ -47,11 +48,25 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 		}
 	}
 
+	private fun setupAdapter() {
+		if (mAdapter == null) {
+			mAdapter = ProfileFragmentAdapter(this, viewModel)
+			binding.fragmentProfileListRecycler.adapter = mAdapter
+		}
+	}
+
 	private fun setupToolbar() {
 		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, "")
 		setHasOptionsMenu(true)
 	}
 
+	override fun onAllFavouriteClick() {
+		showToast("Show all favourite")
+	}
+
+	override fun onFavMovieClick(m: String) {
+		showToast("Show movie detail " + m)
+	}
 
 	companion object {
 		fun newInstance(): ProfileFragment {
