@@ -34,6 +34,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/global_spacing_8"
 				android:layout_marginBottom="@dimen/global_spacing_8"
+				android:textSize="@dimen/global_text_size_title"
 				android:text="@{viewModel.actor.name}" />
 
 			<LinearLayout
