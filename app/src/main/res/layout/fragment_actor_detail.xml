@@ -3,7 +3,9 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
+		<import type="java.lang.reflect.Array" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout
@@ -14,21 +16,62 @@
 		app:emptyLayout="@layout/placeholder_empty"
 		app:state="@{viewModel.state}">
 
-		<ScrollView
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/global_spacing_16"
+			android:orientation="vertical">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:adjustViewBounds="true"
+				android:src="@drawable/dummy_actor_profile"
+				android:contentDescription="@string/actor_profile_image" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/global_spacing_8"
+				android:layout_marginBottom="@dimen/global_spacing_8"
+				android:text="@{viewModel.actor.name}" />
 
 			<LinearLayout
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:orientation="vertical">
+				android:orientation="horizontal">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_event_white_24dp" />
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@{viewModel.actor.name}"/>
+					android:layout_marginStart="@dimen/global_spacing_8"
+					android:text="@{viewModel.actor.birthDate}" />
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="@dimen/global_spacing_32"
+					android:src="@drawable/ic_local_movies_white_24dp" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="@dimen/global_spacing_8"
+					android:text="@{Integer.toString(viewModel.actor.moviesArray.length)}" />
 			</LinearLayout>
-		</ScrollView>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/global_spacing_8"
+				android:layout_marginBottom="@dimen/global_spacing_8"
+				android:text="@{viewModel.actor.description}" />
+		</LinearLayout>
 
 	</org.alfonz.view.StatefulLayout>
 
