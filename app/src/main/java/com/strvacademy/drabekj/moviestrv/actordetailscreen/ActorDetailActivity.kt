@@ -31,4 +31,10 @@ class ActorDetailActivity: BaseActivity() {
 			supportFragmentManager.beginTransaction().add(R.id.fragment_container, actorDetailFragment).commit()
 		}
 	}
+
+	//    TODO ? better?
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
+	}
 }
