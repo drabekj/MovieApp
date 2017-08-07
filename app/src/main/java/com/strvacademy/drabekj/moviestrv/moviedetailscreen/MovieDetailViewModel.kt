@@ -40,6 +40,4 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
         else
             state.set(StatefulLayout.EMPTY)
     }
-
-
 }

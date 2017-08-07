@@ -1,9 +1,11 @@
 package com.strvacademy.drabekj.moviestrv.actorsscreen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
+import com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailActivity
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorsBinding
 import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
@@ -11,6 +13,8 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
 class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBinding>(), ActorsView {
 	private var mAdapter: ActorsActivityAdapter? = null
+
+	companion object { val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID" }
 
 
 	override fun getViewModelClass(): Class<ActorsViewModel> {
@@ -27,7 +31,13 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 	}
 
 	override fun onActorClick(actor: Actor) {
-		Toast.makeText(MoviesApplication.getContext(), "Click " + actor.id, Toast.LENGTH_SHORT).show()
+		startActorDetailActivity(actor.id)
+	}
+
+	private fun startActorDetailActivity(id: Int) {
+		val intent = Intent(activity, ActorDetailActivity::class.java)
+		intent.putExtra(EXTRA_KEY_ACTOR_ID, id)
+		startActivity(intent)
 	}
 
 	private fun setupAdapter() {
