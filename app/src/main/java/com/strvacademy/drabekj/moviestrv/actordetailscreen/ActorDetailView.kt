@@ -4,4 +4,5 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseView
 
 
 interface ActorDetailView: BaseView {
+	fun onAllCreditsClick()
 }

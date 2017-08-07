@@ -2,10 +2,11 @@ package com.strvacademy.drabekj.moviestrv.actordetailscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
-class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, FragmentActorDetailBinding>() {
+class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, FragmentActorDetailBinding>(), ActorDetailView {
 
 	override fun getViewModelClass(): Class<ActorDetailViewModel> {
 		return ActorDetailViewModel::class.java
@@ -19,6 +20,10 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 		super.onCreate(savedInstanceState)
 		if (arguments != null)
 			viewModel.id = arguments.getInt(ARG_ACTOR_ID)
+	}
+
+	override fun onAllCreditsClick() {
+		showToast("Show all credits")
 	}
 
 

@@ -4,8 +4,8 @@
 
 	<data>
 		<import type="java.lang.reflect.Array" />
-		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
+		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout
@@ -70,8 +70,35 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/global_spacing_8"
-				android:layout_marginBottom="@dimen/global_spacing_8"
 				android:text="@{viewModel.actor.description}" />
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="1dip"
+				android:layout_marginTop="@dimen/global_spacing_16"
+				android:layout_marginBottom="@dimen/global_spacing_16"
+				android:background="@color/colorLightGrey" />
+
+			<!-- MOVIES (known for) -->
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/global_text_size_subhead"
+				android:text="@string/actor_detail_known_for_title" />
+
+			<!--placeholder-->
+			<ImageView
+				android:layout_width="100dp"
+				android:layout_height="250dp" />
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textColor="@color/colorAccent"
+				android:background="@android:color/transparent"
+				android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'
+				android:onClick="@{() -> view.onAllCreditsClick()}"/>
 		</LinearLayout>
 
 	</org.alfonz.view.StatefulLayout>

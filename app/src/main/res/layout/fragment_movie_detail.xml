@@ -4,6 +4,7 @@
 
 	<data>
 		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout
@@ -137,9 +138,10 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
-						android:text="@string/full_cast_amp_crew"
+						android:background="@android:color/transparent"
 						android:textColor="@color/colorAccent"
-						android:background="@android:color/transparent" />
+						android:text="@string/full_cast_amp_crew"
+						android:onClick="@{() -> view.onFullCastClick()}"/>
 
 				</LinearLayout>
 

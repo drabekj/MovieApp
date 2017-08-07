@@ -22,4 +22,5 @@
 	<string name="menu_profile">Profile</string>
 	<string name="actors_popular_title">POPULAR</string>
 	<string name="actor_profile_image">Actor profile picture</string>
+	<string name="actor_detail_known_for_title">KNOWN FOR</string>
 </resources>
