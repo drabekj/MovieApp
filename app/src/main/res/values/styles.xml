@@ -35,6 +35,10 @@
 		<item name="android:elevation" tools:targetApi="lollipop">@dimen/global_elevation_4</item>
 	</style>
 
+	<style name="MyToolbarTransparent" parent="MyToolbar">
+		<item name="android:background">@android:color/transparent</item>
+	</style>
+
 	<style name="MyToolbarHigh" parent="MyToolbar">
 		<item name="android:layout_height">200dp</item>
 	</style>

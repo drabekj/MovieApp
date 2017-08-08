@@ -60,8 +60,7 @@
 
 					<android.support.v7.widget.Toolbar
 						android:id="@+id/toolbar"
-						style="@style/MyToolbar"
-						android:background="@android:color/transparent"
+						style="@style/MyToolbarTransparent"
 						app:layout_collapseMode="pin"
 						app:title="@{viewModel.movie.name}"
 						app:titleTextColor="@color/colorPrimaryText" />
