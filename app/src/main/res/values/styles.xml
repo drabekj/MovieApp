@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Base application theme. -->
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -9,20 +9,49 @@
 		<item name="android:textColor">#FFFFFF</item>
 	</style>
 
+
+	<!--TEXT-->
 	<style name="HeadingText">
 		<item name="android:textSize">@dimen/global_text_size_title</item>
 		<item name="android:textColor">@color/colorPrimaryText</item>
 	</style>
+
 	<style name="SecondaryHeadingText">
 		<item name="android:textSize">@dimen/global_text_size_subhead</item>
 		<item name="android:textColor">@color/colorSecondaryText</item>
 	</style>
+
 	<style name="SecondaryText">
 		<item name="android:textColor">@color/colorSecondaryText</item>
+	</style>
+
+
+	<!--TOOLBAR-->
+	<style name="MyToolbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">?attr/actionBarSize</item>
+		<item name="android:background">@color/colorPrimary</item>
+		<item name="android:elevation" tools:targetApi="lollipop">@dimen/global_elevation_4</item>
+	</style>
+
+	<style name="MyToolbarHigh" parent="MyToolbar">
+		<item name="android:layout_height">200dp</item>
 	</style>
 
 	<style name="ThemeOverlay.MyTheme" parent="ThemeOverlay.AppCompat.Light">
 		<item name="android:colorBackground">@color/colorPrimary</item>
 		<item name="android:textColor">@color/colorPrimaryText</item>
+	</style>
+
+
+	<!--BUTTONS-->
+	<style name="AccentButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:textColor">@color/colorAccent</item>
+	</style>
+	<style name="ViewAllButton" parent="AccentButton">
+		<item name="android:layout_gravity">center</item>
 	</style>
 </resources>

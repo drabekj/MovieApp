@@ -140,11 +140,7 @@
 
 					<Button
 						android:id="@+id/button_detail_full_cast"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						android:background="@android:color/transparent"
-						android:textColor="@color/colorAccent"
+						style="@style/ViewAllButton"
 						android:text="@string/full_cast_amp_crew"
 						android:onClick="@{() -> view.onFullCastClick()}"/>
 

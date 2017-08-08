@@ -97,12 +97,9 @@
 
 					<Button
 						android:id="@+id/button_more_info"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/AccentButton"
 						android:layout_alignParentBottom="true"
-						android:textColor="@color/colorAccent"
 						android:text="@string/button_more_info"
-						android:background="@android:color/transparent"
 						android:onClick="@{() -> view.onItemClick(data)}" />
 
 				</RelativeLayout>

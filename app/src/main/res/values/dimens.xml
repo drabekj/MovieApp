@@ -37,4 +37,5 @@
 	<dimen name="card_view_movie_height">220dp</dimen>
 	<dimen name="bottom_naw_height">56dp</dimen>
 	<dimen name="global_grid_spacing_4">4dp</dimen>
+	<dimen name="profile_pic_size">80dp</dimen>
 </resources>

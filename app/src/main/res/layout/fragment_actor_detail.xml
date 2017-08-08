@@ -95,11 +95,7 @@
 				android:layout_height="250dp" />
 
 			<Button
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:textColor="@color/colorAccent"
-				android:background="@android:color/transparent"
+				style="@style/ViewAllButton"
 				android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'
 				android:onClick="@{() -> view.onAllCreditsClick()}"/>
 		</LinearLayout>
