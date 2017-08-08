@@ -23,7 +23,6 @@
 				app:contentScrim="?attr/colorPrimary"
 				app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-				<!--TODO ! center horizontal-->
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

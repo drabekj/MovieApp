@@ -3,8 +3,10 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />
-		<variable name="view" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailView" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />
+		<variable
+			name="view" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout
@@ -15,144 +17,173 @@
 		app:emptyLayout="@layout/placeholder_empty"
 		app:state="@{viewModel.state}">
 
-		<ScrollView
+		<android.support.design.widget.CoordinatorLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
 
-			<LinearLayout
+
+			<android.support.design.widget.AppBarLayout
+				style="@style/MyToolbarHigh"
+				android:elevation="0dp"
+				android:layout_height="300dp">
+
+				<android.support.design.widget.CollapsingToolbarLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					app:contentScrim="?attr/colorPrimary"
+					app:layout_scrollFlags="scroll|exitUntilCollapsed"
+					app:expandedTitleTextAppearance="@color/colorPrimaryText"
+					app:collapsedTitleTextAppearance="@color/colorPrimaryText">
+
+					<ImageView
+						android:id="@+id/image_movie_detail_cover"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:adjustViewBounds="true"
+						android:src="@drawable/dummy_movie_detail"
+						android:contentDescription="@string/movie_cover_image"
+						app:layout_collapseMode="parallax"
+						app:layout_collapseParallaxMultiplier="0.7" />
+
+					<android.support.v7.widget.Toolbar
+						android:id="@+id/toolbar"
+						style="@style/MyToolbar"
+						android:background="@android:color/transparent"
+						app:layout_collapseMode="pin"
+						app:title="@{viewModel.movie.name}"
+						app:titleTextColor="@color/colorPrimaryText" />
+
+				</android.support.design.widget.CollapsingToolbarLayout>
+			</android.support.design.widget.AppBarLayout>
+
+
+			<android.support.v4.widget.NestedScrollView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<ImageView
-					android:id="@+id/image_movie_detail_cover"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:adjustViewBounds="true"
-					android:src="@drawable/dummy_movie_detail"
-					android:contentDescription="@string/movie_cover_image" />
+				app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_margin="@dimen/global_spacing_16"
 					android:orientation="vertical">
 
-					<TextView
-						android:id="@+id/text_detail_name"
-						android:layout_width="wrap_content"
+					<LinearLayout
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						style="@style/HeadingText"
-						android:text="@{viewModel.movie.name}" />
+						android:layout_margin="@dimen/global_spacing_16"
+						android:orientation="vertical">
 
-					<TextView
-						android:id="@+id/text_detail_subheading"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						style="@style/SecondaryText"
-						android:text='@{String.format("%s, %s", viewModel.movie.director, viewModel.movie.releaseDate)}'/>
+						<TextView
+							android:id="@+id/text_detail_subheading"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text='@{String.format("%s, %s", viewModel.movie.director, viewModel.movie.releaseDate)}'
+							style="@style/SecondaryText" />
 
-					<TextView
-						android:id="@+id/text_detail_description"
-						android:layout_width="wrap_content"
+						<TextView
+							android:id="@+id/text_detail_description"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="@dimen/global_spacing_16"
+							android:text="@{viewModel.movie.description}"
+							style="@style/SecondaryText" />
+
+					</LinearLayout>
+
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@color/colorLightGrey" />
+
+					<!-- TRAILERS -->
+					<LinearLayout
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/global_spacing_16"
-						style="@style/SecondaryText"
-						android:text="@{viewModel.movie.description}"/>
+						android:layout_margin="@dimen/global_spacing_16"
+						android:orientation="vertical">
+
+						<TextView
+							android:id="@+id/text_subheading_trailers"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/subheading_trailers"
+							style="@style/SecondaryHeadingText" />
+
+						<ImageView
+							android:layout_width="150dp"
+							android:layout_height="120dp"
+							android:contentDescription="@string/trailer_video" />
+
+					</LinearLayout>
+
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@color/colorLightGrey" />
+
+					<!-- GALLERY -->
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/global_spacing_16"
+						android:orientation="vertical">
+
+						<TextView
+							android:id="@+id/text_subheading_gallery"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/subheading_gallery"
+							style="@style/SecondaryHeadingText" />
+
+						<ImageView
+							android:layout_width="150dp"
+							android:layout_height="200dp"
+							android:contentDescription="@string/gallery_image" />
+
+					</LinearLayout>
+
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@color/colorLightGrey" />
+
+					<!-- CAST -->
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="@dimen/global_spacing_16"
+						android:orientation="vertical">
+
+						<TextView
+							android:id="@+id/text_subheading_cast"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/subheading_cast"
+							style="@style/SecondaryHeadingText" />
+
+						<ImageView
+							android:layout_width="150dp"
+							android:layout_height="280dp"
+							android:contentDescription="@string/cast_list" />
+
+						<Button
+							android:id="@+id/button_detail_full_cast"
+							android:text="@string/full_cast_amp_crew"
+							android:onClick="@{() -> view.onFullCastClick()}"
+							style="@style/ViewAllButton" />
+
+					</LinearLayout>
+
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@color/colorLightGrey" />
 
 				</LinearLayout>
 
-				<View
-					android:layout_width="fill_parent"
-					android:layout_height="1dip"
-					android:background="@color/colorLightGrey" />
+			</android.support.v4.widget.NestedScrollView>
 
-				<!-- TRAILERS -->
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_margin="@dimen/global_spacing_16"
-					android:orientation="vertical">
-
-					<TextView
-						android:id="@+id/text_subheading_trailers"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						style="@style/SecondaryHeadingText"
-						android:text="@string/subheading_trailers" />
-
-					<ImageView
-						android:layout_width="150dp"
-						android:layout_height="120dp"
-						android:contentDescription="@string/trailer_video" />
-
-				</LinearLayout>
-
-				<View
-					android:layout_width="fill_parent"
-					android:layout_height="1dip"
-					android:background="@color/colorLightGrey" />
-
-				<!-- GALLERY -->
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_margin="@dimen/global_spacing_16"
-					android:orientation="vertical">
-
-					<TextView
-						android:id="@+id/text_subheading_gallery"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						style="@style/SecondaryHeadingText"
-						android:text="@string/subheading_gallery" />
-
-					<ImageView
-						android:layout_width="150dp"
-						android:layout_height="200dp"
-						android:contentDescription="@string/gallery_image" />
-
-				</LinearLayout>
-
-				<View
-					android:layout_width="fill_parent"
-					android:layout_height="1dip"
-					android:background="@color/colorLightGrey" />
-
-				<!-- CAST -->
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_margin="@dimen/global_spacing_16"
-					android:orientation="vertical">
-
-					<TextView
-						android:id="@+id/text_subheading_cast"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						style="@style/SecondaryHeadingText"
-						android:text="@string/subheading_cast" />
-
-					<ImageView
-						android:layout_width="150dp"
-						android:layout_height="280dp"
-						android:contentDescription="@string/cast_list" />
-
-					<Button
-						android:id="@+id/button_detail_full_cast"
-						style="@style/ViewAllButton"
-						android:text="@string/full_cast_amp_crew"
-						android:onClick="@{() -> view.onFullCastClick()}"/>
-
-				</LinearLayout>
-
-				<View
-					android:layout_width="fill_parent"
-					android:layout_height="1dip"
-					android:background="@color/colorLightGrey" />
-
-			</LinearLayout>
-		</ScrollView>
+		</android.support.design.widget.CoordinatorLayout>
 
 	</org.alfonz.view.StatefulLayout>
 
