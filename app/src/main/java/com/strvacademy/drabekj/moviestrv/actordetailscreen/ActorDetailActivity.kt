@@ -14,11 +14,12 @@ class ActorDetailActivity: BaseActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_actor_detail)
 
-		setupActionBar(INDICATOR_BACK, "")
-		val upArrow: Drawable = resources.getDrawable(R.drawable.abc_ic_ab_back_material)
-		supportActionBar!!.setHomeAsUpIndicator(upArrow)
-
 		setupFragment(savedInstanceState)
+	}
+
+	override fun onSupportNavigateUp(): Boolean {
+		onBackPressed()
+		return true
 	}
 
 	private fun setupFragment(savedInstanceState: Bundle?) {
@@ -30,11 +31,5 @@ class ActorDetailActivity: BaseActivity() {
 			val actorDetailFragment: ActorDetailFragment = ActorDetailFragment.newInstance(actorId)
 			supportFragmentManager.beginTransaction().add(R.id.fragment_container, actorDetailFragment).commit()
 		}
-	}
-
-	//    TODO ? better?
-	override fun onSupportNavigateUp(): Boolean {
-		onBackPressed()
-		return true
 	}
 }

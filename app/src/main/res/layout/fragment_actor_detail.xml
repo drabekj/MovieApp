@@ -4,8 +4,10 @@
 
 	<data>
 		<import type="java.lang.reflect.Array" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
-		<variable name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
+		<variable
+			name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout
@@ -16,88 +18,106 @@
 		app:emptyLayout="@layout/placeholder_empty"
 		app:state="@{viewModel.state}">
 
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="@dimen/global_spacing_16"
 			android:orientation="vertical">
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:adjustViewBounds="true"
-				android:src="@drawable/dummy_actor_profile"
-				android:contentDescription="@string/actor_profile_image" />
+			<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/global_spacing_8"
-				android:layout_marginBottom="@dimen/global_spacing_8"
-				style="@style/HeadingText"
-				android:text="@{viewModel.actor.name}" />
+				<ImageView
+					android:layout_width="200dp"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="50dp"
+					android:layout_gravity="center"
+					android:elevation="@dimen/global_elevation_8"
+					android:adjustViewBounds="true"
+					android:src="@drawable/dummy_actor_profile"
+					android:contentDescription="@string/actor_profile_image" />
+
+				<include layout="@layout/toolbar_actor_detail" />
+
+			</FrameLayout>
 
 			<LinearLayout
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:src="@drawable/ic_event_white_24dp" />
+				android:layout_margin="@dimen/global_spacing_16"
+				android:orientation="vertical">
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginStart="@dimen/global_spacing_8"
-					style="@style/SecondaryText"
-					android:text="@{viewModel.actor.birthDate}" />
+					android:layout_marginTop="@dimen/global_spacing_8"
+					android:layout_marginBottom="@dimen/global_spacing_8"
+					android:text="@{viewModel.actor.name}"
+					style="@style/HeadingText" />
 
-				<ImageView
+				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginStart="@dimen/global_spacing_32"
-					android:src="@drawable/ic_local_movies_white_24dp" />
+					android:orientation="horizontal">
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:src="@drawable/ic_event_white_24dp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="@dimen/global_spacing_8"
+						android:text="@{viewModel.actor.birthDate}"
+						style="@style/SecondaryText" />
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="@dimen/global_spacing_32"
+						android:src="@drawable/ic_local_movies_white_24dp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="@dimen/global_spacing_8"
+						android:text="@{Integer.toString(viewModel.actor.moviesArray.length)}"
+						style="@style/SecondaryText" />
+				</LinearLayout>
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_marginStart="@dimen/global_spacing_8"
-					style="@style/SecondaryText"
-					android:text="@{Integer.toString(viewModel.actor.moviesArray.length)}" />
+					android:layout_marginTop="@dimen/global_spacing_8"
+					android:text="@{viewModel.actor.description}"
+					style="@style/SecondaryText" />
+
+				<View
+					android:layout_width="fill_parent"
+					android:layout_height="1dip"
+					android:layout_marginTop="@dimen/global_spacing_16"
+					android:layout_marginBottom="@dimen/global_spacing_16"
+					android:background="@color/colorLightGrey" />
+
+				<!-- MOVIES (known for) -->
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/actor_detail_known_for_title"
+					style="@style/SecondaryHeadingText" />
+
+				<!--placeholder-->
+				<ImageView
+					android:layout_width="100dp"
+					android:layout_height="250dp" />
+
+				<Button
+					android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'
+					android:onClick="@{() -> view.onAllCreditsClick()}"
+					style="@style/ViewAllButton" />
 			</LinearLayout>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/global_spacing_8"
-				style="@style/SecondaryText"
-				android:text="@{viewModel.actor.description}" />
-
-			<View
-				android:layout_width="fill_parent"
-				android:layout_height="1dip"
-				android:layout_marginTop="@dimen/global_spacing_16"
-				android:layout_marginBottom="@dimen/global_spacing_16"
-				android:background="@color/colorLightGrey" />
-
-			<!-- MOVIES (known for) -->
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				style="@style/SecondaryHeadingText"
-				android:text="@string/actor_detail_known_for_title" />
-
-			<!--placeholder-->
-			<ImageView
-				android:layout_width="100dp"
-				android:layout_height="250dp" />
-
-			<Button
-				style="@style/ViewAllButton"
-				android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'
-				android:onClick="@{() -> view.onAllCreditsClick()}"/>
 		</LinearLayout>
 
 	</org.alfonz.view.StatefulLayout>

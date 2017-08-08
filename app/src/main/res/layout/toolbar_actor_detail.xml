@@ -3,6 +3,5 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/toolbar"
-	style="@style/MyToolbar"
-	android:background="@android:color/transparent"
+	style="@style/MyToolbarHigh"
 	app:titleTextColor="@color/colorPrimaryText" />
