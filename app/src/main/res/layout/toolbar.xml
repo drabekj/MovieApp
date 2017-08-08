@@ -6,6 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="?attr/actionBarSize"
 	style="@style/Widget.AppCompat.Toolbar"
+	app:popupTheme="@style/ThemeOverlay.MyTheme"
 	android:elevation="@dimen/global_elevation_4"
 	android:background="?attr/colorPrimary"
 	app:titleTextColor="@color/colorPrimaryText" />
