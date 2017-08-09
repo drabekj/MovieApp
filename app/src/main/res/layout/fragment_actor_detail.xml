@@ -4,6 +4,7 @@
 
 	<data>
 		<import type="java.lang.reflect.Array" />
+		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
 		<variable
@@ -24,6 +25,7 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
 
+			<!--TOOLBAR + picture-->
 			<FrameLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content">
@@ -42,6 +44,7 @@
 
 			</FrameLayout>
 
+			<!--content-->
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -108,10 +111,12 @@
 					android:text="@string/actor_detail_known_for_title"
 					style="@style/SecondaryHeadingText" />
 
-				<!--placeholder-->
-				<ImageView
-					android:layout_width="100dp"
-					android:layout_height="250dp" />
+				<android.support.v7.widget.RecyclerView
+					android:id="@+id/fragment_actor_detail_movie_list_recycler"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
+					app:recyclerLayoutSpanCount="@{3}" />
 
 				<Button
 					android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'

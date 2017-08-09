@@ -3,15 +3,13 @@ package com.strvacademy.drabekj.moviestrv.actordetailscreen
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, FragmentActorDetailBinding>(), ActorDetailView {
+	private var mAdapter: ActorDetailFragmentAdapter? = null
 
 	override fun getViewModelClass(): Class<ActorDetailViewModel> {
 		return ActorDetailViewModel::class.java
@@ -25,6 +23,7 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 		super.onActivityCreated(savedInstanceState)
 
 		setupToolbar()
+		setupAdapter()
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +34,17 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 
 	override fun onAllCreditsClick() {
 		showToast("Show all credits")
+	}
+
+	override fun onMovieClick(name: String) {
+		showToast("Movie: " + name)
+	}
+
+	private fun setupAdapter() {
+		if (mAdapter == null) {
+			mAdapter = ActorDetailFragmentAdapter(this, viewModel)
+			binding.fragmentActorDetailMovieListRecycler.adapter = mAdapter
+		}
 	}
 
 	private fun setupToolbar() {

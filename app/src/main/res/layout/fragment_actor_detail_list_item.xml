@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
+		<variable name="data" type="String" />
+	</data>
+
+	<!-- TODO ? How spacing in grid view-->
+	<FrameLayout
+		android:orientation="vertical"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="@dimen/global_grid_spacing_4"
+		android:layout_marginRight="@dimen/global_grid_spacing_4"
+		android:layout_marginTop="@dimen/global_grid_spacing_4"
+		android:onClick="@{() -> view.onMovieClick(data)}">
+
+		<ImageView
+			android:src="@drawable/dummy_movie_image"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:adjustViewBounds="true" />
+
+	</FrameLayout>
+</layout>

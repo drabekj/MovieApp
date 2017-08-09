@@ -1,5 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.actordetailscreen
 
+import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
@@ -11,6 +12,7 @@ import org.alfonz.view.StatefulLayout
 class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 	val state = ObservableField<Int>()
 	val actor = ObservableField<Actor>()
+	val knownForMovies = ObservableArrayList<String>()
 	var id: Int? = null
 
 	val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
@@ -32,6 +34,9 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 
 	private fun  onLoadData(a: Actor?) {
 		actor.set(a)
+
+		knownForMovies.clear()
+		knownForMovies.addAll(a!!.moviesArray)
 
 		// show content
 		if(actor.get() != null)
