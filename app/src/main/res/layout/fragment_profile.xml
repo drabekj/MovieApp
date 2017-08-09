@@ -27,10 +27,10 @@
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
+					android:layout_gravity="center"
 					android:orientation="horizontal"
 					app:layout_collapseMode="parallax"
-					app:layout_collapseParallaxMultiplier="0.7"
-					android:layout_gravity="center">
+					app:layout_collapseParallaxMultiplier="0.7">
 
 					<ImageView
 						android:layout_width="@dimen/profile_pic_size"
@@ -62,9 +62,9 @@
 
 				<android.support.v7.widget.Toolbar
 					android:id="@+id/toolbar"
+					android:elevation="0dp"
 					style="@style/MyToolbarTransparent"
 					app:popupTheme="@style/ThemeOverlay.MyTheme"
-					android:elevation="0dp"
 					app:layout_collapseMode="pin" />
 
 			</android.support.design.widget.CollapsingToolbarLayout>
@@ -86,14 +86,12 @@
 				app:state="@{viewModel.state}">
 
 				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
+					android:orientation="vertical"
+					style="@style/DetailContentBox">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:padding="@dimen/global_spacing_16"
 						android:text="@string/profile_favourite_films_title"
 						style="@style/SecondaryHeadingText" />
 

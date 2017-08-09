@@ -19,6 +19,7 @@
 	<style name="SecondaryHeadingText">
 		<item name="android:textSize">@dimen/global_text_size_subhead</item>
 		<item name="android:textColor">@color/colorSecondaryText</item>
+		<item name="android:paddingBottom">@dimen/global_spacing_16</item>
 	</style>
 
 	<style name="SecondaryText">
@@ -63,7 +64,19 @@
 		<item name="android:background">@android:color/transparent</item>
 		<item name="android:textColor">@color/colorAccent</item>
 	</style>
+
 	<style name="ViewAllButton" parent="AccentButton">
 		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginTop">@dimen/global_spacing_16</item>
+	</style>
+
+	<!--Detail content box-->
+	<style name="DetailContentBox">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingTop">@dimen/global_spacing_16</item>
+		<item name="android:paddingBottom">@dimen/global_spacing_16</item>
+		<item name="android:paddingStart">@dimen/global_spacing_16</item>
+		<item name="android:paddingEnd">@dimen/global_spacing_16</item>
 	</style>
 </resources>

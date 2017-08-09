@@ -7,12 +7,20 @@ import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import org.alfonz.view.StatefulLayout
+import me.tatarka.bindingcollectionadapter2.ItemBinding
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableList
+import com.strvacademy.drabekj.moviestrv.R
+import me.tatarka.bindingcollectionadapter2.BR
 
 
 class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
-    val state = ObservableField<Int>()
-    val movie = ObservableField<Movie>()
-    var id: Int? = null
+	var id: Int? = null
+	val state = ObservableField<Int>()
+	val movie = ObservableField<Movie>()
+
+	val gallery: ObservableList<String> = ObservableArrayList()
+	val itemBindingGallery = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
 
     val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
 
@@ -33,6 +41,9 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
 
     private fun  onLoadData(m: Movie?) {
         movie.set(m)
+
+		gallery.clear()
+		gallery.addAll(m!!.gallery)
 
         // show content
         if(movie.get() != null)

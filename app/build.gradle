@@ -60,5 +60,9 @@ dependencies {
 	implementation "org.alfonz:alfonz-view:0.6.0"
 	implementation "org.alfonz:alfonz-adapter:0.6.0"
 
+//	Tatarka
+	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.1.0'
+	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.1.0'
+
 	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }

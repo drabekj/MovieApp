@@ -3,6 +3,8 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
+		<import type="com.strvacademy.drabekj.moviestrv.R" />
+		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />
 		<variable
@@ -23,10 +25,10 @@
 
 
 			<android.support.design.widget.AppBarLayout
-				style="@style/MyToolbarHigh"
-				android:elevation="0dp"
 				android:layout_height="@dimen/movie_detail_toolbar_height_expanded"
-				android:background="@color/colorSecondary">
+				android:elevation="0dp"
+				android:background="@color/colorSecondary"
+				style="@style/MyToolbarHigh">
 
 				<android.support.design.widget.CollapsingToolbarLayout
 					android:layout_width="match_parent"
@@ -52,9 +54,9 @@
 						<ImageView
 							android:layout_width="match_parent"
 							android:layout_height="220dp"
-							android:src="@drawable/shape_gradient"
 							android:layout_alignBottom="@+id/image_movie_detail_cover"
-							android:layout_alignParentStart="true" />
+							android:layout_alignParentStart="true"
+							android:src="@drawable/shape_gradient" />
 					</RelativeLayout>
 
 
@@ -109,10 +111,8 @@
 
 					<!-- TRAILERS -->
 					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_margin="@dimen/global_spacing_16"
-						android:orientation="vertical">
+						android:orientation="vertical"
+						style="@style/DetailContentBox">
 
 						<TextView
 							android:id="@+id/text_subheading_trailers"
@@ -135,10 +135,8 @@
 
 					<!-- GALLERY -->
 					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_margin="@dimen/global_spacing_16"
-						android:orientation="vertical">
+						android:orientation="vertical"
+						style="@style/DetailContentBox">
 
 						<TextView
 							android:id="@+id/text_subheading_gallery"
@@ -147,10 +145,12 @@
 							android:text="@string/subheading_gallery"
 							style="@style/SecondaryHeadingText" />
 
-						<ImageView
-							android:layout_width="150dp"
-							android:layout_height="200dp"
-							android:contentDescription="@string/gallery_image" />
+						<android.support.v7.widget.RecyclerView
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							app:layoutManager="@{LayoutManagers.grid(3)}"
+							app:items="@{viewModel.gallery}"
+							app:itemBinding="@{viewModel.itemBindingGallery}" />
 
 					</LinearLayout>
 
@@ -161,10 +161,8 @@
 
 					<!-- CAST -->
 					<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_margin="@dimen/global_spacing_16"
-						android:orientation="vertical">
+						android:orientation="vertical"
+						style="@style/DetailContentBox">
 
 						<TextView
 							android:id="@+id/text_subheading_cast"
