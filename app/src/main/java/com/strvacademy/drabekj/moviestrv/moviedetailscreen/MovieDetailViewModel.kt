@@ -11,6 +11,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.model.Actor
 import me.tatarka.bindingcollectionadapter2.BR
 
 
@@ -21,8 +22,8 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
 
 	val gallery: ObservableList<String> = ObservableArrayList()
 	val itemBindingGallery = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
-	val cast: ObservableList<String> = ObservableArrayList()
-	val itemBindingCast = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_cast_list_item)!!
+	val cast: ObservableList<Actor> = ObservableArrayList()
+	val itemBindingCast = ItemBinding.of<Actor>(BR.item, R.layout.fragment_movie_detail_cast_list_item)!!
 
     val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
 

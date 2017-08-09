@@ -35,6 +35,7 @@
 					<ImageView
 						android:layout_width="@dimen/profile_pic_size"
 						android:layout_height="@dimen/profile_pic_size"
+						android:contentDescription="@string/profile_picture"
 						android:src="@drawable/ic_account_circle_white_24dp" />
 
 					<LinearLayout

@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMovieDetailBinding
+import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -61,7 +62,7 @@ class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, F
         showToast("Show Full Cast")
     }
 
-    private fun setupToolbar() {
+	private fun setupToolbar() {
         (activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_BACK, "")
         val upArrow: Drawable = resources.getDrawable(R.drawable.abc_ic_ab_back_material)
         (activity as AlfonzActivity).supportActionBar!!.setHomeAsUpIndicator(upArrow)

@@ -1,12 +1,41 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 	<data>
 		<variable
-			name="item" type="String" />
+			name="item" type="com.strvacademy.drabekj.moviestrv.model.Actor" />
 	</data>
 
-	<TextView
+	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@{item}" />
+		android:paddingTop="@dimen/global_spacing_8"
+		android:orientation="horizontal">
+
+		<ImageView
+			android:layout_width="@dimen/profile_pic_size_small"
+			android:layout_height="@dimen/profile_pic_size_small"
+			android:contentDescription="@string/profile_picture"
+			android:src="@drawable/ic_account_circle_white_24dp" />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:paddingStart="@dimen/global_spacing_8"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="@dimen/global_text_size_subhead"
+				android:text="@{item.name}" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/colorSecondaryText"
+				android:text="as Mr. Unknown" />
+		</LinearLayout>
+	</LinearLayout>
+
 
 </layout>
