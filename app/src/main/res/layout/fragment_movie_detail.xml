@@ -171,10 +171,12 @@
 							android:text="@string/subheading_cast"
 							style="@style/SecondaryHeadingText" />
 
-						<ImageView
-							android:layout_width="150dp"
-							android:layout_height="280dp"
-							android:contentDescription="@string/cast_list" />
+						<android.support.v7.widget.RecyclerView
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							app:layoutManager="@{LayoutManagers.linear()}"
+							app:items="@{viewModel.cast}"
+							app:itemBinding="@{viewModel.itemBindingCast}" />
 
 						<Button
 							android:id="@+id/button_detail_full_cast"

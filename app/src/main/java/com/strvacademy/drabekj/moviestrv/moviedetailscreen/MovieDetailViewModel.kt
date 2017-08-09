@@ -21,6 +21,8 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
 
 	val gallery: ObservableList<String> = ObservableArrayList()
 	val itemBindingGallery = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
+	val cast: ObservableList<String> = ObservableArrayList()
+	val itemBindingCast = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_cast_list_item)!!
 
     val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
 
@@ -40,10 +42,10 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
     }
 
     private fun  onLoadData(m: Movie?) {
-        movie.set(m)
+        movie.set(m!!)
 
-		gallery.clear()
-		gallery.addAll(m!!.gallery)
+		updateGallery(m)
+		updateCast(m)
 
         // show content
         if(movie.get() != null)
@@ -51,4 +53,14 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
         else
             state.set(StatefulLayout.EMPTY)
     }
+
+	private fun updateGallery(m: Movie) {
+		gallery.clear()
+		gallery.addAll(m.gallery)
+	}
+
+	private fun updateCast(m: Movie) {
+		cast.clear()
+		cast.addAll(m.cast)
+	}
 }
