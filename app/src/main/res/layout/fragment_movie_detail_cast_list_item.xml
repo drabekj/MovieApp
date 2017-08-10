@@ -1,14 +1,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 	<data>
 		<variable
-			name="item" type="com.strvacademy.drabekj.moviestrv.model.Actor" />
+			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieItemViewModel" />
+		<variable
+			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
 	</data>
 
 	<LinearLayout
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:paddingTop="@dimen/global_spacing_8"
-		android:orientation="horizontal">
+		android:orientation="horizontal"
+		android:onClick="@{() -> listener.onItemClick(itemViewModel)}"
+		android:background="?attr/selectableItemBackground">
 
 		<ImageView
 			android:layout_width="@dimen/profile_pic_size_small"
@@ -27,7 +31,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textSize="@dimen/global_text_size_subhead"
-				android:text="@{item.name}" />
+				android:text="@{itemViewModel.actor.name}" />
 
 			<TextView
 				android:layout_width="wrap_content"
