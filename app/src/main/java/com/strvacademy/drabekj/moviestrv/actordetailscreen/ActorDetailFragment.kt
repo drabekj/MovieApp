@@ -49,9 +49,6 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 
 	private fun setupToolbar() {
 		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_BACK, "")
-		val upArrow: Drawable = resources.getDrawable(R.drawable.abc_ic_ab_back_material)
-		(activity as AlfonzActivity).supportActionBar!!.setHomeAsUpIndicator(upArrow)
-
 		setHasOptionsMenu(true)
 	}
 
