@@ -53,9 +53,6 @@
 
 	<style name="MyToolbar.Expanded">
 		<item name="android:title">@color/colorPrimaryText</item>
-		<!--TODO ? targetAPI limited not working-->
-		<!--<item name="android:contentInsetLeft" tools:targetApi="lollipop">0dp</item>-->
-		<!--<item name="android:contentInsetStart" tools:targetApi="lollipop">0dp</item>-->
 	</style>
 
 

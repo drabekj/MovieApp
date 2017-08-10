@@ -10,6 +10,7 @@
 			name="view" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileView" />
 	</data>
 
+	<!--TODO ? elevation?-->
 	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -63,6 +64,7 @@
 
 				<android.support.v7.widget.Toolbar
 					android:id="@+id/toolbar"
+					android:elevation="@dimen/global_elevation_4"
 					style="@style/MyToolbarTransparent"
 					app:popupTheme="@style/ThemeOverlay.MyTheme"
 					app:layout_collapseMode="pin" />
