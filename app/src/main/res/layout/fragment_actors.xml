@@ -3,8 +3,9 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<import type="org.alfonz.adapter.utility.BindingUtility" />
-		<variable name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
+		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
 	</data>
 
 	<LinearLayout
@@ -20,15 +21,14 @@
 			android:layout_height="wrap_content">
 
 			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				style="@style/DetailContentBox">
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:padding="@dimen/global_spacing_16"
-					android:text="@string/actors_popular_title" />
+					android:text="@string/actors_popular_title"
+					style="@style/SecondaryHeadingText" />
 
 				<org.alfonz.view.StatefulLayout
 					android:layout_width="match_parent"
@@ -42,8 +42,9 @@
 						android:id="@+id/fragment_actors_list_recycler"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
-						app:recyclerLayoutSpanCount="@{2}" />
+						app:layoutManager="@{LayoutManagers.grid(2)}"
+						app:items="@{viewModel.items}"
+						app:itemBinding="@{viewModel.itemBinding}" />
 				</org.alfonz.view.StatefulLayout>
 			</LinearLayout>
 		</ScrollView>

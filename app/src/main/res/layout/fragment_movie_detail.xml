@@ -3,7 +3,6 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<import type="com.strvacademy.drabekj.moviestrv.R" />
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailViewModel" />

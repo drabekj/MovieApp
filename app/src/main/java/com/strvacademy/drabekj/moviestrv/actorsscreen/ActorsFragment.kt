@@ -15,8 +15,6 @@ import org.alfonz.mvvm.AlfonzActivity
 
 
 class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBinding>(), ActorsView {
-	private var mAdapter: ActorsActivityAdapter? = null
-
 
 	override fun getViewModelClass(): Class<ActorsViewModel> {
 		return ActorsViewModel::class.java
@@ -28,8 +26,6 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
-
-		setupAdapter()
 		setupToolbar()
 	}
 
@@ -46,13 +42,6 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 			}
 
 			else -> return super.onOptionsItemSelected(item)
-		}
-	}
-
-	private fun setupAdapter() {
-		if (mAdapter == null) {
-			mAdapter = ActorsActivityAdapter(this, viewModel)
-			binding.fragmentActorsListRecycler.adapter = mAdapter
 		}
 	}
 
