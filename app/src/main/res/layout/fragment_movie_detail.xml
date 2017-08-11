@@ -10,75 +10,76 @@
 			name="view" type="com.strvacademy.drabekj.moviestrv.moviedetailscreen.MovieDetailView" />
 	</data>
 
-	<org.alfonz.view.StatefulLayout
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:progressLayout="@layout/placeholder_progress"
-		app:offlineLayout="@layout/placeholder_offline"
-		app:emptyLayout="@layout/placeholder_empty"
-		app:state="@{viewModel.state}">
+		android:layout_height="wrap_content">
 
-		<android.support.design.widget.CoordinatorLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+		<android.support.design.widget.AppBarLayout
+			android:layout_height="@dimen/movie_detail_toolbar_height_expanded"
+			style="@style/MyToolbarHigh"
+			android:background="@color/colorSecondary">
 
+			<android.support.design.widget.CollapsingToolbarLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:contentScrim="?attr/colorPrimary"
+				app:layout_scrollFlags="scroll|exitUntilCollapsed"
+				app:expandedTitleTextAppearance="@style/MyToolbar.Expanded"
+				app:collapsedTitleTextAppearance="@color/colorPrimaryText">
 
-			<android.support.design.widget.AppBarLayout
-				android:layout_height="@dimen/movie_detail_toolbar_height_expanded"
-				android:elevation="0dp"
-				android:background="@color/colorSecondary"
-				style="@style/MyToolbarHigh">
-
-				<android.support.design.widget.CollapsingToolbarLayout
+				<RelativeLayout
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					app:layout_scrollFlags="scroll|exitUntilCollapsed"
-					app:expandedTitleTextAppearance="@style/MyToolbar.Expanded"
-					app:collapsedTitleTextAppearance="@color/colorPrimaryText">
+					android:layout_height="wrap_content">
 
-					<RelativeLayout
+					<ImageView
+						android:id="@+id/image_movie_detail_cover"
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content">
+						android:layout_height="wrap_content"
+						android:adjustViewBounds="true"
+						android:scaleType="centerCrop"
+						android:src="@drawable/dummy_movie_detail"
+						android:contentDescription="@string/movie_cover_image"
+						app:layout_collapseMode="parallax"
+						app:layout_collapseParallaxMultiplier="0.7" />
 
-						<ImageView
-							android:id="@+id/image_movie_detail_cover"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:adjustViewBounds="true"
-							android:src="@drawable/dummy_movie_detail"
-							android:contentDescription="@string/movie_cover_image"
-							app:layout_collapseMode="parallax"
-							app:layout_collapseParallaxMultiplier="0.7" />
+					<ImageView
+						android:layout_width="match_parent"
+						android:layout_height="220dp"
+						android:layout_alignBottom="@+id/image_movie_detail_cover"
+						android:layout_alignParentStart="true"
+						android:src="@drawable/shape_gradient" />
+				</RelativeLayout>
 
-						<ImageView
-							android:layout_width="match_parent"
-							android:layout_height="220dp"
-							android:layout_alignBottom="@+id/image_movie_detail_cover"
-							android:layout_alignParentStart="true"
-							android:src="@drawable/shape_gradient" />
-					</RelativeLayout>
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/toolbar"
+					android:elevation="@dimen/global_elevation_4"
+					style="@style/MyToolbarTransparent"
+					app:layout_collapseMode="pin"
+					app:title="@{viewModel.movie.name}"/>
 
-
-					<android.support.v7.widget.Toolbar
-						android:id="@+id/toolbar"
-						style="@style/MyToolbarTransparent"
-						app:layout_collapseMode="pin"
-						app:title="@{viewModel.movie.name}" />
-
-				</android.support.design.widget.CollapsingToolbarLayout>
-			</android.support.design.widget.AppBarLayout>
+			</android.support.design.widget.CollapsingToolbarLayout>
+		</android.support.design.widget.AppBarLayout>
 
 
 			<android.support.v4.widget.NestedScrollView
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+				<org.alfonz.view.StatefulLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					app:progressLayout="@layout/placeholder_progress"
+					app:offlineLayout="@layout/placeholder_offline"
+					app:emptyLayout="@layout/placeholder_empty"
+					app:state="@{viewModel.state}">
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 
+					<!--DESCRIPTION-->
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
@@ -120,8 +121,8 @@
 							style="@style/SecondaryHeadingText" />
 
 						<ImageView
-							android:layout_width="150dp"
-							android:layout_height="120dp"
+							android:layout_width="match_parent"
+							android:layout_height="220dp"
 							android:contentDescription="@string/trailer_video" />
 
 					</LinearLayout>
@@ -152,11 +153,6 @@
 
 					</LinearLayout>
 
-					<View
-						android:layout_width="fill_parent"
-						android:layout_height="1dip"
-						android:background="@color/colorLightGrey" />
-
 					<!-- CAST -->
 					<LinearLayout
 						android:orientation="vertical"
@@ -186,10 +182,9 @@
 
 				</LinearLayout>
 
+				</org.alfonz.view.StatefulLayout>
 			</android.support.v4.widget.NestedScrollView>
 
-		</android.support.design.widget.CoordinatorLayout>
-
-	</org.alfonz.view.StatefulLayout>
+	</android.support.design.widget.CoordinatorLayout>
 
 </layout>
