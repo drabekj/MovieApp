@@ -23,6 +23,7 @@
 			</intent-filter>
 		</activity>
 		<activity android:name=".signupscreen.SignUpActivity" />
+		<activity android:name=".loginscreen.LoginActivity" />
 	</application>
 
 </manifest>
