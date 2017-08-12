@@ -1,5 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.profilescreen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
+import com.strvacademy.drabekj.moviestrv.favoritescreen.FavoriteFilmsActivity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -60,7 +62,11 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 	}
 
 	override fun onAllFavouriteClick() {
-		showToast("Show all favourite")
+		startFavoriteFilmsActivity()
+	}
+
+	fun startFavoriteFilmsActivity() {
+		startActivity(Intent(context, FavoriteFilmsActivity::class.java))
 	}
 
 	override fun onFavMovieClick(m: String) {

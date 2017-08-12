@@ -23,6 +23,7 @@
 		</activity>
 		<activity android:name=".signupscreen.SignUpActivity" />
 		<activity android:name=".loginscreen.LoginActivity" />
+		<activity android:name=".favoritescreen.FavoriteFilmsActivity" />
 	</application>
 
 </manifest>
