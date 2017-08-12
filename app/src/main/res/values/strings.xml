@@ -28,4 +28,6 @@
 	<string name="action_logout">Logout</string>
 	<string name="action_settings">Settings</string>
 	<string name="profile_picture">Profile picture</string>
+	<string name="sign_up">SIGN UP</string>
+	<string name="log_in">LOG IN</string>
 </resources>

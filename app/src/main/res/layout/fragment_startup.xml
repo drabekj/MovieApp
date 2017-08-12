@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<RelativeLayout
@@ -9,31 +10,41 @@
 
 		<ImageView
 			android:id="@+id/tmdb_logo"
-			android:layout_width="100dp"
-			android:layout_height="100dp"
-			android:layout_gravity="center"
+			android:layout_width="@dimen/logo_size"
+			android:layout_height="@dimen/logo_size"
+			android:layout_alignParentTop="true"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="72dp"
 			android:src="@drawable/ic_themoviedb_logo" />
 
-		<Button
-			android:id="@+id/signup_btn"
-			android:layout_width="250dp"
+		<!--BUTTON section-->
+		<LinearLayout
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:layout_marginBottom="29dp"
-			android:layout_above="@+id/login_btn"
-			android:layout_alignStart="@+id/login_btn"
-			android:background="@color/colorAccent"
-			android:textColor="@color/colorPrimary"
-			tools:text="SIGN UP" />
+			android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true"
+			android:orientation="vertical">
 
-		<Button
-			android:id="@+id/login_btn"
-			android:layout_width="250dp"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:layout_below="@+id/signup_btn"
-			android:layout_alignStart="@+id/signup_btn"
-			android:background="@drawable/shape_login_btn"
-			tools:text="LOG IN" />
+			<Button
+				android:id="@+id/signup_btn"
+				android:layout_width="@dimen/large_btn_width"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/global_spacing_16"
+				android:background="@drawable/shape_auth_btn_solid"
+				android:textColor="@color/colorPrimary"
+				android:text="@string/sign_up"
+				tools:text="SIGN UP" />
+
+			<Button
+				android:id="@+id/login_btn"
+				android:layout_width="@dimen/large_btn_width"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="40dp"
+				android:background="@drawable/shape_auth_btn_border"
+				android:text="@string/log_in"
+				tools:text="LOG IN" />
+
+		</LinearLayout>
+
 	</RelativeLayout>
 </layout>
