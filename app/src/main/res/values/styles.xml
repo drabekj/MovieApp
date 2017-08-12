@@ -9,6 +9,7 @@
 		<item name="android:textColorPrimary">@android:color/white</item>
 		<item name="android:textColorSecondary">@android:color/white</item>
 		<item name="android:textColor">@android:color/white</item>
+		<item name="android:textColorHint">@color/colorSecondaryText</item>
 	</style>
 
 
@@ -77,5 +78,12 @@
 		<item name="android:paddingBottom">@dimen/global_spacing_16</item>
 		<item name="android:paddingStart">@dimen/global_spacing_16</item>
 		<item name="android:paddingEnd">@dimen/global_spacing_16</item>
+	</style>
+
+	<!--TEXT INPUT-->
+	<style name="MyTextInput">
+		<item name="android:layout_marginTop">@dimen/global_spacing_32</item>
+		<item name="android:layout_marginStart">@dimen/global_spacing_16</item>
+		<item name="android:layout_marginEnd">@dimen/global_spacing_16</item>
 	</style>
 </resources>
