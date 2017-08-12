@@ -1,7 +1,9 @@
 package com.strvacademy.drabekj.moviestrv.startupscreen
 
+import android.content.Intent
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentStartupBinding
+import com.strvacademy.drabekj.moviestrv.signupscreen.SignUpActivity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
 // TODO !!! what if I don't need ViewModel?!
@@ -17,6 +19,7 @@ class StartupFragment: BaseFragment<StartupView, StartupViewModel, FragmentStart
 
 	override fun onSignUpClick() {
 		showToast("SignUp click")
+		startActivity(Intent(context, SignUpActivity::class.java))
 	}
 
 	override fun onLogInClick() {

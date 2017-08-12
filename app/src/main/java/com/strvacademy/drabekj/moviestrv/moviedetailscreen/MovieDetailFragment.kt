@@ -36,7 +36,6 @@ class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, F
             viewModel.id = arguments.getInt(ARG_MOVIE_ID)
     }
 
-    // TODO toolbar (Is this how it's supposed to be done with Alfonz?)
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.detail_toolbar_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
