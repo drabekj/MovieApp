@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="view" type="com.strvacademy.drabekj.moviestrv.startupscreen.StartupView" />
+	</data>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
@@ -33,7 +37,7 @@
 				android:background="@drawable/shape_auth_btn_solid"
 				android:textColor="@color/colorPrimary"
 				android:text="@string/sign_up"
-				tools:text="SIGN UP" />
+				android:onClick="@{() -> view.onSignUpClick()}"/>
 
 			<Button
 				android:id="@+id/login_btn"
@@ -42,7 +46,7 @@
 				android:layout_marginBottom="40dp"
 				android:background="@drawable/shape_auth_btn_border"
 				android:text="@string/log_in"
-				tools:text="LOG IN" />
+				android:onClick="@{() -> view.onLogInClick()}" />
 
 		</LinearLayout>
 
