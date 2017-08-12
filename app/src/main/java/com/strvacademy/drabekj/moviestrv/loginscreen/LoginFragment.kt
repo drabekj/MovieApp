@@ -13,4 +13,9 @@ class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBindin
 	override fun inflateBindingLayout(inflater: LayoutInflater?): FragmentLoginBinding {
 		return FragmentLoginBinding.inflate(inflater!!)
 	}
+
+	override fun onLogInClick() {
+		showToast("Login click")
+		viewModel.submitForm()
+	}
 }

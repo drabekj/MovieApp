@@ -4,4 +4,5 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseView
 
 
 interface LoginView: BaseView {
+	fun onLogInClick()
 }
