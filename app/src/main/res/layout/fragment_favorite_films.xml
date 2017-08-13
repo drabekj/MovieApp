@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<LinearLayout
+	<data>
+		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+		<variable
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.favoritescreen.FavoriteFilmsViewModel" />
+		<variable
+			name="view" type="com.strvacademy.drabekj.moviestrv.favoritescreen.FavoriteFilmsView" />
+	</data>
+
+	<org.alfonz.view.StatefulLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="match_parent"
+		app:progressLayout="@layout/placeholder_progress"
+		app:offlineLayout="@layout/placeholder_offline"
+		app:emptyLayout="@layout/placeholder_empty"
+		android:background="@color/colorSecondary"
+		app:state="@{viewModel.state}">
 
-	</LinearLayout>
+		<android.support.v7.widget.RecyclerView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layoutManager="@{LayoutManagers.linear()}"
+			app:items="@{viewModel.movies}"
+			app:itemBinding="@{viewModel.itemBindingCast}" />
+
+	</org.alfonz.view.StatefulLayout>
 </layout>

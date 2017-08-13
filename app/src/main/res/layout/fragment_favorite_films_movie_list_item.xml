@@ -1,0 +1,81 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+	<data>
+		<variable
+			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.favoritescreen.FavMovieItemViewModel" />
+		<variable
+			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:onClick="@{() -> listener.onItemClick(itemViewModel)}"
+		android:background="?attr/selectableItemBackground">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="@dimen/global_spacing_8"
+			android:paddingBottom="@dimen/global_spacing_8"
+			android:paddingStart="@dimen/global_spacing_16"
+			android:paddingEnd="@dimen/global_spacing_16"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:layout_width="80dp"
+				android:layout_height="wrap_content"
+				android:contentDescription="@string/profile_picture"
+				android:src="@drawable/dummy_movie_image"
+				android:adjustViewBounds="true" />
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:paddingStart="@dimen/global_spacing_8"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="@dimen/global_text_size_subhead"
+					android:text="@{itemViewModel.movie.name}"
+					style="@style/HeadingText" />
+
+				<TextView
+					android:id="@+id/text_detail_subheading"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text='@{String.format("%s, %s", itemViewModel.movie.director, itemViewModel.movie.releaseDate)}'
+					style="@style/SecondaryText" />
+
+				<!--RATING-->
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_star_yellow_24dp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@{itemViewModel.movie.rating}" />
+
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dip"
+			android:background="@color/colorLightGrey" />
+
+	</LinearLayout>
+
+</layout>

@@ -19,4 +19,7 @@ interface MovieLocalDataSource {
 
 
 	fun  getProfile(): Profile?
+
+
+	fun getFavoriteMoviesByProfile(id: Int): Array<Movie>
 }

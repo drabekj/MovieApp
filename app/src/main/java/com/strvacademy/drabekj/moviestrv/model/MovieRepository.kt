@@ -37,4 +37,9 @@ class MovieRepository: MovieDataSource {
 	override fun getProfile(): Profile? {
 		return mMoviesLocalDataSource.getProfile()
 	}
+
+
+	override fun getFavoriteMoviesByProfile(id: Int): Array<Movie> {
+		return mMoviesLocalDataSource.getFavoriteMoviesByProfile(id)
+	}
 }

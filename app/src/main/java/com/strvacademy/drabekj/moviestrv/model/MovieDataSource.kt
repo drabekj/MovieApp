@@ -15,4 +15,7 @@ interface MovieDataSource {
 
 
 	fun  getProfile(): Profile?
+
+
+	fun getFavoriteMoviesByProfile(id: Int): Array<Movie>
 }
