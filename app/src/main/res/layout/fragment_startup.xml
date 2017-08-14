@@ -3,7 +3,7 @@
 
 	<data>
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.startupscreen.StartupView" />
+			name="view" type="com.strvacademy.drabekj.moviestrv.ui.startup.StartupView" />
 	</data>
 
 	<RelativeLayout

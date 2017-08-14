@@ -6,9 +6,9 @@
 		<import type="java.lang.reflect.Array" />
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
+			name="view" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

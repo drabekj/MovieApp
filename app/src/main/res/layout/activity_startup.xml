@@ -6,7 +6,7 @@
 
 	<fragment
 		android:id="@+id/fragment"
-		android:name="com.strvacademy.drabekj.moviestrv.startupscreen.StartupFragment"
+		android:name="com.strvacademy.drabekj.moviestrv.ui.startup.StartupFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 </LinearLayout>

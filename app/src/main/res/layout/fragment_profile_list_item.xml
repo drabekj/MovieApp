@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
-		<variable name="view" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileView" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileView" />
 		<variable name="data" type="String" />
 	</data>
 

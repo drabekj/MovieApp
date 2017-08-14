@@ -3,7 +3,7 @@
 
 	<data>
 		<variable
-			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsItemViewModel" />
+			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.ui.actors.ActorsItemViewModel" />
 		<variable
 			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
 	</data>

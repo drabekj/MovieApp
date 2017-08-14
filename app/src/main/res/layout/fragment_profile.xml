@@ -5,9 +5,9 @@
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.profilescreen.ProfileView" />
+			name="view" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileView" />
 	</data>
 
 	<!--TODO ? elevation?-->

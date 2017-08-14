@@ -5,7 +5,7 @@
 	<data>
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.actorsscreen.ActorsViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.actors.ActorsViewModel" />
 	</data>
 
 	<LinearLayout

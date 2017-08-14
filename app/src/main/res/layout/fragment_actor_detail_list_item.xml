@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
-		<variable name="view" type="com.strvacademy.drabekj.moviestrv.actordetailscreen.ActorDetailView" />
+		<variable name="view" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailView" />
 		<variable name="data" type="String" />
 	</data>
 
