@@ -65,5 +65,9 @@ dependencies {
 	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.1.0'
 	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.1.0'
 
+//	Retrofit
+	implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+	implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
 	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }
