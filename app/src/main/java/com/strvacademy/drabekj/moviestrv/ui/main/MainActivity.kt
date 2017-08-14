@@ -21,7 +21,6 @@ class MainActivity : BaseActivity() {
 		showFragmentInTab(MoviesFragment.newInstance())
 	}
 
-//	TODO ? How to ignore click if it's on the same item?
 	private fun setupBottomNavView() {
 		bottom_navigation.setOnNavigationItemSelectedListener(
 				{ item ->
@@ -38,6 +37,8 @@ class MainActivity : BaseActivity() {
 					}
 					true
 				})
+		// Ignore reselecting the same tab
+		bottom_navigation.setOnNavigationItemReselectedListener {  }
 	}
 
 	fun showFragmentInTab(fragment: Fragment) {
