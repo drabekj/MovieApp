@@ -15,6 +15,7 @@ import org.alfonz.mvvm.AlfonzActivity
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
+
 	override fun getViewModelClass(): Class<MoviesViewModel> {
 		return MoviesViewModel::class.java
 	}
@@ -30,7 +31,6 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		setupViewPager()
 	}
 
-	// TODO toolbar (Is this how it's supposed to be done with Alfonz?)
 	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
 		inflater!!.inflate(R.menu.toolbar_main, menu)
 		super.onCreateOptionsMenu(menu, inflater)
@@ -53,28 +53,22 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 	}
 
 	private fun setupViewPager() {
-		tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.tab_popular_movies)))
-		tab_layout.addTab(tab_layout.newTab().setText(getString(R.string.tab_now_playing_movies)))
-		tab_layout.tabGravity = TabLayout.GRAVITY_FILL
-
 		// Instantiate a ViewPager and a PagerAdapter.
-		val mPagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
-		pager.adapter = mPagerAdapter
-		pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
-		tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-			override fun onTabSelected(tab: TabLayout.Tab) {
-				pager.currentItem = tab.position
-			}
-
-			override fun onTabUnselected(tab: TabLayout.Tab) {
-
-			}
-
-			override fun onTabReselected(tab: TabLayout.Tab) {
-
-			}
-		})
+//		val mPagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
+//		pager.adapter = mPagerAdapter
+		tab_layout.setupWithViewPager(pager)
+//		pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
+//		tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//			override fun onTabSelected(tab: TabLayout.Tab) {
+//				pager.currentItem = tab.position
+//			}
+//
+//			override fun onTabUnselected(tab: TabLayout.Tab) {}
+//
+//			override fun onTabReselected(tab: TabLayout.Tab) {}
+//		})
 	}
+
 
 	companion object {
 		fun newInstance(): MoviesFragment {

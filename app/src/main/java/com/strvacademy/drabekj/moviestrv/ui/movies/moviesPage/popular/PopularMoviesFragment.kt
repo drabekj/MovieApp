@@ -4,6 +4,7 @@ import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 
 
 class PopularMoviesFragment: MoviesPageFragment<PopularMoviesViewModel>() {
+
 	override fun getViewModelClass(): Class<PopularMoviesViewModel> {
 		return PopularMoviesViewModel::class.java
 	}
