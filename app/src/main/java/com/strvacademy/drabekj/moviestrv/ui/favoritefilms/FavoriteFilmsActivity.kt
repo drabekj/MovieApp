@@ -16,7 +16,7 @@ class FavoriteFilmsActivity: BaseActivity() {
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-		menuInflater.inflate(R.menu.favorite_films_toolbar_menu, menu)
+		menuInflater.inflate(R.menu.toolbar_favorite_films, menu)
 		return super.onCreateOptionsMenu(menu)
 	}
 

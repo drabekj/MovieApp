@@ -32,7 +32,7 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 
 	// TODO toolbar (Is this how it's supposed to be done with Alfonz?)
 	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-		inflater!!.inflate(R.menu.main_toolbar_menu, menu)
+		inflater!!.inflate(R.menu.toolbar_main, menu)
 		super.onCreateOptionsMenu(menu, inflater)
 	}
 

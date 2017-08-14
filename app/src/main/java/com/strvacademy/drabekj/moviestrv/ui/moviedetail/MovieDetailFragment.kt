@@ -35,7 +35,7 @@ class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, F
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater!!.inflate(R.menu.detail_toolbar_menu, menu)
+        inflater!!.inflate(R.menu.toolbar_movie_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

@@ -30,7 +30,7 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-		inflater!!.inflate(R.menu.main_toolbar_menu, menu)
+		inflater!!.inflate(R.menu.toolbar_main, menu)
 		super.onCreateOptionsMenu(menu, inflater)
 	}
 
