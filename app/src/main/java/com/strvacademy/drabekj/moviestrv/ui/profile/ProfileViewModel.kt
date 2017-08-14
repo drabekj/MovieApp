@@ -12,7 +12,7 @@ import org.alfonz.view.StatefulLayout
 class ProfileViewModel: BaseViewModel<ProfileView>() {
 	val state = ObservableField<Int>()
 	val profile = ObservableField<Profile>()
-	var favMovies = ObservableArrayList<String>()
+	val favMovies = ObservableArrayList<String>()
 
 	val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
 
