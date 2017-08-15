@@ -13,18 +13,18 @@
 		<android.support.v4.view.ViewPager
 			android:id="@+id/pager"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
+			android:layout_height="match_parent">
 
-		<android.support.design.widget.TabLayout
-			android:id="@+id/tab_layout"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:elevation="@dimen/global_elevation_4"
-			android:background="?attr/colorPrimary"
-			android:minHeight="?attr/actionBarSize"
-			app:tabTextColor="@color/colorSecondaryText"
-			app:tabSelectedTextColor="@color/colorPrimaryText" />
-
+			<android.support.design.widget.TabLayout
+				android:id="@+id/tab_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:elevation="@dimen/global_elevation_4"
+				android:background="?attr/colorPrimary"
+				android:minHeight="?attr/actionBarSize"
+				app:tabTextColor="@color/colorSecondaryText"
+				app:tabSelectedTextColor="@color/colorPrimaryText" />
+		</android.support.v4.view.ViewPager>
 
 	</LinearLayout>
 
