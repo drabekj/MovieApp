@@ -22,6 +22,7 @@ class SignUpFragment: BaseFragment<SignUpView, SignUpViewModel, FragmentSignupBi
 		viewModel.submitForm()
 	}
 
+	// TODO get layout refs from binding
 	override fun showError(field: FieldCheck, enabled: Boolean) {
 		when(field) {
 			FieldCheck.USERNAME -> {

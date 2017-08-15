@@ -25,4 +25,15 @@ class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
     override fun getCount(): Int {
         return NUM_PAGES
     }
+
+	override fun getPageTitle(position: Int): CharSequence {
+		return when (position) {
+
+			0 -> "Popular"
+
+			1 -> "Now Playing"
+
+			else -> ""
+		}
+	}
 }

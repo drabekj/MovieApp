@@ -13,6 +13,7 @@ class SignUpViewModel: BaseViewModel<SignUpView>() {
 	val password = ObservableField<String>()
 	val confirmPassword = ObservableField<String>()
 
+	// TODO make a class Validator to validate inputs signup/login
 	fun submitForm() {
 		if (!checkUsername()) {
 			Toast.makeText(MoviesApplication.getContext(), "username error", Toast.LENGTH_SHORT).show()

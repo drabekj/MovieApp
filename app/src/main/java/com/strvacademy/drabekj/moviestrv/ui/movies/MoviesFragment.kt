@@ -54,19 +54,9 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 
 	private fun setupViewPager() {
 		// Instantiate a ViewPager and a PagerAdapter.
-//		val mPagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
-//		pager.adapter = mPagerAdapter
+		val mPagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
+		pager.adapter = mPagerAdapter
 		tab_layout.setupWithViewPager(pager)
-//		pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_layout))
-//		tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//			override fun onTabSelected(tab: TabLayout.Tab) {
-//				pager.currentItem = tab.position
-//			}
-//
-//			override fun onTabUnselected(tab: TabLayout.Tab) {}
-//
-//			override fun onTabReselected(tab: TabLayout.Tab) {}
-//		})
 	}
 
 
