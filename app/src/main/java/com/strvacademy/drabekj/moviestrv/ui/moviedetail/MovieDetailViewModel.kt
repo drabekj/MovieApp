@@ -14,7 +14,13 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
+import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
 import me.tatarka.bindingcollectionadapter2.BR
+import org.alfonz.utility.Logcat
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
@@ -46,14 +52,28 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
         state.set(StatefulLayout.PROGRESS)
 
         // load data from data provider...
-        onLoadData(dataSource.getMovieById(id))
+		retrofitRequest()
     }
+
+	private fun retrofitRequest() {
+		TheMovieDbApiService.newInstance()!!.getMovieDetailById(id!!).enqueue(object : Callback<Movie> {
+			override fun onFailure(call: Call<Movie>?, t: Throwable?) {
+				Logcat.d("retrofit fail |" + t.toString())
+				onErrorLoadingData()
+			}
+
+			override fun onResponse(call: Call<Movie>?, response: Response<Movie>?) {
+				Logcat.d("retrofit success: " + response!!.toString())
+				onLoadData(response.body())
+			}
+		})
+	}
 
     private fun  onLoadData(m: Movie?) {
         movie.set(m!!)
 
-		updateGallery(m)
-		updateCast(m)
+//		updateGallery(m)
+//		updateCast(m)
 
         // show content
         if(movie.get() != null)
@@ -61,6 +81,10 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
         else
             state.set(StatefulLayout.EMPTY)
     }
+
+	fun onErrorLoadingData() {
+		state.set(StatefulLayout.EMPTY)
+	}
 
 	private fun updateGallery(m: Movie) {
 		gallery.clear()
