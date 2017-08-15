@@ -36,6 +36,10 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
         else
             state.set(StatefulLayout.CONTENT)
     }
+
+    fun onErrorLoadingData() {
+        state.set(StatefulLayout.EMPTY)
+    }
 //
 //    fun onResponse(call: Call<MessageEntity>, response: Response<MessageEntity>) {
 //        runViewAction(object : AlfonzViewModel.ViewAction<MoviesPageView> {

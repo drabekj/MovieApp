@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.model.PopularMoviesDataResponse
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiClient
+import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,8 +15,6 @@ import org.alfonz.utility.Logcat
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : BaseActivity() {
@@ -59,13 +56,13 @@ class MainActivity : BaseActivity() {
 	}
 
 	private fun retrofitNew() {
-		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
-			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
+		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
+			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
 				showToast("Fail")
 				Logcat.d("retrofit fail |" + t.toString())
 			}
 
-			override fun onResponse(call: Call<PopularMoviesDataResponse>?, response: Response<PopularMoviesDataResponse>?) {
+			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
 				showToast("Success")
 				Logcat.d("retrofit success: " + response!!.body())
 			}

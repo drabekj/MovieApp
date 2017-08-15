@@ -1,6 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.popular
 
-import com.strvacademy.drabekj.moviestrv.model.PopularMoviesDataResponse
+import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageViewModel
 import org.alfonz.utility.Logcat
@@ -21,13 +21,14 @@ class PopularMoviesViewModel: MoviesPageViewModel() {
 	}
 
 	private fun retrofitRequest() {
-		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
-			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
+		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
+			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
 				Logcat.d("retrofit fail |" + t.toString())
+				onErrorLoadingData()
 			}
 
-			override fun onResponse(call: Call<PopularMoviesDataResponse>?, response: Response<PopularMoviesDataResponse>?) {
-				Logcat.d("retrofit success: " + response!!.body())
+			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
+				Logcat.d("retrofit success: " + response!!.toString())
 				onLoadData(response.body()!!.results)
 			}
 		})

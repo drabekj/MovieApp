@@ -1,5 +1,5 @@
 package com.strvacademy.drabekj.moviestrv.model
 
-data class PopularMoviesDataResponse(
+data class MoviesDataResponse(
 	val results: List<Movie>
 )
