@@ -58,28 +58,8 @@ class MainActivity : BaseActivity() {
 		}
 	}
 
-	private fun retrofitData() {
-		TheMovieDbApiService().getPopMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
-			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
-				showToast("Fail")
-			}
-
-			override fun onResponse(call: Call<PopularMoviesDataResponse>?, response: Response<PopularMoviesDataResponse>?) {
-				showToast("Success")
-			}
-		})
-	}
-
 	private fun retrofitNew() {
-		val retrofit = Retrofit.Builder()
-				.baseUrl("https://api.themoviedb.org/3/discover/")
-				.addConverterFactory(GsonConverterFactory.create())
-				.build()
-
-		val service = retrofit.create(TheMovieDbApiClient::class.java)
-
-
-		service.getPopularMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
+		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
 			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
 				showToast("Fail")
 				Logcat.d("retrofit fail |" + t.toString())

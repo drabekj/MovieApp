@@ -11,9 +11,20 @@ import java.util.*
 
 class TheMovieDbApiService {
 
-	val BASE_URL = "https://api.themoviedb.org/3"
+	companion object {
+		val BASE_URL = "https://api.themoviedb.org/3/discover/"
 
-	private val movieDbService: TheMovieDbApiClient
+
+		private var service: TheMovieDbApiClient? = null
+
+
+		fun newInstance(): TheMovieDbApiClient? {
+			if (service == null)
+				TheMovieDbApiService()
+
+			return service
+		}
+	}
 
 
 	init {
@@ -22,11 +33,6 @@ class TheMovieDbApiService {
 				.addConverterFactory(GsonConverterFactory.create())
 				.build()
 
-		movieDbService = retrofit.create(TheMovieDbApiClient::class.java)
+		service = retrofit.create(TheMovieDbApiClient::class.java)
 	}
-
-	fun getPopMovies(): Call<PopularMoviesDataResponse>{
-		return movieDbService.getPopularMovies()
-	}
-
 }
