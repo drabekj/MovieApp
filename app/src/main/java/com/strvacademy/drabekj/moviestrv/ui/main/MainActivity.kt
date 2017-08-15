@@ -4,21 +4,32 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.model.PopularMoviesDataResponse
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiClient
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.ui.actors.ActorsFragment
 import com.strvacademy.drabekj.moviestrv.ui.movies.MoviesFragment
 import com.strvacademy.drabekj.moviestrv.ui.profile.ProfileFragment
+import org.alfonz.utility.Logcat
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
 		setupBottomNavView()
 		showFragmentInTab(MoviesFragment.newInstance())
+
+		retrofitNew()
 	}
 
 	private fun setupBottomNavView() {
@@ -38,12 +49,46 @@ class MainActivity : BaseActivity() {
 					true
 				})
 		// Ignore reselecting the same tab
-		bottom_navigation.setOnNavigationItemReselectedListener {  }
+		bottom_navigation.setOnNavigationItemReselectedListener { }
 	}
 
 	fun showFragmentInTab(fragment: Fragment) {
 		if (findViewById<View>(R.id.fragment_container) != null) {
 			supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
 		}
+	}
+
+	private fun retrofitData() {
+		TheMovieDbApiService().getPopMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
+			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
+				showToast("Fail")
+			}
+
+			override fun onResponse(call: Call<PopularMoviesDataResponse>?, response: Response<PopularMoviesDataResponse>?) {
+				showToast("Success")
+			}
+		})
+	}
+
+	private fun retrofitNew() {
+		val retrofit = Retrofit.Builder()
+				.baseUrl("https://api.themoviedb.org/3/discover/")
+				.addConverterFactory(GsonConverterFactory.create())
+				.build()
+
+		val service = retrofit.create(TheMovieDbApiClient::class.java)
+
+
+		service.getPopularMovies().enqueue(object : Callback<PopularMoviesDataResponse> {
+			override fun onFailure(call: Call<PopularMoviesDataResponse>?, t: Throwable?) {
+				showToast("Fail")
+				Logcat.d("retrofit fail |" + t.toString())
+			}
+
+			override fun onResponse(call: Call<PopularMoviesDataResponse>?, response: Response<PopularMoviesDataResponse>?) {
+				showToast("Success")
+				Logcat.d("retrofit success: " + response!!.body())
+			}
+		})
 	}
 }
