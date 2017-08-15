@@ -25,9 +25,8 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
 
     abstract fun loadData()
 
-    fun onLoadData(m: Array<Movie>) {
+    fun onLoadData(m: List<Movie>) {
         // save data
-        // TODO do better (observable array replacement)
         movies.clear()
         movies.addAll(m)
 

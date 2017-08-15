@@ -1,5 +1,20 @@
 package com.strvacademy.drabekj.moviestrv.model
 
-data class Movie(var id: Int, var name: String, var director: String, var releaseDate: String, var description: String,
-			var rating: String, var gallery: Array<String>, var cast: Array<Actor>) {
-}
+import com.google.gson.annotations.SerializedName
+
+data class Movie(
+		var id: Int,
+
+		@SerializedName("title")
+		var name: String,
+		var director: String,
+
+		@SerializedName("release_date")
+		var releaseDate: String,
+
+		@SerializedName("overview")
+		var description: String,
+		var rating: String,
+		var gallery: Array<String>,
+		var cast: Array<Actor>
+)

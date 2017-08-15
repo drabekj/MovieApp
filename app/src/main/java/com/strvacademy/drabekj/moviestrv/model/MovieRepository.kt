@@ -16,7 +16,7 @@ class MovieRepository: MovieDataSource {
         return mMoviesLocalDataSource.getPopularMovies()
     }
 
-    override fun getNowPlayingMovies(): Array<Movie> {
+    override fun getNowPlayingMovies(): List<Movie> {
         return mMoviesLocalDataSource.getNowPlayingMovies()
     }
 

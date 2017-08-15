@@ -39,8 +39,8 @@ class MovieDummyData: MovieLocalDataSource {
         return movieArray.sliceArray(0..6)
     }
 
-    override fun getNowPlayingMovies(): Array<Movie> {
-        return movieArray.sliceArray(7..13)
+    override fun getNowPlayingMovies(): List<Movie> {
+        return movieArray.sliceArray(7..13).toList()
     }
 
     override fun getMovieById(id: Int): Movie? {

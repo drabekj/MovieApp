@@ -4,7 +4,7 @@ interface MovieDataSource {
 
     fun getPopularMovies(): Array<Movie>
 
-    fun getNowPlayingMovies(): Array<Movie>
+    fun getNowPlayingMovies(): List<Movie>
 
     fun getMovieById(id: Int): Movie?
 
