@@ -1,7 +1,8 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.popular
 
+import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageViewModel
 import org.alfonz.utility.Logcat
 import org.alfonz.view.StatefulLayout
@@ -10,27 +11,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PopularMoviesViewModel: MoviesPageViewModel() {
+class PopularMoviesViewModel: MoviesPageViewModel(), MoviesPageViewModel.onLoadDataListener {
 
 	override fun loadData() {
 		// show progress
 		state.set(StatefulLayout.PROGRESS)
 
-		// load data from data provider...
-		retrofitRequest()
+		dataSource.getPopularMovies(this)
 	}
 
-	private fun retrofitRequest() {
-		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
-			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
-				Logcat.d("retrofit fail |" + t.toString())
-				onErrorLoadingData()
-			}
+	override fun successLoadingData(m : List<Movie>) {
+		onLoadData(m)
+	}
 
-			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
-				Logcat.d("retrofit success: " + response!!.toString())
-				onLoadData(response.body()!!.results)
-			}
-		})
+	override fun errorLoadingData() {
+		errorLoadingData()
 	}
 }

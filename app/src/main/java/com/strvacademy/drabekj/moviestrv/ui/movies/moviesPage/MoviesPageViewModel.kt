@@ -8,13 +8,14 @@ import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 
 
 abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
     val state = ObservableField<Int>()
     var movies = ObservableArrayList<Movie>()
 
-    val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+    val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
     override fun onStart() {
@@ -48,4 +49,9 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
 //            }
 //        })
 //    }
+
+	interface onLoadDataListener {
+		fun errorLoadingData()
+		fun successLoadingData(m :List<Movie>)
+	}
 }

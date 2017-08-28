@@ -14,8 +14,7 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
-import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.utility.Logcat
 import retrofit2.Call
@@ -38,7 +37,7 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
 	val itemBindingCast = ItemBinding.of<MovieItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
 			.bindExtra(BR.listener, onCastClickListener)!!
 
-    val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+    val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
 	override fun onStart() {
@@ -56,14 +55,14 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
     }
 
 	private fun retrofitRequest() {
-		TheMovieDbApiService.newInstance()!!.getMovieDetailById(id!!).enqueue(object : Callback<Movie> {
+		TheMovieDbApiProvider.newInstance()!!.getMovieDetailById(id!!).enqueue(object : Callback<Movie> {
 			override fun onFailure(call: Call<Movie>?, t: Throwable?) {
 				Logcat.d("retrofit fail |" + t.toString())
 				onErrorLoadingData()
 			}
 
 			override fun onResponse(call: Call<Movie>?, response: Response<Movie>?) {
-				Logcat.d("retrofit success: " + response!!.toString())
+				Logcat.d("retrofit successLoadingData: " + response!!.toString())
 				onLoadData(response.body())
 			}
 		})

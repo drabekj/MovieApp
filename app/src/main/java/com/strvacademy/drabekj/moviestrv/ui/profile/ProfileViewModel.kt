@@ -6,6 +6,7 @@ import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.Profile
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import org.alfonz.view.StatefulLayout
 
@@ -14,7 +15,7 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 	val profile = ObservableField<Profile>()
 	val favMovies = ObservableArrayList<String>()
 
-	val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+	val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
 	override fun onStart() {

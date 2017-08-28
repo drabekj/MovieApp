@@ -8,6 +8,7 @@ import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -22,7 +23,7 @@ class ActorsViewModel: BaseViewModel<ActorsView>() {
 	val itemBinding = ItemBinding.of<ActorsItemViewModel>(BR.itemViewModel, R.layout.fragment_actors_list_item)
 			.bindExtra(BR.listener, onActorClickListener)!!
 
-	val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+	val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
 	override fun onStart() {

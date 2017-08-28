@@ -11,6 +11,7 @@ import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -25,7 +26,7 @@ class FavoriteFilmsViewModel: BaseViewModel<FavoriteFilmsView>() {
 	val itemBindingCast = ItemBinding.of<FavMovieItemViewModel>(BR.itemViewModel, R.layout.fragment_favorite_films_movie_list_item)
 			.bindExtra(BR.listener, onItemClickListener)!!
 
-	val dataSource: MovieDataSource = MovieRepository(MovieDummyData())
+	val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
 

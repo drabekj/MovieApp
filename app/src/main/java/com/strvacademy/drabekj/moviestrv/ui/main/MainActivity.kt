@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.model.MoviesDataResponse
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
+import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.ui.actors.ActorsFragment
@@ -56,7 +56,7 @@ class MainActivity : BaseActivity() {
 	}
 
 	private fun retrofitNew() {
-		TheMovieDbApiService.newInstance()!!.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
+		TheMovieDbApiProvider.newInstance()!!.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
 			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
 				showToast("Fail")
 				Logcat.d("retrofit fail |" + t.toString())
@@ -64,7 +64,7 @@ class MainActivity : BaseActivity() {
 
 			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
 				showToast("Success")
-				Logcat.d("retrofit success: " + response!!.body())
+				Logcat.d("retrofit successLoadingData: " + response!!.body())
 			}
 		})
 	}
