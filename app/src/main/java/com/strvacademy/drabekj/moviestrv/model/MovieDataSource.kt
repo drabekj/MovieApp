@@ -8,7 +8,7 @@ interface MovieDataSource {
 
     fun getNowPlayingMovies(listener: OnLoadDataListener<List<Movie>>)
 
-    fun getMovieById(id: Int): Movie?
+    fun getMovieById(id: Int, listener: OnLoadDataListener<Movie>)
 
 
 	fun getPopularActors(): Array<Actor>

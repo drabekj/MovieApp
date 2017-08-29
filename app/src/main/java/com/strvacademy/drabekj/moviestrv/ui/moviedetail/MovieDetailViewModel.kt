@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
+import com.strvacademy.drabekj.moviestrv.listener.OnLoadDataListener
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.utility.Logcat
@@ -22,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
+class MovieDetailViewModel: BaseViewModel<MovieDetailView>(), OnLoadDataListener<Movie> {
 	var id: Int? = null
 	val state = ObservableField<Int>()
 	val movie = ObservableField<Movie>()
@@ -50,48 +51,33 @@ class MovieDetailViewModel: BaseViewModel<MovieDetailView>() {
         // show progress
         state.set(StatefulLayout.PROGRESS)
 
-        // load data from data provider...
-		retrofitRequest()
+		dataSource.getMovieById(id, this)
     }
 
-	private fun retrofitRequest() {
-		TheMovieDbApiProvider.newInstance()!!.getMovieDetailById(id!!).enqueue(object : Callback<Movie> {
-			override fun onFailure(call: Call<Movie>?, t: Throwable?) {
-				Logcat.d("retrofit fail |" + t.toString())
-				onErrorLoadingData()
-			}
-
-			override fun onResponse(call: Call<Movie>?, response: Response<Movie>?) {
-				Logcat.d("retrofit successLoadingData: " + response!!.toString())
-				onLoadData(response.body())
-			}
-		})
-	}
-
-    private fun  onLoadData(m: Movie?) {
-        movie.set(m!!)
-
-//		updateGallery(m)
-//		updateCast(m)
-
-        // show content
-        if(movie.get() != null)
-            state.set(StatefulLayout.CONTENT)
-        else
-            state.set(StatefulLayout.EMPTY)
-    }
-
-	fun onErrorLoadingData() {
+	override fun errorLoadingData() {
 		state.set(StatefulLayout.EMPTY)
 	}
 
-	private fun updateGallery(m: Movie) {
-		gallery.clear()
-		gallery.addAll(m.gallery)
+	override fun onLoadData(data: Movie) {
+		movie.set(data)
+
+//		updateGallery(data)
+//		updateCast(data)
+
+		// show content
+		if(movie.get() != null)
+			state.set(StatefulLayout.CONTENT)
+		else
+			state.set(StatefulLayout.EMPTY)
 	}
 
-	private fun updateCast(m: Movie) {
+	private fun updateGallery(data: Movie) {
+		gallery.clear()
+		gallery.addAll(data.gallery)
+	}
+
+	private fun updateCast(data: Movie) {
 		cast.clear()
-		m.cast.mapTo(cast) { MovieItemViewModel(it) }
+		data.cast.mapTo(cast) { MovieItemViewModel(it) }
 	}
 }

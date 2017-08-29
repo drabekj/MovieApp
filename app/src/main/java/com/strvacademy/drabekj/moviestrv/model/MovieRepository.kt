@@ -50,12 +50,23 @@ class MovieRepository: MovieDataSource {
 		})
     }
 
-    override fun getMovieById(id: Int): Movie? {
-        return mMoviesLocalDataSource.getMovieById(id)
-    }
+
+	override fun getMovieById(id: Int, listener: OnLoadDataListener<Movie>) {
+		mMoviesRemoteDataSource.getMovieDetailById(id).enqueue(object : Callback<Movie> {
+			override fun onFailure(call: Call<Movie>?, t: Throwable?) {
+				Logcat.d("retrofit fail |" + t.toString())
+				listener.errorLoadingData()
+			}
+
+			override fun onResponse(call: Call<Movie>?, response: Response<Movie>?) {
+				Logcat.d("retrofit successLoadingData: " + response!!.toString())
+				listener.onLoadData(response.body()!!)
+			}
+		})
+	}
 
 
-    override fun getPopularActors(): Array<Actor> {
+	override fun getPopularActors(): Array<Actor> {
         return mMoviesLocalDataSource.getPopularActors()
     }
 

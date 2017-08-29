@@ -31,10 +31,10 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>(), OnLoadData
 		state.set(StatefulLayout.EMPTY)
 	}
 
-	override fun onLoadData(m: List<Movie>) {
+	override fun onLoadData(data: List<Movie>) {
         // save data
         movies.clear()
-        movies.addAll(m)
+        movies.addAll(data)
 
         // show content
         if (movies.isEmpty())
