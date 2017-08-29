@@ -1,12 +1,12 @@
 package com.strvacademy.drabekj.moviestrv.model
 
-import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageViewModel
+import com.strvacademy.drabekj.moviestrv.listener.OnLoadDataListener
 
 interface MovieDataSource {
 
-    fun getPopularMovies(listener: MoviesPageViewModel.onLoadDataListener)
+    fun getPopularMovies(listener: OnLoadDataListener<List<Movie>>)
 
-    fun getNowPlayingMovies(): List<Movie>
+    fun getNowPlayingMovies(listener: OnLoadDataListener<List<Movie>>)
 
     fun getMovieById(id: Int): Movie?
 

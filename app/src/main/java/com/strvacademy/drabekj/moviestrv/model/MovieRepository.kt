@@ -1,5 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.model
 
+import com.strvacademy.drabekj.moviestrv.listener.OnLoadDataListener
 import com.strvacademy.drabekj.moviestrv.model.local.MovieLocalDataSource
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiService
@@ -21,23 +22,32 @@ class MovieRepository: MovieDataSource {
         mMoviesLocalDataSource = localDataSource
     }
 
-    override fun getPopularMovies(listener :MoviesPageViewModel.onLoadDataListener) {
+    override fun getPopularMovies(listener: OnLoadDataListener<List<Movie>>) {
 		mMoviesRemoteDataSource.getPopularMovies().enqueue(object : Callback<MoviesDataResponse> {
 			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
 				Logcat.d("retrofit fail |" + t.toString())
-//				TODO how to differentiate error vs empty data in ViewModel?
 				listener.errorLoadingData()
 			}
 
 			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
 				Logcat.d("retrofit successLoadingData: " + response!!.toString())
-				listener.successLoadingData(response.body()!!.results)
+				listener.onLoadData(response.body()!!.results)
 			}
 		})
     }
 
-    override fun getNowPlayingMovies(): List<Movie> {
-        return mMoviesLocalDataSource.getNowPlayingMovies()
+    override fun getNowPlayingMovies(listener: OnLoadDataListener<List<Movie>>) {
+		mMoviesRemoteDataSource.getNowPlayingMovies().enqueue(object : Callback<MoviesDataResponse> {
+			override fun onFailure(call: Call<MoviesDataResponse>?, t: Throwable?) {
+				Logcat.d("retrofit fail |" + t.toString())
+				listener.errorLoadingData()
+			}
+
+			override fun onResponse(call: Call<MoviesDataResponse>?, response: Response<MoviesDataResponse>?) {
+				Logcat.d("retrofit successLoadingData: " + response!!.toString())
+				listener.onLoadData(response.body()!!.results)
+			}
+		})
     }
 
     override fun getMovieById(id: Int): Movie? {

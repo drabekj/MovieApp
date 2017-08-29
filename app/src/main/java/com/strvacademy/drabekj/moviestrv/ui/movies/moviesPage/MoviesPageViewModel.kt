@@ -3,6 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage
 import android.databinding.ObservableArrayList
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import android.databinding.ObservableField
+import com.strvacademy.drabekj.moviestrv.listener.OnLoadDataListener
 import org.alfonz.view.StatefulLayout
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
@@ -11,7 +12,7 @@ import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 
 
-abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
+abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>(), OnLoadDataListener<List<Movie>> {
     val state = ObservableField<Int>()
     var movies = ObservableArrayList<Movie>()
 
@@ -24,9 +25,13 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
             loadData()
     }
 
-    abstract fun loadData()
+	abstract fun loadData()
 
-    fun onLoadData(m: List<Movie>) {
+	override fun errorLoadingData() {
+		state.set(StatefulLayout.EMPTY)
+	}
+
+	override fun onLoadData(m: List<Movie>) {
         // save data
         movies.clear()
         movies.addAll(m)
@@ -37,21 +42,4 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
         else
             state.set(StatefulLayout.CONTENT)
     }
-
-    fun onErrorLoadingData() {
-        state.set(StatefulLayout.EMPTY)
-    }
-//
-//    fun onResponse(call: Call<MessageEntity>, response: Response<MessageEntity>) {
-//        runViewAction(object : AlfonzViewModel.ViewAction<MoviesPageView> {
-//            override fun run(view: MoviesPageView) {
-//                view.startGreetingActivity(response.body().getText())
-//            }
-//        })
-//    }
-
-	interface onLoadDataListener {
-		fun errorLoadingData()
-		fun successLoadingData(m :List<Movie>)
-	}
 }
