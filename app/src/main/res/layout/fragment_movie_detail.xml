@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/apk/res-auto">
 
 	<data>
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
@@ -19,13 +20,17 @@
 			style="@style/MyToolbarHigh"
 			android:background="@color/colorSecondary">
 
+			<!--TODO why expandedTitleMarginStart:16dp doesn't work?!-->
 			<android.support.design.widget.CollapsingToolbarLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				app:contentScrim="?attr/colorPrimary"
 				app:layout_scrollFlags="scroll|exitUntilCollapsed"
 				app:expandedTitleTextAppearance="@style/MyToolbar.Expanded"
-				app:collapsedTitleTextAppearance="@color/colorPrimaryText">
+				app:collapsedTitleTextAppearance="@color/colorPrimaryText"
+				app:expandedTitleMargin="0dp"
+				app:expandedTitleMarginStart="14dp"
+				app:expandedTitleMarginBottom="@dimen/global_spacing_8">
 
 				<RelativeLayout
 					android:layout_width="match_parent"
@@ -49,13 +54,13 @@
 						android:layout_alignParentStart="true"
 						android:src="@drawable/shape_gradient" />
 				</RelativeLayout>
-
+x§
 				<android.support.v7.widget.Toolbar
 					android:id="@+id/toolbar"
 					android:elevation="@dimen/global_elevation_4"
 					style="@style/MyToolbarTransparent"
 					app:layout_collapseMode="pin"
-					app:title="@{viewModel.movie.title}"/>
+					app:title="@{viewModel.movie.title}" />
 
 			</android.support.design.widget.CollapsingToolbarLayout>
 		</android.support.design.widget.AppBarLayout>
@@ -83,7 +88,9 @@
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_margin="@dimen/global_spacing_16"
+						android:layout_marginStart="@dimen/global_spacing_16"
+						android:layout_marginEnd="@dimen/global_spacing_16"
+						android:layout_marginBottom="@dimen/global_spacing_16"
 						android:orientation="vertical">
 
 						<TextView
