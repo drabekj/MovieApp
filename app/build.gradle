@@ -60,10 +60,18 @@ dependencies {
 	implementation "org.alfonz:alfonz-mvvm:0.6.0"
 	implementation "org.alfonz:alfonz-view:0.6.0"
 	implementation "org.alfonz:alfonz-adapter:0.6.0"
+	implementation 'org.alfonz:alfonz-rest:0.6.0'
 
 //	Tatarka
 	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.1.0'
 	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.1.0'
+
+//	OkHttp3
+	implementation "com.squareup.okhttp3:okhttp:3.8.1"
+	implementation "com.squareup.okhttp3:logging-interceptor:3.8.1"
+
+//	Gson
+	implementation "com.google.code.gson:gson:2.8.1"
 
 //	Retrofit
 	implementation 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -71,3 +79,4 @@ dependencies {
 
 	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }
+

@@ -5,7 +5,7 @@ object MoviesConfig {
 	const val LOGS = BuildConfig.LOGS
 	const val DEV_ENVIRONMENT = BuildConfig.DEV_ENVIRONMENT
 
-	//        const val REST_BASE_URL_PROD = "http://dev.markitondemand.com/MODApis/Api/v2/"
-	//        const val REST_BASE_URL_DEV = "http://dev.markitondemand.com/MODApis/Api/v2/"
-	//        const val REST_BASE_URL = if (MoviesConfig.DEV_ENVIRONMENT) MoviesConfig.REST_BASE_URL_DEV else MoviesConfig.REST_BASE_URL_PROD
+	const val REST_BASE_URL_PROD = "https://api.themoviedb.org/3/"
+	const val REST_BASE_URL_DEV = "https://api.themoviedb.org/3/"
+	val REST_BASE_URL = if (DEV_ENVIRONMENT) REST_BASE_URL_DEV else REST_BASE_URL_PROD
 }
