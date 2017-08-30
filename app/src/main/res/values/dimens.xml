@@ -34,7 +34,7 @@
 	<dimen name="global_text_size_menu">16sp</dimen>
 
 	<dimen name="cardview_space_between">4dp</dimen>
-	<dimen name="card_view_movie_height">220dp</dimen>
+	<dimen name="card_view_movie_height">200dp</dimen>
 	<dimen name="bottom_naw_height">56dp</dimen>
 	<dimen name="global_grid_spacing_4">4dp</dimen>
 	<dimen name="profile_pic_size">80dp</dimen>
