@@ -19,7 +19,7 @@ object MovieServiceProvider {
 
 	interface MovieService {
 		@GET("movie/{id}")
-		fun movie(@Path("id") id: String): Call<MovieEntity>
+		fun movie(@Path("id") id: Int): Call<MovieEntity>
 
 		@GET("discover/movie?sort_by=popularity.desc")
 		fun popularMovies(): Call<ResultsEntity>

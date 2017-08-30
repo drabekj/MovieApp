@@ -55,7 +55,7 @@
 					android:elevation="@dimen/global_elevation_4"
 					style="@style/MyToolbarTransparent"
 					app:layout_collapseMode="pin"
-					app:title="@{viewModel.movie.name}"/>
+					app:title="@{viewModel.movie.title}"/>
 
 			</android.support.design.widget.CollapsingToolbarLayout>
 		</android.support.design.widget.AppBarLayout>
@@ -90,7 +90,7 @@
 							android:id="@+id/text_detail_subheading"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:text='@{String.format("%s, %s", viewModel.movie.director, viewModel.movie.releaseDate)}'
+							android:text='@{String.format("%s, %s", "DIRECTOR", viewModel.movie.getReleaseYear())}'
 							style="@style/SecondaryText" />
 
 						<TextView
@@ -98,7 +98,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_marginTop="@dimen/global_spacing_16"
-							android:text="@{viewModel.movie.description}"
+							android:text="@{viewModel.movie.overview}"
 							style="@style/SecondaryText" />
 
 					</LinearLayout>
