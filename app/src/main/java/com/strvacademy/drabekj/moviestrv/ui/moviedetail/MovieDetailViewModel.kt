@@ -10,9 +10,7 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
-import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
@@ -29,8 +27,8 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	val state = ObservableField<Int>()
 	val movie = ObservableField<MovieEntity>()
 
-	val gallery: ObservableList<String> = ObservableArrayList()
-	val itemBindingGallery = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
+	val gallery: ObservableList<BackdropEntity> = ObservableArrayList()
+	val itemBindingGallery = ItemBinding.of<BackdropEntity>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
 
 	val cast: ObservableList<MovieCastItemViewModel> = ObservableArrayList()
 	val onCastClickListener = OnItemClickListener<MovieCastItemViewModel> {
@@ -78,8 +76,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		override fun onSuccess(call: Call<MovieEntity>, response: Response<MovieEntity>) {
 			movie.set(response.body())
 
-			//		updateGallery(data)
-			//		updateCast(data)
+			loadMovieImages(response.body()!!.id!!)
 			loadMovieCredits(response.body()!!.id!!)
 		}
 
@@ -94,13 +91,41 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
+	private fun loadMovieImages(id: Int) {
+		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+			val callType = MovieServiceProvider.MOVIE_IMAGES_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// enqueue call
+				val call = MovieServiceProvider.service.movieImages(id)
+				val callback = MovieImagesCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	inner class MovieImagesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<ImagesEntity>(callManager) {
+		override fun onSuccess(call: Call<ImagesEntity>, response: Response<ImagesEntity>) {
+			// save some cast from response
+			val galleryLimit = 5
+			updateGallery(response.body()!!.backdrops!!.slice(0..galleryLimit))
+		}
+
+		override fun onError(call: Call<ImagesEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<ImagesEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
 	private fun loadMovieCredits(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
-				// show progress
-				//				state.set(StatefulLayout.PROGRESS)
-
 				// enqueue call
 				val call = MovieServiceProvider.service.movieCredits(id)
 				val callback = MovieCreditsCallback(mCallManager)
@@ -143,9 +168,9 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-	private fun updateGallery(data: MovieEntity) {
+	private fun updateGallery(data: List<BackdropEntity>) {
 		gallery.clear()
-		//		gallery.addAll(data.gallery)
+		gallery.addAll(data)
 	}
 
 	private fun updateCast(data: Array<CastEntity>) {
