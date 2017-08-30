@@ -26,7 +26,7 @@ class PopularMoviesViewModel: MoviesPageViewModel() {
 
 				// enqueue call
 				val call = MovieServiceProvider.service.popularMovies()
-				val callback = MovieCallback(mCallManager)
+				val callback = MoviesCallback(mCallManager)
 				mCallManager.enqueueCall(call, callback, callType)
 			}
 		} else {

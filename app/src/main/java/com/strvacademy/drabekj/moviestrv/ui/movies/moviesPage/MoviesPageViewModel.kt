@@ -36,7 +36,7 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
 
 	abstract fun loadData()
 
-	inner class MovieCallback(callManager: CallManager) : Callback<ResultsEntity>(callManager) {
+	inner class MoviesCallback(callManager: CallManager) : Callback<ResultsEntity>(callManager) {
 		override fun onSuccess(call: Call<ResultsEntity>, response: Response<ResultsEntity>) {
 			movies.clear()
 			movies.addAll(response.body()!!.results!!)

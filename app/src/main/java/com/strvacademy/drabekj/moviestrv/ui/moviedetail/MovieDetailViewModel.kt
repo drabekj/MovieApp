@@ -10,6 +10,8 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
+import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
@@ -30,12 +32,12 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	val gallery: ObservableList<String> = ObservableArrayList()
 	val itemBindingGallery = ItemBinding.of<String>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
 
-	val cast: ObservableList<MovieItemViewModel> = ObservableArrayList()
-	val onCastClickListener = OnItemClickListener<MovieItemViewModel> {
+	val cast: ObservableList<MovieCastItemViewModel> = ObservableArrayList()
+	val onCastClickListener = OnItemClickListener<MovieCastItemViewModel> {
 		item ->
 		Toast.makeText(MoviesApplication.getContext(), "click " + item.actor.get().name, Toast.LENGTH_SHORT).show()
 	}
-	val itemBindingCast = ItemBinding.of<MovieItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
+	val itemBindingCast = ItemBinding.of<MovieCastItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
 			.bindExtra(BR.listener, onCastClickListener)!!
 
 	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
@@ -75,10 +77,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<MovieEntity>(callManager) {
 		override fun onSuccess(call: Call<MovieEntity>, response: Response<MovieEntity>) {
 			movie.set(response.body())
-			setState(movie)
 
 			//		updateGallery(data)
 			//		updateCast(data)
+			loadMovieCredits(response.body()!!.id!!)
 		}
 
 		override fun onError(call: Call<MovieEntity>, exception: HttpException) {
@@ -92,6 +94,47 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
+	private fun loadMovieCredits(id: Int) {
+		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// show progress
+				//				state.set(StatefulLayout.PROGRESS)
+
+				// enqueue call
+				val call = MovieServiceProvider.service.movieCredits(id)
+				val callback = MovieCreditsCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	inner class MovieCreditsCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<CreditsEntity>(callManager) {
+		override fun onSuccess(call: Call<CreditsEntity>, response: Response<CreditsEntity>) {
+			// save some cast from response
+			val castLimit = 5
+			updateCast(response.body()!!.cast!!.sliceArray(0..castLimit))
+
+			// save director from response
+			response.body()!!.crew!!
+					.filter { it.job.equals("Director") }
+					.forEach { movie.get().director.set(it) }
+
+			setState(movie)
+		}
+
+		override fun onError(call: Call<CreditsEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<CreditsEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
 	private fun setState(data: ObservableField<MovieEntity>) {
 		if (data.get() != null) {
 			state.set(StatefulLayout.CONTENT)
@@ -102,11 +145,11 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	private fun updateGallery(data: MovieEntity) {
 		gallery.clear()
-//		gallery.addAll(data.gallery)
+		//		gallery.addAll(data.gallery)
 	}
 
-	private fun updateCast(data: MovieEntity) {
+	private fun updateCast(data: Array<CastEntity>) {
 		cast.clear()
-//		data.cast.mapTo(cast) { MovieItemViewModel(it) }
+		data.mapTo(cast) { MovieCastItemViewModel(it) }
 	}
 }

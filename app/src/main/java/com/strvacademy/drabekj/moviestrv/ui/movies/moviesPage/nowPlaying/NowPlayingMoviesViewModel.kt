@@ -1,7 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.nowPlaying
 
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
-import com.strvacademy.drabekj.moviestrv.MoviesConfig
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageViewModel
 import org.alfonz.utility.NetworkUtility
@@ -20,14 +19,14 @@ class NowPlayingMoviesViewModel : MoviesPageViewModel() {
 
 	private fun loadNowPlayingMovies() {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
-			val callType = MovieServiceProvider.NOW_PLAYINGMOVIES_CALL_TYPE
+			val callType = MovieServiceProvider.NOW_PLAYING_MOVIES_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
 				state.set(StatefulLayout.PROGRESS)
 
 				// enqueue call
 				val call = MovieServiceProvider.service.nowPlayingMovies()
-				val callback = MovieCallback(mCallManager)
+				val callback = MoviesCallback(mCallManager)
 				mCallManager.enqueueCall(call, callback, callType)
 			}
 		} else {

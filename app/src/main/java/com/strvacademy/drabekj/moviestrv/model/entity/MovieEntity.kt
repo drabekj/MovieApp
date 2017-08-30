@@ -1,5 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.model.entity
 
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableField
 import com.google.gson.annotations.SerializedName
 import org.alfonz.utility.Logcat
 import java.text.SimpleDateFormat
@@ -72,6 +74,8 @@ class MovieEntity {
 
 	@SerializedName("vote_count")
 	var voteCount: Int? = null
+
+	val director = ObservableField<CrewEntity>()
 
 	fun getReleaseYear(): String {
 		val df1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)

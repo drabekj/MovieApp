@@ -1,7 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 	<data>
 		<variable
-			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieItemViewModel" />
+			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieCastItemViewModel" />
 		<variable
 			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
 	</data>
@@ -37,7 +37,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:textColor="@color/colorSecondaryText"
-				android:text="as Mr. Unknown" />
+				android:text='@{String.format("as %s", itemViewModel.actor.character)}' />
 		</LinearLayout>
 	</LinearLayout>
 

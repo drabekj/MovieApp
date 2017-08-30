@@ -31,7 +31,7 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 	}
 
 	override fun onAllCreditsClick() {
-		showToast("Show all credits")
+		showToast("Show all cast")
 	}
 
 	override fun onMovieClick(name: String) {

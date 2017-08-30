@@ -90,7 +90,7 @@
 							android:id="@+id/text_detail_subheading"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:text='@{String.format("%s, %s", "DIRECTOR", viewModel.movie.getReleaseYear())}'
+							android:text='@{String.format("%s, %s", viewModel.movie.director.name, viewModel.movie.getReleaseYear())}'
 							style="@style/SecondaryText" />
 
 						<TextView
@@ -152,6 +152,11 @@
 							app:itemBinding="@{viewModel.itemBindingGallery}" />
 
 					</LinearLayout>
+
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@color/colorLightGrey" />
 
 					<!-- CAST -->
 					<LinearLayout
