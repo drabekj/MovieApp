@@ -8,38 +8,57 @@ import org.alfonz.view.StatefulLayout
 import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
+import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.ResultsEntity
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import org.alfonz.rest.HttpException
+import org.alfonz.rest.call.CallManager
+import org.alfonz.rest.call.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 
-abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>(), OnLoadDataListener<List<Movie>> {
-    val state = ObservableField<Int>()
-    var movies = ObservableArrayList<Movie>()
+abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
+	val state = ObservableField<Int>()
+	var movies = ObservableArrayList<MovieEntity>()
 
-    val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
+	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
 
 
-    override fun onStart() {
-        super.onStart()
-        if (movies.isEmpty())
-            loadData()
-    }
+	override fun onStart() {
+		super.onStart()
+		if (movies.isEmpty())
+			loadData()
+	}
 
 	abstract fun loadData()
 
-	override fun errorLoadingData() {
-		state.set(StatefulLayout.EMPTY)
+	inner class MovieCallback(callManager: CallManager) : Callback<ResultsEntity>(callManager) {
+		override fun onSuccess(call: Call<ResultsEntity>, response: Response<ResultsEntity>) {
+			movies.clear()
+			movies.addAll(response.body()!!.results!!)
+			setState(movies)
+		}
+
+		override fun onError(call: Call<ResultsEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+			setState(movies)
+		}
+
+		override fun onFail(call: Call<ResultsEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+			setState(movies)
+		}
 	}
 
-	override fun onLoadData(data: List<Movie>) {
-        // save data
-        movies.clear()
-        movies.addAll(data)
-
-        // show content
-        if (movies.isEmpty())
-            state.set(StatefulLayout.EMPTY)
-        else
-            state.set(StatefulLayout.CONTENT)
-    }
+	private fun setState(data: ObservableArrayList<MovieEntity>) {
+		if (data.isNotEmpty()) {
+			state.set(StatefulLayout.CONTENT)
+		} else {
+			state.set(StatefulLayout.EMPTY)
+		}
+	}
 }

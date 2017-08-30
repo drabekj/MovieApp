@@ -1,11 +1,14 @@
 package com.strvacademy.drabekj.moviestrv.model.entity
 
 import com.google.gson.annotations.SerializedName
+import org.alfonz.utility.Logcat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MovieEntity {
 
 	@SerializedName("id")
-	var id: Int? = null
+	val id: Int? = null
 
 	@SerializedName("title")
 	var title: String? = null
@@ -69,4 +72,13 @@ class MovieEntity {
 
 	@SerializedName("vote_count")
 	var voteCount: Int? = null
+
+	fun getReleaseYear(): String {
+		val df1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+		val df2 = SimpleDateFormat("yyyy", Locale.US)
+		val date = df1.parse(releaseDate)
+		val year = df2.format(date)
+
+		return year.toString()
+	}
 }

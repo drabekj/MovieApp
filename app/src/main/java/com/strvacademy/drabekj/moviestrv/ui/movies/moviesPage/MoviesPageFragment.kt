@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesPageBinding
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.model.Movie
+import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 
 
@@ -25,8 +26,8 @@ abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<Movie
 		setupAdapter()
 	}
 
-	override fun onItemClick(movie: Movie) {
-		startMovieDetailActivity(movie.id)
+	override fun onItemClick(movie: MovieEntity) {
+		startMovieDetailActivity(movie.id!!)
 	}
 
 	private fun startMovieDetailActivity(id: Int) {

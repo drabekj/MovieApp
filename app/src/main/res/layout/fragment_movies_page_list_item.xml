@@ -4,7 +4,7 @@
 
 	<data>
 		<variable name="view" type="com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageView" />
-		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.Movie" />
+		<variable name="data" type="com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity" />
 	</data>
 
 	<LinearLayout
@@ -56,7 +56,7 @@
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:text="@{data.name}"
+							android:text="@{data.title}"
 							android:textSize="@dimen/global_text_size_title"/>
 
 						<LinearLayout
@@ -68,7 +68,7 @@
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:textColor="@color/colorSecondaryText"
-								android:text="@{data.releaseDate}"/>
+								android:text="@{data.getReleaseYear()}"/>
 
 							<ImageView
 								android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
 							<TextView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:text="@{data.rating}"/>
+								android:text="@{Double.toString(data.voteAverage)}"/>
 
 						</LinearLayout>
 
@@ -89,7 +89,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_marginTop="@dimen/global_spacing_16"
-							android:text="@{data.description}"
+							android:text="@{data.overview}"
 							android:ellipsize="end"
 							android:maxLines="4"/>
 

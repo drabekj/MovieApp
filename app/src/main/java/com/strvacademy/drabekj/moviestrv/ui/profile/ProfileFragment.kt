@@ -69,8 +69,8 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 		startActivity(Intent(context, FavoriteFilmsActivity::class.java))
 	}
 
-	override fun onFavMovieClick(m: String) {
-		showToast("Show movie detail " + m)
+	override fun onFavMovieClick(movie: String) {
+		showToast("Show movie detail " + movie)
 	}
 
 	companion object {
