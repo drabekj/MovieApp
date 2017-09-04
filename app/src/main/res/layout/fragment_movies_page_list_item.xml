@@ -40,7 +40,7 @@
 					android:src="@drawable/dummy_movie_image"
 					android:adjustViewBounds="true"
 					android:scaleType="centerCrop"
-					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, data.posterPath)}' />
+					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}' />
 
 				<RelativeLayout
 					android:layout_width="0dp"
