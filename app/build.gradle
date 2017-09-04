@@ -61,6 +61,7 @@ dependencies {
 	implementation "org.alfonz:alfonz-view:0.6.0"
 	implementation "org.alfonz:alfonz-adapter:0.6.0"
 	implementation 'org.alfonz:alfonz-rest:0.6.0'
+	implementation 'org.alfonz:alfonz-graphics:0.6.0'
 
 //	Tatarka
 	implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.1.0'
@@ -77,6 +78,11 @@ dependencies {
 	implementation 'com.squareup.retrofit2:retrofit:2.3.0'
 	implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
+//	Glide
+	implementation 'com.github.bumptech.glide:glide:4.0.0'
+
+
+	kapt 'com.github.bumptech.glide:compiler:4.0.0'
+
 	kapt 'com.android.databinding:compiler:3.0.0-alpha9'
 }
-
