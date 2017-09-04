@@ -10,7 +10,7 @@
 
 	<!-- TODO ? How spacing in grid view-->
 	<FrameLayout
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="@dimen/global_grid_spacing_4"
 		android:layout_marginRight="@dimen/global_grid_spacing_4"
@@ -21,8 +21,8 @@
 		<ImageView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:src="@drawable/dummy_actor_thumbnail"
-			android:adjustViewBounds="true" />
+			android:adjustViewBounds="true"
+			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, itemViewModel.actor.profilePath)}' />
 
 		<TextView
 			android:layout_width="match_parent"

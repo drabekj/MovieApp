@@ -42,8 +42,8 @@
 	<string name="favorite_films">Favorite Films</string>
 	<string name="action_edit">Edit</string>
 
-	<string name="TMDB_BASE_IMAGE_W500">https://image.tmdb.org/t/p/w500/</string>
-	<string name="TMDB_BASE_IMAGE_W300">https://image.tmdb.org/t/p/w300/</string>
+	<string name="TMDB_BASE_IMAGE_W500">https://image.tmdb.org/t/p/w500</string>
+	<string name="TMDB_BASE_IMAGE_W300">https://image.tmdb.org/t/p/w300</string>
 
 	<string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 </resources>

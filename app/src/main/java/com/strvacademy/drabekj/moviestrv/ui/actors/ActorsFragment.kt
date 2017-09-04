@@ -10,6 +10,7 @@ import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorsBinding
 import com.strvacademy.drabekj.moviestrv.model.Actor
+import com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -50,8 +51,8 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 		setHasOptionsMenu(true)
 	}
 
-	override fun onActorClick(actor: Actor) {
-		startActorDetailActivity(actor.id)
+	override fun onActorClick(actor: ActorEntity) {
+		startActorDetailActivity(actor.id!!)
 	}
 
 	private fun startActorDetailActivity(id: Int) {
