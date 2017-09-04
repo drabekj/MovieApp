@@ -37,8 +37,8 @@
 					android:layout_gravity="center"
 					android:elevation="@dimen/global_elevation_8"
 					android:adjustViewBounds="true"
-					android:src="@drawable/dummy_actor_profile"
-					android:contentDescription="@string/actor_profile_image" />
+					android:contentDescription="@string/actor_profile_image"
+					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, viewModel.actor.profilePath)}' />
 
 				<include layout="@layout/toolbar_actor_detail" />
 
@@ -76,7 +76,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_marginStart="@dimen/global_spacing_8"
-							android:text="@{viewModel.actor.birthDate}"
+							android:text="@{viewModel.actor.birthday}"
 							style="@style/SecondaryText" />
 
 						<ImageView
@@ -89,7 +89,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_marginStart="@dimen/global_spacing_8"
-							android:text="@{Integer.toString(viewModel.actor.moviesArray.length)}"
+							android:text="@{Integer.toString(viewModel.knownForMovies.size)}"
 							style="@style/SecondaryText" />
 					</LinearLayout>
 
@@ -97,7 +97,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="@dimen/global_spacing_8"
-						android:text="@{viewModel.actor.description}"
+						android:text="@{viewModel.actor.biography}"
 						style="@style/SecondaryText" />
 				</LinearLayout>
 
@@ -125,7 +125,7 @@
 						app:recyclerLayoutSpanCount="@{3}" />
 
 					<Button
-						android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.actor.moviesArray.length)}'
+						android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.knownForMovies.size)}'
 						android:onClick="@{() -> view.onAllCreditsClick()}"
 						style="@style/ViewAllButton" />
 				</LinearLayout>

@@ -7,7 +7,6 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import android.widget.Toast
-import com.google.android.youtube.player.YouTubePlayer
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
@@ -79,7 +78,6 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<MovieEntity>(callManager) {
 		override fun onSuccess(call: Call<MovieEntity>, response: Response<MovieEntity>) {
 			movie.set(response.body())
-			Logcat.d("YouTube 4")
 
 			loadMovieImages(response.body()!!.id!!)
 			loadMovieCredits(response.body()!!.id!!)
@@ -172,10 +170,8 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 //	load Videos
 	private fun loadMovieVideos(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
-			Logcat.d("YouTube 5")
 			val callType = MovieServiceProvider.MOVIE_VIDEOS_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
-				Logcat.d("YouTube 5a")
 				// enqueue call
 				val call = MovieServiceProvider.service.movieVideos(id)
 				val callback = MovieVideosCallback(mCallManager)
