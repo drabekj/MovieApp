@@ -3,15 +3,9 @@ package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage
 import android.databinding.ObservableArrayList
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import android.databinding.ObservableField
-import com.strvacademy.drabekj.moviestrv.listener.OnLoadDataListener
 import org.alfonz.view.StatefulLayout
-import com.strvacademy.drabekj.moviestrv.model.Movie
-import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
-import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.ResultsEntity
-import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
+import com.strvacademy.drabekj.moviestrv.model.entity.MovieResultsEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import org.alfonz.rest.HttpException
@@ -36,19 +30,19 @@ abstract class MoviesPageViewModel : BaseViewModel<MoviesPageView>() {
 
 	abstract fun loadData()
 
-	inner class MoviesCallback(callManager: CallManager) : Callback<ResultsEntity>(callManager) {
-		override fun onSuccess(call: Call<ResultsEntity>, response: Response<ResultsEntity>) {
+	inner class MoviesCallback(callManager: CallManager) : Callback<MovieResultsEntity>(callManager) {
+		override fun onSuccess(call: Call<MovieResultsEntity>, response: Response<MovieResultsEntity>) {
 			movies.clear()
 			movies.addAll(response.body()!!.results!!)
 			setState(movies)
 		}
 
-		override fun onError(call: Call<ResultsEntity>, exception: HttpException) {
+		override fun onError(call: Call<MovieResultsEntity>, exception: HttpException) {
 			handleError(mCallManager.getHttpErrorMessage(exception))
 			setState(movies)
 		}
 
-		override fun onFail(call: Call<ResultsEntity>, throwable: Throwable) {
+		override fun onFail(call: Call<MovieResultsEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
 			setState(movies)
 		}

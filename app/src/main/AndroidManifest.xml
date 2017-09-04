@@ -30,6 +30,7 @@
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.signup.SignUpActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavoriteFilmsActivity" />
+		<activity android:name=".ui.moviedetail.YouTubeFullscreenActivity" />
 	</application>
 
 </manifest>

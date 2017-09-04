@@ -7,6 +7,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import android.widget.Toast
+import com.google.android.youtube.player.YouTubePlayer
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
@@ -17,6 +18,7 @@ import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieService
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.rest.HttpException
 import org.alfonz.rest.call.CallManager
+import org.alfonz.utility.Logcat
 import org.alfonz.utility.NetworkUtility
 import retrofit2.Call
 import retrofit2.Response
@@ -37,6 +39,8 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	}
 	val itemBindingCast = ItemBinding.of<MovieCastItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
 			.bindExtra(BR.listener, onCastClickListener)!!
+
+	val videos: ObservableList<VideoEntity> = ObservableArrayList()
 
 	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
 
@@ -75,9 +79,13 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<MovieEntity>(callManager) {
 		override fun onSuccess(call: Call<MovieEntity>, response: Response<MovieEntity>) {
 			movie.set(response.body())
+			Logcat.d("YouTube 4")
 
 			loadMovieImages(response.body()!!.id!!)
 			loadMovieCredits(response.body()!!.id!!)
+			loadMovieVideos(response.body()!!.id!!)
+
+			setState(movie)
 		}
 
 		override fun onError(call: Call<MovieEntity>, exception: HttpException) {
@@ -91,6 +99,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
+//	load Images
 	private fun loadMovieImages(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_IMAGES_CALL_TYPE
@@ -122,6 +131,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
+//	load Credits
 	private fun loadMovieCredits(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
@@ -147,8 +157,6 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 			response.body()!!.crew!!
 					.filter { it.job.equals("Director") }
 					.forEach { movie.get().director.set(it) }
-
-			setState(movie)
 		}
 
 		override fun onError(call: Call<CreditsEntity>, exception: HttpException) {
@@ -156,6 +164,44 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 
 		override fun onFail(call: Call<CreditsEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
+
+//	load Videos
+	private fun loadMovieVideos(id: Int) {
+		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+			Logcat.d("YouTube 5")
+			val callType = MovieServiceProvider.MOVIE_VIDEOS_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				Logcat.d("YouTube 5a")
+				// enqueue call
+				val call = MovieServiceProvider.service.movieVideos(id)
+				val callback = MovieVideosCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	inner class MovieVideosCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<VideosResultsEntity>(callManager) {
+		override fun onSuccess(call: Call<VideosResultsEntity>, response: Response<VideosResultsEntity>) {
+			Logcat.d("YouTube onSuccess callback")
+			// save some cast from response
+			val videosLimit = 1
+			updateVideos(response.body()!!.results!!.sliceArray(0..videosLimit))
+
+			(view as MovieDetailFragment).initializeYouTubePlayer(videos.first().key!!)
+		}
+
+		override fun onError(call: Call<VideosResultsEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<VideosResultsEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
 		}
 	}
@@ -176,5 +222,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	private fun updateCast(data: Array<CastEntity>) {
 		cast.clear()
 		data.mapTo(cast) { MovieCastItemViewModel(it) }
+	}
+
+	private fun updateVideos(data: Array<VideoEntity>) {
+		videos.clear()
+		videos.addAll(data)
 	}
 }

@@ -1,20 +1,17 @@
 package com.strvacademy.drabekj.moviestrv.model.remote.rest.provider
 
-import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.ImagesEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.ResultsEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RetrofitClient
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 
 object MovieServiceProvider {
 	val MOVIE_CALL_TYPE = "movie"
 	val MOVIE_CREDITS_CALL_TYPE = "movie_credits"
 	val MOVIE_IMAGES_CALL_TYPE = "movie_images"
+	val MOVIE_VIDEOS_CALL_TYPE = "movie_videos"
 	val POPULAR_MOVIES_CALL_TYPE = "movies_popular"
 	val NOW_PLAYING_MOVIES_CALL_TYPE = "movies_now_playing"
 
@@ -31,11 +28,14 @@ object MovieServiceProvider {
 		@GET("movie/{id}/images")
 		fun movieImages(@Path("id") id: Int): Call<ImagesEntity>
 
+		@GET("movie/{id}/videos")
+		fun movieVideos(@Path("id") id: Int): Call<VideosResultsEntity>
+
 		@GET("discover/movie?sort_by=popularity.desc")
-		fun popularMovies(): Call<ResultsEntity>
+		fun popularMovies(): Call<MovieResultsEntity>
 
 		@GET("movie/now_playing")
-		fun nowPlayingMovies(): Call<ResultsEntity>
+		fun nowPlayingMovies(): Call<MovieResultsEntity>
 	}
 
 
