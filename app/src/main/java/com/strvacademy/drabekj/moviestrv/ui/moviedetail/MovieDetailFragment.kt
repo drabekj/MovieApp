@@ -1,14 +1,19 @@
 package com.strvacademy.drabekj.moviestrv.ui.moviedetail
 
+import android.app.FragmentTransaction
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
+import com.google.android.youtube.player.YouTubePlayerSupportFragment
+import com.strvacademy.drabekj.moviestrv.MoviesConfig
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMovieDetailBinding
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import org.alfonz.mvvm.AlfonzActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import org.alfonz.utility.Logcat
+import java.security.Provider
 
 
 class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, FragmentMovieDetailBinding>(),
@@ -22,7 +27,29 @@ class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, F
         return FragmentMovieDetailBinding.inflate(inflater!!)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+	override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		val youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance()
+		youTubePlayerFragment.initialize(MoviesConfig.YOUTUBE_API_KEY, object : YouTubePlayer.OnInitializedListener {
+
+			override fun onInitializationSuccess(provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean) {
+				Logcat.d("Success initializing YouTubePlayer")
+				if (!wasRestored) {
+					player.cueVideo("2zNSgSzhBfM")
+				}
+
+			}
+
+			override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
+				Logcat.d("Error initializing YouTubePlayer")
+			}
+		})
+		val transaction = childFragmentManager.beginTransaction()
+		transaction.add(R.id.youtube_fragment, youTubePlayerFragment).commit()
+
+		return super.onCreateView(inflater, container, savedInstanceState)
+	}
+
+	override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         setupToolbar()
@@ -34,7 +61,7 @@ class MovieDetailFragment: BaseFragment<MovieDetailView, MovieDetailViewModel, F
             viewModel.id = arguments.getInt(ARG_MOVIE_ID)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.toolbar_movie_detail, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }

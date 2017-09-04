@@ -81,6 +81,9 @@ dependencies {
 //	Glide
 	implementation 'com.github.bumptech.glide:glide:4.0.0'
 
+//	YouTube lib
+	compile files('libs/YouTubeAndroidPlayerApi.jar')
+
 
 	kapt 'com.github.bumptech.glide:compiler:4.0.0'
 

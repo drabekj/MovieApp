@@ -127,10 +127,10 @@
 							android:text="@string/subheading_trailers"
 							style="@style/SecondaryHeadingText" />
 
-						<ImageView
+						<FrameLayout
+							android:id="@+id/youtube_fragment"
 							android:layout_width="match_parent"
-							android:layout_height="220dp"
-							android:contentDescription="@string/trailer_video" />
+							android:layout_height="wrap_content" />
 
 					</LinearLayout>
 
