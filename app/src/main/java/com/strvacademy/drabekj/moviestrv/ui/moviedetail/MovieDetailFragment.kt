@@ -83,13 +83,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 
 				mYouTubePlayer = player
 				mYouTubePlayer!!.setFullscreen(false)
-				mYouTubePlayer!!.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT)
-				mYouTubePlayer!!.setOnFullscreenListener { arg0 ->
-					val intent = Intent(activity, YouTubeFullscreenActivity::class.java)
-					intent.putExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, id)
-//					startActivity(intent)
-					startActivityForResult(intent, 1)
-				}
+				mYouTubePlayer!!.setShowFullscreenButton(false)
 
 				if (!wasRestored)
 					mYouTubePlayer!!.cueVideo(url_key)
@@ -102,17 +96,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 		val transaction = childFragmentManager.beginTransaction()
 		transaction.add(R.id.youtube_fragment, youTubePlayerFragment).commit()
 	}
-
-	private fun doLayout(provider: YouTubePlayer.Provider) {
-//		val playerParams = provider.getLayoutParams() as LinearLayout.LayoutParams
-
-		// When in fullscreen, the visibility of all other views than the player should be set to
-		// GONE and the player should be laid out across the whole screen.
-//		playerParams.width = LinearLayout.LayoutParams.MATCH_PARENT
-//		playerParams.height = LinearLayout.LayoutParams.MATCH_PARENT
-	}
-
-
 
 	override fun onFullCastClick() {
 		showToast("Show Full Cast")
