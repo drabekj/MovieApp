@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MovieEntity {
+	// TODO how to modify data when creating (e.g. url -> append base, date -> change format)
 
 	@SerializedName("id")
 	val id: Int? = null
