@@ -3,11 +3,9 @@ package com.strvacademy.drabekj.moviestrv.utils
 import android.graphics.drawable.Drawable
 import android.databinding.BindingAdapter
 import android.widget.ImageView
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestListener
-import com.strvacademy.drabekj.moviestrv.MoviesConfig
+import com.bumptech.glide.request.RequestOptions
 import com.strvacademy.drabekj.moviestrv.R
 
 
@@ -20,6 +18,23 @@ fun setImageUrl(imageView: ImageView, url: String) {
 			.placeholder(R.drawable.ic_image_black_placeholder_24dp)
 			.transition(DrawableTransitionOptions.withCrossFade())
 			.into(imageView)
+}
+
+
+@BindingAdapter(value = *arrayOf("imageUrl", "imagePlaceholder", "isCircle"), requireAll = false)
+fun setImageUrl(imageView: ImageView, url: String, placeholder: Drawable?, isCircle: Boolean) {
+	if (isCircle) {
+		GlideApp
+				.with(imageView.context)
+				.load(url)
+				.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+				.placeholder(placeholder)
+				.transition(DrawableTransitionOptions.withCrossFade())
+				.apply(RequestOptions.circleCropTransform())
+				.into(imageView)
+	} else {
+		setImageUrl(imageView, url)
+	}
 }
 
 
