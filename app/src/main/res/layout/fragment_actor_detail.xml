@@ -3,8 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
-		<import type="java.lang.reflect.Array" />
-		<import type="org.alfonz.adapter.utility.BindingUtility" />
+		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailViewModel" />
 		<variable
@@ -89,7 +88,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_marginStart="@dimen/global_spacing_8"
-							android:text="@{Integer.toString(viewModel.knownForMovies.size)}"
+							android:text="@{Integer.toString(viewModel.moviesCount)}"
 							style="@style/SecondaryText" />
 					</LinearLayout>
 
@@ -118,14 +117,14 @@
 						style="@style/SecondaryHeadingText" />
 
 					<android.support.v7.widget.RecyclerView
-						android:id="@+id/fragment_actor_detail_movie_list_recycler"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
-						app:recyclerLayoutSpanCount="@{3}" />
+						app:layoutManager="@{LayoutManagers.grid(3)}"
+						app:items="@{viewModel.knownForMovies}"
+						app:itemBinding="@{viewModel.itemBindingMovies}" />
 
 					<Button
-						android:text='@{String.format("VIEW ALL %d CREDITS", viewModel.knownForMovies.size)}'
+						android:text='@{String.format("VIEW ALL %s CREDITS", Integer.toString(viewModel.moviesCount))}'
 						android:onClick="@{() -> view.onAllCreditsClick()}"
 						style="@style/ViewAllButton" />
 				</LinearLayout>

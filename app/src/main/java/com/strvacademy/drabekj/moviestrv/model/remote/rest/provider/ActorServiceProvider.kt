@@ -9,6 +9,7 @@ import retrofit2.http.Path
 
 object ActorServiceProvider {
 	val ACTOR_CALL_TYPE = "actor"
+	val ACTOR_MOVIES_CALL_TYPE = "actor_movies"
 	val POPULAR_ACTORS_CALL_TYPE = "actors_popular"
 
 
@@ -19,8 +20,11 @@ object ActorServiceProvider {
 		@GET("person/{id}")
 		fun actor(@Path("id") id: Int): Call<ActorEntity>
 
+		@GET("person/{id}/movie_credits")
+		fun actorMovies(@Path("id") id: Int): Call<CreditsEntity>
+
 		@GET("person/popular?sort_by=popularity.desc")
-		fun popularMovies(): Call<ActorsResultsEntity>
+		fun popularActors(): Call<ActorsResultsEntity>
 	}
 
 

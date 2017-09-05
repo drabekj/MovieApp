@@ -55,7 +55,7 @@ class ActorsViewModel: BaseViewModel<ActorsView>() {
 				state.set(StatefulLayout.PROGRESS)
 
 				// enqueue call
-				val call = ActorServiceProvider.service.popularMovies()
+				val call = ActorServiceProvider.service.popularActors()
 				val callback = ActorsCallBack(mCallManager)
 				mCallManager.enqueueCall(call, callback, callType)
 			}

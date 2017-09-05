@@ -2,13 +2,20 @@ package com.strvacademy.drabekj.moviestrv.ui.actordetail
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
+import android.databinding.ObservableList
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
+import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
 import com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.ActorServiceProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import me.tatarka.bindingcollectionadapter2.BR
+import me.tatarka.bindingcollectionadapter2.ItemBinding
 import org.alfonz.rest.HttpException
 import org.alfonz.rest.call.CallManager
 import org.alfonz.utility.NetworkUtility
@@ -18,9 +25,13 @@ import retrofit2.Response
 
 class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 	val state = ObservableField<Int>()
-	val actor = ObservableField<ActorEntity>()
-	val knownForMovies = ObservableArrayList<MovieEntity>()
 	var id: Int? = null
+	val actor = ObservableField<ActorEntity>()
+	val moviesCount = ObservableField<Int>()
+	val knownForMovies: ObservableList<ActorMovieItemViewModel> = ObservableArrayList()
+	val onMovieClickListener = OnItemClickListener<ActorMovieItemViewModel> { item -> view!!.onMovieClick(item.cast.get()) }
+	val itemBindingMovies = ItemBinding.of<ActorMovieItemViewModel>(BR.item, R.layout.fragment_actor_detail_list_item)!!
+			.bindExtra(BR.listener, onMovieClickListener)!!
 
 	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
 
@@ -61,7 +72,7 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 		override fun onSuccess(call: Call<ActorEntity>, response: Response<ActorEntity>) {
 			actor.set(response.body())
 
-//			loadKnownFor(id)
+			loadKnownFor(id!!)
 
 			setState(actor)
 		}
@@ -77,6 +88,41 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 		}
 	}
 
+	private fun loadKnownFor(id: Int) {
+		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+			val callType = ActorServiceProvider.ACTOR_MOVIES_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// show progress
+				state.set(StatefulLayout.PROGRESS)
+
+				// enqueue call
+				val call = ActorServiceProvider.service.actorMovies(id)
+				val callback = ActorMoviesCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	inner class ActorMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<CreditsEntity>(callManager) {
+		override fun onSuccess(call: Call<CreditsEntity>, response: Response<CreditsEntity>) {
+			val moviesLimit = 5
+			updateKnownForMovies(response.body()!!.cast!!.sliceArray(0..moviesLimit))
+
+			moviesCount.set(response.body()!!.cast!!.size)
+		}
+
+		override fun onError(call: Call<CreditsEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<CreditsEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
 	private fun setState(data: ObservableField<ActorEntity>) {
 		if (data.get() != null) {
 			state.set(StatefulLayout.CONTENT)
@@ -85,8 +131,8 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 		}
 	}
 
-//	private fun updateCast(data: Array<MovieEntity>) {
-//		knownForMovies.clear()
-//		data.mapTo(knownForMovies) { ActorMovieItemViewModel(it) }
-//	}
+	private fun updateKnownForMovies(data: Array<CastEntity>) {
+		knownForMovies.clear()
+		data.mapTo(knownForMovies) { ActorMovieItemViewModel(it) }
+	}
 }

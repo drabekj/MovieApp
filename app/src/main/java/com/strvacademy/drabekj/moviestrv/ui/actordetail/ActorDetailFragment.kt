@@ -3,11 +3,11 @@ package com.strvacademy.drabekj.moviestrv.ui.actordetail
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
+import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, FragmentActorDetailBinding>(), ActorDetailView {
-	private var mAdapter: ActorDetailFragmentAdapter? = null
 
 	override fun getViewModelClass(): Class<ActorDetailViewModel> {
 		return ActorDetailViewModel::class.java
@@ -21,7 +21,6 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 		super.onActivityCreated(savedInstanceState)
 
 		setupToolbar()
-		setupAdapter()
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +33,8 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 		showToast("Show all cast")
 	}
 
-	override fun onMovieClick(name: String) {
-		showToast("Movie: " + name)
-	}
-
-	private fun setupAdapter() {
-		if (mAdapter == null) {
-			mAdapter = ActorDetailFragmentAdapter(this, viewModel)
-			binding.fragmentActorDetailMovieListRecycler.adapter = mAdapter
-		}
+	override fun onMovieClick(item: CastEntity) {
+		showToast("Movie: " + item.title)
 	}
 
 	private fun setupToolbar() {
