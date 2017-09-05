@@ -20,9 +20,9 @@
 
 		<ImageView
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:adjustViewBounds="true"
-			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, itemViewModel.actor.profilePath)}' />
+			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, itemViewModel.actor.profilePath)}' />
 
 		<TextView
 			android:layout_width="match_parent"

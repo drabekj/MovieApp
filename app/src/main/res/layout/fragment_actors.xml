@@ -33,7 +33,7 @@
 
 				<org.alfonz.view.StatefulLayout
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
+					android:layout_height="wrap_content"
 					app:progressLayout="@layout/placeholder_progress"
 					app:offlineLayout="@layout/placeholder_offline"
 					app:emptyLayout="@layout/placeholder_empty"
@@ -42,7 +42,7 @@
 					<android.support.v7.widget.RecyclerView
 						android:id="@+id/fragment_actors_list_recycler"
 						android:layout_width="match_parent"
-						android:layout_height="match_parent"
+						android:layout_height="wrap_content"
 						app:layoutManager="@{LayoutManagers.grid(2)}"
 						app:items="@{viewModel.items}"
 						app:itemBinding="@{viewModel.itemBinding}" />
