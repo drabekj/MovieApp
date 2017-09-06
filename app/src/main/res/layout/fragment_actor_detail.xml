@@ -4,6 +4,7 @@
 
 	<data>
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+		<import type="android.view.View" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailViewModel" />
 		<variable
@@ -103,11 +104,13 @@
 				<View
 					android:layout_width="fill_parent"
 					android:layout_height="1dip"
+					android:visibility="@{viewModel.knownForMovies.isEmpty ? View.GONE : View.VISIBLE}"
 					android:background="@color/colorLightGrey" />
 
 				<!-- MOVIES (known for) -->
 				<LinearLayout
 					android:orientation="vertical"
+					android:visibility="@{viewModel.knownForMovies.isEmpty ? View.GONE : View.VISIBLE}"
 					style="@style/DetailContentBox">
 
 					<TextView
