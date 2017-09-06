@@ -1,7 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 	<data>
 		<variable
-			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavMovieItemViewModel" />
+			name="itemViewModel" type="com.strvacademy.drabekj.moviestrv.ui.allFilms.FilmItemViewModel" />
 		<variable
 			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
 	</data>

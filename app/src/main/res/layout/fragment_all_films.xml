@@ -5,9 +5,9 @@
 	<data>
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavoriteFilmsViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavoriteFilmsView" />
+			name="view" type="com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

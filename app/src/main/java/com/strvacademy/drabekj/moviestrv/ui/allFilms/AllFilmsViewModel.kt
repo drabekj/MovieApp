@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.ui.favoritefilms
+package com.strvacademy.drabekj.moviestrv.ui.allFilms
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
@@ -15,28 +15,28 @@ import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
+import org.alfonz.utility.Logcat
 import org.alfonz.view.StatefulLayout
 
-class FavoriteFilmsViewModel: BaseViewModel<FavoriteFilmsView>() {
+class AllFilmsViewModel : BaseViewModel<AllFilmsView>() {
 	val state = ObservableField<Int>()
-	val movies: ObservableList<FavMovieItemViewModel> = ObservableArrayList()
-	val onItemClickListener = OnItemClickListener<FavMovieItemViewModel> {
+	var actorId: Int? = null
+	val movies: ObservableList<FilmItemViewModel> = ObservableArrayList()
+	val onItemClickListener = OnItemClickListener<FilmItemViewModel> {
 		item -> Toast.makeText(MoviesApplication.getContext(), "click " + item.movie.get().name, Toast.LENGTH_SHORT).show()
 	}
-	val itemBindingCast = ItemBinding.of<FavMovieItemViewModel>(BR.itemViewModel, R.layout.fragment_favorite_films_movie_list_item)
+	val itemBindingCast = ItemBinding.of<FilmItemViewModel>(BR.itemViewModel, R.layout.fragment_all_films_movie_list_item)
 			.bindExtra(BR.listener, onItemClickListener)!!
 
 	val dataSource: MovieDataSource = MovieRepository(TheMovieDbApiProvider.newInstance()!!, MovieDummyData())
 
 
-
-
 	val profileID = 1
 
 
-
-
 	override fun onStart() {
+		Logcat.d("allMovies fragment -> actorId = " + actorId)
+
 		super.onStart()
 		if (movies.isEmpty())
 			loadData(profileID)
@@ -62,6 +62,6 @@ class FavoriteFilmsViewModel: BaseViewModel<FavoriteFilmsView>() {
 
 	private fun updateMovies(m: Array<Movie>) {
 		movies.clear()
-		m.mapTo(movies) { FavMovieItemViewModel(it) }
+		m.mapTo(movies) { FilmItemViewModel(it) }
 	}
 }
