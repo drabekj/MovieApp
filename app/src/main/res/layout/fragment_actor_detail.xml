@@ -125,7 +125,7 @@
 
 					<Button
 						android:text='@{String.format("VIEW ALL %s CREDITS", Integer.toString(viewModel.moviesCount))}'
-						android:onClick="@{() -> view.onAllCreditsClick()}"
+						android:onClick="@{() -> view.onAllCreditsClick(viewModel.id)}"
 						style="@style/ViewAllButton" />
 				</LinearLayout>
 			</LinearLayout>

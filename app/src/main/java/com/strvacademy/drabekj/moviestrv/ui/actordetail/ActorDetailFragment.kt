@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
+import com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavoriteFilmsActivity
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
-import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -32,8 +32,8 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 			viewModel.id = arguments.getInt(ARG_ACTOR_ID)
 	}
 
-	override fun onAllCreditsClick() {
-		showToast("Show all cast")
+	override fun onAllCreditsClick(actorId: Int) {
+		startFavoriteFilmsActivity(actorId)
 	}
 
 	override fun onMovieClick(item: CastEntity) {
@@ -43,7 +43,13 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 
 	private fun startMovieDetailActivity(id: Int) {
 		val intent = Intent(activity, MovieDetailActivity::class.java)
-		intent.putExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, id)
+		intent.putExtra(EXTRA_KEY_MOVIE_ID, id)
+		startActivity(intent)
+	}
+
+	fun startFavoriteFilmsActivity(id: Int) {
+		val intent = Intent(activity, FavoriteFilmsActivity::class.java)
+		intent.putExtra(EXTRA_KEY_MOVIE_ID, id)
 		startActivity(intent)
 	}
 
@@ -53,6 +59,8 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 	}
 
 	companion object {
+		val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID"
+
 		private val ARG_ACTOR_ID = "param_actor_id"
 
 		fun newInstance(param: Int): ActorDetailFragment {
