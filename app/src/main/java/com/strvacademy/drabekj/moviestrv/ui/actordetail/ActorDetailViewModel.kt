@@ -23,7 +23,7 @@ import org.alfonz.view.StatefulLayout
 import retrofit2.Call
 import retrofit2.Response
 
-class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
+class ActorDetailViewModel : BaseViewModel<ActorDetailView>() {
 	val state = ObservableField<Int>()
 	var id: Int? = null
 	val actor = ObservableField<ActorEntity>()
@@ -108,8 +108,14 @@ class ActorDetailViewModel: BaseViewModel<ActorDetailView>() {
 
 	inner class ActorMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<CreditsEntity>(callManager) {
 		override fun onSuccess(call: Call<CreditsEntity>, response: Response<CreditsEntity>) {
-			val moviesLimit = 5
-			updateKnownForMovies(response.body()!!.cast!!.sliceArray(0..moviesLimit))
+			val data = response.body()!!.cast!!
+			if (data.isNotEmpty()) {
+				var moviesLimit = 5
+				if (response.body()!!.cast!!.size <= moviesLimit)
+					moviesLimit = response.body()!!.cast!!.size - 1
+
+				updateKnownForMovies(response.body()!!.cast!!.sliceArray(0..moviesLimit))
+			}
 
 			moviesCount.set(response.body()!!.cast!!.size)
 		}

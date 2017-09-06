@@ -116,8 +116,15 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieImagesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<ImagesEntity>(callManager) {
 		override fun onSuccess(call: Call<ImagesEntity>, response: Response<ImagesEntity>) {
 			// save some cast from response
-			val galleryLimit = 5
-			updateGallery(response.body()!!.backdrops!!.slice(0..galleryLimit))
+			val data = response.body()!!.backdrops!!
+			if (data.isEmpty())
+				return
+
+			var galleryLimit = 5
+			if (data.size <= galleryLimit)
+				galleryLimit = data.size - 1
+
+			updateGallery(data.slice(0..galleryLimit))
 		}
 
 		override fun onError(call: Call<ImagesEntity>, exception: HttpException) {
@@ -148,8 +155,14 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieCreditsCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<CreditsEntity>(callManager) {
 		override fun onSuccess(call: Call<CreditsEntity>, response: Response<CreditsEntity>) {
 			// save some cast from response
-			val castLimit = 5
-			updateCast(response.body()!!.cast!!.sliceArray(0..castLimit))
+			val dataCast = response.body()!!.cast!!
+			if (dataCast.isNotEmpty()) {
+				var castLimit = 5
+				if (dataCast.size <= castLimit)
+					castLimit = dataCast.size - 1
+
+				updateCast(dataCast.sliceArray(0..castLimit))
+			}
 
 			// save director from response
 			response.body()!!.crew!!
@@ -187,8 +200,15 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		override fun onSuccess(call: Call<VideosResultsEntity>, response: Response<VideosResultsEntity>) {
 			Logcat.d("YouTube onSuccess callback")
 			// save some cast from response
-			val videosLimit = 1
-			updateVideos(response.body()!!.results!!.sliceArray(0..videosLimit))
+			val data = response.body()!!.results!!
+			if (data.isEmpty())
+				return
+
+			var videosLimit = 1
+			if (data.size <= videosLimit)
+				videosLimit = data.size - 1
+
+			updateVideos(data.sliceArray(0..videosLimit))
 
 			(view as MovieDetailFragment).initializeYouTubePlayer(videos.first().key!!)
 		}
