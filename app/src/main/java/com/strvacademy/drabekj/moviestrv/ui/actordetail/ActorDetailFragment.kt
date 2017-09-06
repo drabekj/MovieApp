@@ -1,9 +1,12 @@
 package com.strvacademy.drabekj.moviestrv.ui.actordetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
+import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
+import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -34,7 +37,14 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 	}
 
 	override fun onMovieClick(item: CastEntity) {
-		showToast("Movie: " + item.title)
+		if (item.id != null)
+			startMovieDetailActivity(item.id!!)
+	}
+
+	private fun startMovieDetailActivity(id: Int) {
+		val intent = Intent(activity, MovieDetailActivity::class.java)
+		intent.putExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, id)
+		startActivity(intent)
 	}
 
 	private fun setupToolbar() {
