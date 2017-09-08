@@ -8,7 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
-import com.strvacademy.drabekj.moviestrv.ui.favoritefilms.FavoriteFilmsActivity
+import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
@@ -66,7 +66,7 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 	}
 
 	fun startFavoriteFilmsActivity() {
-		startActivity(Intent(context, FavoriteFilmsActivity::class.java))
+		startActivity(Intent(context, AllFilmsActivity::class.java))
 	}
 
 	override fun onFavMovieClick(movie: String) {
