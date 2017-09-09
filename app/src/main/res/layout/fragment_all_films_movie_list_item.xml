@@ -27,7 +27,9 @@
 				android:layout_height="wrap_content"
 				android:contentDescription="@string/profile_picture"
 				android:src="@drawable/dummy_movie_image"
-				android:adjustViewBounds="true" />
+				android:adjustViewBounds="true"
+				android:scaleType="centerCrop"
+				imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, itemViewModel.item.posterPath)}' />
 
 			<LinearLayout
 				android:layout_width="wrap_content"
@@ -40,14 +42,14 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textSize="@dimen/global_text_size_subhead"
-					android:text="@{itemViewModel.movie.name}"
+					android:text="@{itemViewModel.item.title}"
 					style="@style/HeadingText" />
 
 				<TextView
 					android:id="@+id/text_detail_subheading"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text='@{String.format("%s, %s", itemViewModel.movie.director, itemViewModel.movie.releaseDate)}'
+					android:text='@{String.format("%s", itemViewModel.item.releaseDate)}'
 					style="@style/SecondaryText" />
 
 				<!--RATING-->
@@ -65,7 +67,7 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@{itemViewModel.movie.rating}" />
+						android:text="@{Double.toString(itemViewModel.item.voteAverage)}" />
 
 				</LinearLayout>
 			</LinearLayout>

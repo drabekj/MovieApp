@@ -11,7 +11,7 @@ class MovieEntity {
 	// TODO how to modify data when creating (e.g. url -> append base, date -> change format)
 
 	@SerializedName("id")
-	val id: Int? = null
+	var id: Int? = null
 
 	@SerializedName("title")
 	var title: String? = null
@@ -86,4 +86,12 @@ class MovieEntity {
 
 		return year.toString()
 	}
+
+//	constructor(it: CastEntity) {
+//		id = it.id
+//		title = it.title
+//		voteAverage = it.voteAverage
+//		posterPath = it.posterPath
+//		releaseDate = it.releaseDate
+//	}
 }

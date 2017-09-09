@@ -111,13 +111,13 @@ class ActorDetailViewModel : BaseViewModel<ActorDetailView>() {
 			val data = response.body()!!.cast!!
 			if (data.isNotEmpty()) {
 				var moviesLimit = 5
-				if (response.body()!!.cast!!.size <= moviesLimit)
-					moviesLimit = response.body()!!.cast!!.size - 1
+				if (data.size <= moviesLimit)
+					moviesLimit = data.size - 1
 
-				updateKnownForMovies(response.body()!!.cast!!.sliceArray(0..moviesLimit))
+				updateKnownForMovies(data.sliceArray(0..moviesLimit))
 			}
 
-			moviesCount.set(response.body()!!.cast!!.size)
+			moviesCount.set(data.size)
 		}
 
 		override fun onError(call: Call<CreditsEntity>, exception: HttpException) {
