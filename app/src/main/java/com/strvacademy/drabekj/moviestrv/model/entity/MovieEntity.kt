@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
 import com.google.gson.annotations.SerializedName
 import org.alfonz.utility.Logcat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -79,19 +80,15 @@ class MovieEntity {
 	val director = ObservableField<CrewEntity>()
 
 	fun getReleaseYear(): String {
-		val df1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-		val df2 = SimpleDateFormat("yyyy", Locale.US)
-		val date = df1.parse(releaseDate)
-		val year = df2.format(date)
-
-		return year.toString()
+		try {
+			val df1 = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+			val df2 = SimpleDateFormat("yyyy", Locale.US)
+			val date = df1.parse(releaseDate)
+			val year = df2.format(date)
+			return year.toString()
+		} catch (e: ParseException) {
+			Logcat.e(e.toString())
+			return ""
+		}
 	}
-
-//	constructor(it: CastEntity) {
-//		id = it.id
-//		title = it.title
-//		voteAverage = it.voteAverage
-//		posterPath = it.posterPath
-//		releaseDate = it.releaseDate
-//	}
 }
