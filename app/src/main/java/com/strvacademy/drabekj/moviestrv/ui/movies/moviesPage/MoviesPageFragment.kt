@@ -14,7 +14,9 @@ abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<Movie
 	private var mAdapter: MoviesPageFragmentAdapter? = null
 
 
-	companion object { val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID" }
+	companion object {
+		val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID"
+	}
 
 
 	override fun inflateBindingLayout(inflater: LayoutInflater?): FragmentMoviesPageBinding {
@@ -37,9 +39,7 @@ abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<Movie
 	}
 
 	private fun setupAdapter() {
-		if (mAdapter == null) {
-			mAdapter = MoviesPageFragmentAdapter(this, viewModel)
-			binding.fragmentMainListRecycler.adapter = mAdapter
-		}
+		mAdapter = MoviesPageFragmentAdapter(this, viewModel)
+		binding.fragmentMainListRecycler.adapter = mAdapter
 	}
 }

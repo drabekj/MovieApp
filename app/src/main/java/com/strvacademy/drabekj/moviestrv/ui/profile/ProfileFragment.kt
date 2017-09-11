@@ -12,7 +12,7 @@ import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
-class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {
+class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {
 	private var mAdapter: ProfileFragmentAdapter? = null
 
 	override fun getViewModelClass(): Class<ProfileViewModel> {
@@ -49,11 +49,15 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 		}
 	}
 
+	override fun onDetach() {
+		mAdapter = null
+
+		super.onDetach()
+	}
+
 	private fun setupAdapter() {
-		if (mAdapter == null) {
-			mAdapter = ProfileFragmentAdapter(this, viewModel)
-			binding.fragmentProfileListRecycler.adapter = mAdapter
-		}
+		mAdapter = ProfileFragmentAdapter(this, viewModel)
+		binding.fragmentProfileListRecycler.adapter = mAdapter
 	}
 
 	private fun setupToolbar() {
@@ -74,6 +78,8 @@ class ProfileFragment: BaseFragment<ProfileView, ProfileViewModel, FragmentProfi
 	}
 
 	companion object {
+		val TAG = "profile_fragment"
+
 		fun newInstance(): ProfileFragment {
 			return ProfileFragment()
 		}

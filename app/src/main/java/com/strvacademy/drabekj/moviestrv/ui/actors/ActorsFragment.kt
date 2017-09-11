@@ -62,6 +62,7 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 	}
 
 	companion object {
+		val TAG = "actors_fragment"
 		val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID"
 
 		fun newInstance(): ActorsFragment {

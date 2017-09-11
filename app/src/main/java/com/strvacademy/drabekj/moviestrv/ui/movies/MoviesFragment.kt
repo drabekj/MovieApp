@@ -61,6 +61,8 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 
 
 	companion object {
+		val TAG = "movies_fragment"
+
 		fun newInstance(): MoviesFragment {
 			return MoviesFragment()
 		}

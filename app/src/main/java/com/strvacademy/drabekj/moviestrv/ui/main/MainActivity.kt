@@ -2,7 +2,6 @@ package com.strvacademy.drabekj.moviestrv.ui.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,13 +11,15 @@ import com.strvacademy.drabekj.moviestrv.ui.profile.ProfileFragment
 
 
 class MainActivity : BaseActivity() {
+	var mCurrentFragment: Fragment? = null
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
 		setupBottomNavView()
-		showFragmentInTab(MoviesFragment.newInstance())
+		replaceFragment(MoviesFragment.TAG)
 	}
 
 	private fun setupBottomNavView() {
@@ -26,13 +27,13 @@ class MainActivity : BaseActivity() {
 				{ item ->
 					when (item.itemId) {
 						R.id.action_movies -> {
-							showFragmentInTab(MoviesFragment.newInstance())
+							replaceFragment(MoviesFragment.TAG)
 						}
 						R.id.action_actors -> {
-							showFragmentInTab(ActorsFragment.newInstance())
+							replaceFragment(ActorsFragment.TAG)
 						}
 						R.id.action_profile -> {
-							showFragmentInTab(ProfileFragment.newInstance())
+							replaceFragment(ProfileFragment.TAG)
 						}
 					}
 					true
@@ -41,9 +42,27 @@ class MainActivity : BaseActivity() {
 		bottom_navigation.setOnNavigationItemReselectedListener { }
 	}
 
-	fun showFragmentInTab(fragment: Fragment) {
-		if (findViewById<View>(R.id.fragment_container) != null) {
-			supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+	fun replaceFragment(tag: String) {
+		if (mCurrentFragment != null) {
+			this.supportFragmentManager.beginTransaction().detach(mCurrentFragment).commitAllowingStateLoss()
 		}
+
+		var fragment = this.supportFragmentManager.findFragmentByTag(tag)
+		val transaction = this.supportFragmentManager.beginTransaction()
+
+		if (fragment == null) {
+			when (tag) {
+				MoviesFragment.TAG -> fragment = MoviesFragment.newInstance()
+				ActorsFragment.TAG -> fragment = ActorsFragment.newInstance()
+				ProfileFragment.TAG -> fragment = ProfileFragment.newInstance()
+				else -> { }
+			}
+
+			transaction.add(R.id.fragment_container, fragment, tag)
+		} else {
+			transaction.attach(fragment)
+		}
+		transaction.commitAllowingStateLoss()
+		mCurrentFragment = fragment
 	}
 }
