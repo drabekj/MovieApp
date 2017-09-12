@@ -1,17 +1,17 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.support.v7.widget.SearchView
+import android.view.*
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesBinding
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.ScreenSlidePagerAdapter
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
+import org.alfonz.utility.Logcat
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
@@ -34,6 +34,30 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
 		inflater!!.inflate(R.menu.toolbar_main, menu)
 		super.onCreateOptionsMenu(menu, inflater)
+
+		val searchManager = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+		val searchItem = menu!!.findItem(R.id.action_search)
+		val searchView = searchItem.actionView as SearchView
+
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
+		searchView.isSubmitButtonEnabled = true
+		searchView.isSubmitButtonEnabled = true
+
+
+		searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+			override fun onQueryTextSubmit(query: String): Boolean {
+				Logcat.d("query submit: " + query)
+
+				return true
+			}
+
+			override fun onQueryTextChange(newText: String): Boolean {
+				Logcat.d("query changed: " + newText)
+
+				return true
+			}
+		})
+		searchView.setOnClickListener { view -> showToast("click") }
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -58,7 +82,6 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		pager.adapter = mPagerAdapter
 		tab_layout.setupWithViewPager(pager)
 	}
-
 
 	companion object {
 		val TAG = "movies_fragment"

@@ -46,4 +46,5 @@
 	<string name="TMDB_BASE_IMAGE_W300">https://image.tmdb.org/t/p/w300</string>
 
 	<string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+	<string name="search_movie_hint">Search movie</string>
 </resources>
