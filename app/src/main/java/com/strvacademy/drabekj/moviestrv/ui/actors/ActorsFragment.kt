@@ -45,17 +45,6 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 		setupSearchView(menu)
 	}
 
-	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-		when (item!!.itemId) {
-			R.id.action_search -> {
-				showToast("Search Action")
-				return true
-			}
-
-			else -> return super.onOptionsItemSelected(item)
-		}
-	}
-
 	private fun setupToolbar() {
 		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, getString(R.string.actorsToolbarTitle))
 		setHasOptionsMenu(true)
