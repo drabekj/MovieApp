@@ -44,40 +44,9 @@
 
 	<string name="TMDB_BASE_IMAGE_W500">https://image.tmdb.org/t/p/w500</string>
 	<string name="TMDB_BASE_IMAGE_W300">https://image.tmdb.org/t/p/w300</string>
+	<string name="TMDB_BASE_IMAGE_W45">https://image.tmdb.org/t/p/w45</string>
 
 	<string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 	<string name="search_movie_hint">Search movie</string>
-
-
-
-
-	<!--DEBUG/Mock data-->
-	<array name="search_mock_results" >
-		<item>Movie 1</item>
-		<item>Movie 2</item>
-		<item>Movie 3</item>
-		<item>Movie 4</item>
-		<item>Movie 5</item>
-		<item>Movie 1</item>
-		<item>Movie 2</item>
-		<item>Movie 3</item>
-		<item>Movie 4</item>
-		<item>Movie 5</item>
-		<item>Movie 1</item>
-		<item>Movie 2</item>
-		<item>Movie 3</item>
-		<item>Movie 4</item>
-		<item>Movie 5</item>
-		<item>Movie 1</item>
-		<item>Movie 2</item>
-		<item>Movie 3</item>
-		<item>Movie 4</item>
-		<item>Movie 5</item>
-		<item>Movie 1</item>
-		<item>Movie 2</item>
-		<item>Movie 3</item>
-		<item>Movie 4</item>
-		<item>Movie 5</item>
-	</array>
 
 </resources>

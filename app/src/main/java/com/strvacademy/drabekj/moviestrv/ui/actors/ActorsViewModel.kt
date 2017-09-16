@@ -1,7 +1,9 @@
 package com.strvacademy.drabekj.moviestrv.ui.actors
 
+import android.database.MatrixCursor
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
+import android.support.v4.widget.CursorAdapter
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
@@ -10,6 +12,7 @@ import com.strvacademy.drabekj.moviestrv.model.entity.ActorsResultsEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.ActorServiceProvider
+import com.strvacademy.drabekj.moviestrv.ui.movies.SearchActorResultsAdapter
 import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
@@ -22,8 +25,9 @@ import retrofit2.Call
 import retrofit2.Response
 
 
-class ActorsViewModel: BaseViewModel<ActorsView>() {
+class ActorsViewModel : BaseViewModel<ActorsView>() {
 	val state = ObservableField<Int>()
+	var searchResults = ObservableArrayList<ActorEntity>()
 
 	val items: ObservableArrayList<ActorsItemViewModel> = ObservableArrayList()
 	val onActorClickListener = OnItemClickListener<ActorsItemViewModel> { item -> view!!.onActorClick(item.actor.get()) }
@@ -95,5 +99,63 @@ class ActorsViewModel: BaseViewModel<ActorsView>() {
 	private fun updateActors(a: Array<ActorEntity>) {
 		items.clear()
 		a.mapTo(items) { ActorsItemViewModel(it) }
+	}
+
+
+	//	SEARCH
+	fun createSearchAdapter(): CursorAdapter {
+		return SearchActorResultsAdapter(MoviesApplication.getContext(), null, 0)
+	}
+
+	fun loadData(query: String?) {
+		// send request
+		if (query != null && query.isNotEmpty())
+			loadSearchResults(query)
+	}
+
+	private fun loadSearchResults(query: String) {
+		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+			val callType = ActorServiceProvider.SEARCH_ACTOR_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// enqueue call
+				val call = ActorServiceProvider.service.searchActor(query)
+				val callback = SearchResultsCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		}
+	}
+
+	inner class SearchResultsCallback(callManager: CallManager) : Callback<ActorsResultsEntity>(callManager) {
+		override fun onSuccess(call: Call<ActorsResultsEntity>, response: Response<ActorsResultsEntity>) {
+			searchResults.clear()
+			searchResults.addAll(response.body()?.results!!)
+
+			view?.showActorResults(createResultsCursor())
+		}
+
+		override fun onError(call: Call<ActorsResultsEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<ActorsResultsEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
+	fun createResultsCursor(): MatrixCursor {
+		val fields = arrayOf(
+				SearchActorResultsAdapter.RESULT_COLUMN_ID,
+				SearchActorResultsAdapter.RESULT_COLUMN_NAME,
+				SearchActorResultsAdapter.RESULT_COLUMN_PROFILE_PATH)
+		val cursor = MatrixCursor(fields)
+		val temp = arrayOfNulls<String>(fields.size)
+		for (item in searchResults) {
+			temp[0] = Integer.toString(item.id!!)
+			temp[1] = item.name
+			temp[2] = item.profilePath
+			cursor.addRow(temp)
+		}
+
+		return cursor
 	}
 }

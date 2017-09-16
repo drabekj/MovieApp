@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+		<variable
+			name="data" type="com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity" />
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:paddingTop="@dimen/global_spacing_8"
+			android:paddingBottom="@dimen/global_spacing_8"
+			android:paddingStart="@dimen/global_spacing_16"
+			android:paddingEnd="@dimen/global_spacing_16"
+			android:background="@color/colorLightGrey">
+
+			<ImageView
+				android:layout_width="45dp"
+				android:layout_height="65dp"
+				android:adjustViewBounds="true"
+				android:scaleType="centerCrop"
+				imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.profilePath)}'
+				imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:paddingStart="@dimen/global_spacing_8"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="@dimen/global_text_size_subhead"
+					android:text="@{data.name}"
+					style="@style/HeadingText" />
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<!-- divider -->
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dip"
+			android:background="@color/colorDarkGrey" />
+	</LinearLayout>
+</layout>
