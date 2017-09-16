@@ -15,8 +15,12 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
 import org.alfonz.utility.Logcat
 import android.view.LayoutInflater
+import android.view.inputmethod.InputMethodManager
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
+import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
+
+
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
@@ -65,17 +69,17 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
 		val adapter = viewModel.createSearchAdapter()
 		searchView?.suggestionsAdapter = adapter
-		searchView?.isSubmitButtonEnabled = true
 
 		searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 			override fun onQueryTextSubmit(query: String): Boolean {
-				Logcat.d("query submit: " + query)
-				searchView?.clearFocus()
+				// hide keyboard
+				val inputManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+				inputManager.hideSoftInputFromWindow(activity.currentFocus.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
 				return true
 			}
 
 			override fun onQueryTextChange(newText: String): Boolean {
-				Logcat.d("query changed: " + newText)
 				viewModel.loadData(newText)
 				return true
 			}
