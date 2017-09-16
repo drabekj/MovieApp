@@ -26,7 +26,6 @@
 				android:layout_width="80dp"
 				android:layout_height="wrap_content"
 				android:contentDescription="@string/profile_picture"
-				android:src="@drawable/dummy_movie_image"
 				android:adjustViewBounds="true"
 				android:scaleType="centerCrop"
 				imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, itemViewModel.item.posterPath)}' />

@@ -37,10 +37,10 @@
 					android:layout_width="0dp"
 					android:layout_height="fill_parent"
 					android:layout_weight="3"
-					android:src="@drawable/dummy_movie_image"
 					android:adjustViewBounds="true"
 					android:scaleType="centerCrop"
-					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}' />
+					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}'
+					imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
 
 				<RelativeLayout
 					android:layout_width="0dp"

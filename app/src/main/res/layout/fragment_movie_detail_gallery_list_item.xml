@@ -5,11 +5,10 @@
 	</data>
 
 	<ImageView
-		android:layout_width="wrap_content"
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="2dp"
-		android:src="@drawable/dummy_gallery_image"
 		android:adjustViewBounds="true"
-		imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, item.filePath)}'
-		android:contentDescription="@{item.filePath}" />
+		android:contentDescription="@{item.filePath}"
+		imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, item.filePath)}' />
 </layout>
