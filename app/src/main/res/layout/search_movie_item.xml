@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
 		<variable
@@ -10,68 +9,75 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:paddingTop="@dimen/global_spacing_8"
-		android:paddingBottom="@dimen/global_spacing_8"
-		android:paddingStart="@dimen/global_spacing_16"
-		android:paddingEnd="@dimen/global_spacing_16"
-		android:background="@color/colorLightGrey">
-
-		<ImageView
-			android:layout_width="55dp"
-			android:layout_height="80dp"
-			android:adjustViewBounds="true"
-			android:scaleType="centerCrop"
-			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}'
-			imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
+		android:orientation="vertical">
 
 		<LinearLayout
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:paddingStart="@dimen/global_spacing_8"
-			android:orientation="vertical">
+			android:orientation="horizontal"
+			android:paddingTop="@dimen/global_spacing_8"
+			android:paddingBottom="@dimen/global_spacing_8"
+			android:paddingStart="@dimen/global_spacing_16"
+			android:paddingEnd="@dimen/global_spacing_16"
+			android:background="@color/colorLightGrey">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/global_text_size_subhead"
-				android:text="@{data.title}"
-				style="@style/HeadingText" />
+			<ImageView
+				android:layout_width="45dp"
+				android:layout_height="65dp"
+				android:adjustViewBounds="true"
+				android:scaleType="centerCrop"
+				imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}'
+				imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
 
-			<TextView
-				android:id="@+id/text_detail_subheading"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text='@{String.format("%s", data.releaseDate)}'
-				style="@style/SecondaryText" />
-
-			<!--RATING-->
 			<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal">
-
-				<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:src="@drawable/ic_star_yellow_24dp" />
+				android:layout_gravity="center"
+				android:paddingStart="@dimen/global_spacing_8"
+				android:orientation="vertical">
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					style="@style/SecondaryText"
-					android:paddingLeft="@dimen/icon_label_spacing_2"
-					android:text="@{Double.toString(data.voteAverage)}" />
+					android:textSize="@dimen/global_text_size_subhead"
+					android:text="@{data.title}"
+					style="@style/HeadingText" />
 
+				<TextView
+					android:id="@+id/text_detail_subheading"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text='@{String.format("%s", data.getReleaseYear)}'
+					style="@style/SecondaryText" />
+
+				<!--RATING-->
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<ImageView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_star_yellow_24dp" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="@dimen/icon_label_spacing_2"
+						android:text="@{Double.toString(data.voteAverage)}"
+						style="@style/SecondaryText" />
+
+				</LinearLayout>
 			</LinearLayout>
+
 		</LinearLayout>
 
 		<!-- divider -->
 		<View
 			android:layout_width="fill_parent"
 			android:layout_height="1dip"
-			android:background="@color/colorLightGrey" />
+			android:background="@color/colorDarkGrey" />
 	</LinearLayout>
 </layout>

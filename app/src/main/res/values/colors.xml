@@ -5,6 +5,7 @@
 	<color name="colorSecondary">#0e1315</color>
 	<color name="colorAccent">#51c260</color>
 	<color name="colorLightGrey">#232a2d</color>
+	<color name="colorDarkGrey">#191f21</color>
 	<color name="colorSemitransparentLightGrey">#96232a2d</color>
 
 	<color name="colorPrimaryText">#FFFFFF</color>
