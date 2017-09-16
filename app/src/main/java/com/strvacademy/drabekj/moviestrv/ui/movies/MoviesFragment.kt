@@ -2,6 +2,7 @@ package com.strvacademy.drabekj.moviestrv.ui.movies
 
 import android.app.SearchManager
 import android.content.Context
+import android.database.MatrixCursor
 import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.*
@@ -16,6 +17,8 @@ import android.view.LayoutInflater
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
+	var searchView: SearchView? = null
+
 
 	override fun getViewModelClass(): Class<MoviesViewModel> {
 		return MoviesViewModel::class.java
@@ -54,27 +57,27 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 	private fun setupSearchView(menu: Menu?) {
 		val searchManager = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
 		val searchItem = menu!!.findItem(R.id.action_search)
-		val searchView = searchItem.actionView as SearchView
+		searchView = searchItem.actionView as SearchView
 
-		searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
+		searchView?.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
 		val adapter = viewModel.createSearchAdapter()
-		searchView.suggestionsAdapter = adapter
-		searchView.isSubmitButtonEnabled = true
+		searchView?.suggestionsAdapter = adapter
+		searchView?.isSubmitButtonEnabled = true
 
-		searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+		searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 			override fun onQueryTextSubmit(query: String): Boolean {
 				Logcat.d("query submit: " + query)
-				searchView.clearFocus()
+				searchView?.clearFocus()
 				return true
 			}
 
 			override fun onQueryTextChange(newText: String): Boolean {
 				Logcat.d("query changed: " + newText)
-				searchView.suggestionsAdapter.swapCursor(viewModel.createResultsCursor(newText))
+				viewModel.loadData(newText)
 				return true
 			}
 		})
-		searchView.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
+		searchView?.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
 			override fun onSuggestionSelect(position: Int): Boolean { return false }
 
 			override fun onSuggestionClick(position: Int): Boolean {
@@ -85,6 +88,10 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 				return true
 			}
 		})
+	}
+
+	override fun showMovieResults(cursor: MatrixCursor) {
+		searchView?.suggestionsAdapter?.swapCursor(cursor)
 	}
 
 

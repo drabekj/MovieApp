@@ -5,6 +5,7 @@ import com.strvacademy.drabekj.moviestrv.model.remote.rest.RetrofitClient
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 object MovieServiceProvider {
@@ -14,6 +15,7 @@ object MovieServiceProvider {
 	val MOVIE_VIDEOS_CALL_TYPE = "movie_videos"
 	val POPULAR_MOVIES_CALL_TYPE = "movies_popular"
 	val NOW_PLAYING_MOVIES_CALL_TYPE = "movies_now_playing"
+	val SEARCH_MOVIE_CALL_TYPE = "search_movie"
 
 	@Volatile private var sService: MovieService? = null
 
@@ -36,6 +38,9 @@ object MovieServiceProvider {
 
 		@GET("movie/now_playing")
 		fun nowPlayingMovies(): Call<MovieResultsEntity>
+
+		@GET("search/movie")
+		fun searchMovie(@Query("query") query : String): Call<MovieResultsEntity>
 	}
 
 
