@@ -38,7 +38,8 @@
 					android:elevation="@dimen/global_elevation_8"
 					android:adjustViewBounds="true"
 					android:contentDescription="@string/actor_profile_image"
-					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, viewModel.actor.profilePath)}' />
+					imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W500, viewModel.actor.profilePath)}'
+					imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
 
 				<include layout="@layout/toolbar_actor_detail" />
 
