@@ -51,7 +51,8 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 	}
 
 	override fun onActorClick(actor: ActorEntity) {
-		startActorDetailActivity(actor.id!!)
+		if (actor.id != null)
+			ActorDetailActivity.startAsIntent(activity, actor.id!!)
 	}
 
 	private fun setupSearchView(menu: Menu?) {
@@ -84,7 +85,7 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 				val searchCursor = adapter.cursor
 				if (searchCursor.moveToPosition(position)) {
 					val id = searchCursor.getInt(searchCursor.getColumnIndex(SearchActorResultsAdapter.RESULT_COLUMN_ID))
-					startActorDetailActivity(id)
+					ActorDetailActivity.startAsIntent(activity, id)
 				}
 
 				return true
@@ -96,15 +97,8 @@ class ActorsFragment: BaseFragment<ActorsView, ActorsViewModel, FragmentActorsBi
 		searchView?.suggestionsAdapter?.swapCursor(cursor)
 	}
 
-	private fun startActorDetailActivity(id: Int) {
-		val intent = Intent(activity, ActorDetailActivity::class.java)
-		intent.putExtra(EXTRA_KEY_ACTOR_ID, id)
-		startActivity(intent)
-	}
-
 	companion object {
 		val TAG = "actors_fragment"
-		val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID"
 
 		fun newInstance(): ActorsFragment {
 			return ActorsFragment()

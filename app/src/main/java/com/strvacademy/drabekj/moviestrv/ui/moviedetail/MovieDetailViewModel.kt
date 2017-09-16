@@ -14,6 +14,7 @@ import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
+import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.rest.HttpException
 import org.alfonz.rest.call.CallManager
@@ -33,8 +34,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	val cast: ObservableList<MovieCastItemViewModel> = ObservableArrayList()
 	val onCastClickListener = OnItemClickListener<MovieCastItemViewModel> {
-		item ->
-		Toast.makeText(MoviesApplication.getContext(), "click " + item.actor.get().name, Toast.LENGTH_SHORT).show()
+		item -> view?.startActorDetailActivity(item.actor.get().id!!)
 	}
 	val itemBindingCast = ItemBinding.of<MovieCastItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
 			.bindExtra(BR.listener, onCastClickListener)!!
@@ -97,7 +97,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-//	load Images
+	//	load Images
 	private fun loadMovieImages(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_IMAGES_CALL_TYPE
@@ -136,7 +136,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-//	load Credits
+	//	load Credits
 	private fun loadMovieCredits(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
@@ -180,7 +180,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	}
 
 
-//	load Videos
+	//	load Videos
 	private fun loadMovieVideos(id: Int) {
 		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
 			val callType = MovieServiceProvider.MOVIE_VIDEOS_CALL_TYPE

@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import org.alfonz.mvvm.AlfonzActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 import org.alfonz.utility.Logcat
 import java.security.Provider
@@ -99,6 +100,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 
 	override fun onFullCastClick() {
 		showToast("Show Full Cast")
+	}
+
+	override fun startActorDetailActivity(actorId: Int) {
+		ActorDetailActivity.startAsIntent(activity, actorId)
 	}
 
 	private fun setupToolbar() {

@@ -1,13 +1,30 @@
 package com.strvacademy.drabekj.moviestrv.ui.actordetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.ui.actors.ActorsFragment
 import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import android.content.Intent
 
 
-class ActorDetailActivity: BaseActivity() {
+class ActorDetailActivity : BaseActivity() {
+
+	companion object {
+		val EXTRA_KEY_ACTOR_ID = "EXTRA_KEY_ACTOR_ID"
+
+		fun startAsIntent(context: Context, actorId: Int) {
+			val extras = Bundle()
+
+			extras.putInt(EXTRA_KEY_ACTOR_ID, actorId)
+
+			val intent = Intent(context, ActorDetailActivity::class.java)
+			intent.putExtras(extras)
+
+			context.startActivity(intent)
+		}
+	}
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -24,7 +41,7 @@ class ActorDetailActivity: BaseActivity() {
 	private fun setupFragment(savedInstanceState: Bundle?) {
 		if (findViewById<View>(R.id.fragment_container) != null && savedInstanceState == null) {
 			// get actorId from bundle
-			val actorId = intent.getIntExtra(ActorsFragment.EXTRA_KEY_ACTOR_ID, -1)
+			val actorId = intent.getIntExtra(EXTRA_KEY_ACTOR_ID, -1)
 
 			// setup fragment
 			val actorDetailFragment: ActorDetailFragment = ActorDetailFragment.newInstance(actorId)
