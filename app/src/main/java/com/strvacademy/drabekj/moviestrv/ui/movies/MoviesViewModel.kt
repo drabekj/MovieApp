@@ -66,7 +66,8 @@ class MoviesViewModel : BaseViewModel<MoviesView>() {
 				SearchResultAdapter.RESULT_COLUMN_ID,
 				SearchResultAdapter.RESULT_COLUMN_TITLE,
 				SearchResultAdapter.RESULT_COLUMN_POSTER_PATH,
-				SearchResultAdapter.RESULT_COLUMN_RELEASE_DATE)
+				SearchResultAdapter.RESULT_COLUMN_RELEASE_DATE,
+				SearchResultAdapter.RESULT_COLUMN_VOTE_AVERAGE)
 		val cursor = MatrixCursor(fields)
 		val temp = arrayOfNulls<String>(fields.size)
 		for (item in searchResults) {
@@ -74,6 +75,7 @@ class MoviesViewModel : BaseViewModel<MoviesView>() {
 			temp[1] = item.title
 			temp[2] = item.posterPath
 			temp[3] = item.releaseDate
+			temp[4] = item.voteAverage.toString()
 			cursor.addRow(temp)
 		}
 

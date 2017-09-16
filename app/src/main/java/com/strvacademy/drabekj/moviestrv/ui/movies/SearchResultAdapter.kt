@@ -19,6 +19,7 @@ class SearchResultAdapter(context: Context?, c: Cursor?, flags: Int) : CursorAda
 		val RESULT_COLUMN_TITLE = "title"
 		val RESULT_COLUMN_POSTER_PATH = "posterPath"
 		val RESULT_COLUMN_RELEASE_DATE = "releaseDate"
+		val RESULT_COLUMN_VOTE_AVERAGE = "voteAverage"
 	}
 
 	override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
@@ -35,6 +36,8 @@ class SearchResultAdapter(context: Context?, c: Cursor?, flags: Int) : CursorAda
 		movie.title = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_TITLE) )
 		movie.posterPath = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_POSTER_PATH) )
 		movie.releaseDate = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_RELEASE_DATE) )
+		movie.voteAverage = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_VOTE_AVERAGE) )?.toDouble()
+
 		binding.setVariable(BR.data, movie)
 	}
 }

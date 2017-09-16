@@ -11,7 +11,10 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
-		android:padding="@dimen/global_spacing_8"
+		android:paddingTop="@dimen/global_spacing_8"
+		android:paddingBottom="@dimen/global_spacing_8"
+		android:paddingStart="@dimen/global_spacing_16"
+		android:paddingEnd="@dimen/global_spacing_16"
 		android:background="@color/colorLightGrey">
 
 		<ImageView
@@ -19,28 +22,56 @@
 			android:layout_height="80dp"
 			android:adjustViewBounds="true"
 			android:scaleType="centerCrop"
-			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}' />
+			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}'
+			imagePlaceholder='@{@drawable/ic_image_black_placeholder_24dp}' />
 
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:padding="@dimen/global_spacing_8">
+			android:layout_gravity="center"
+			android:paddingStart="@dimen/global_spacing_8"
+			android:orientation="vertical">
 
 			<TextView
-				android:id="@+id/text"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textColor="@android:color/black"
-				tools:text="@{data.title}" />
+				android:textSize="@dimen/global_text_size_subhead"
+				android:text="@{data.title}"
+				style="@style/HeadingText" />
 
 			<TextView
-				android:id="@+id/item_id"
+				android:id="@+id/text_detail_subheading"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:textColor="@android:color/black"
-				tools:text="Id" />
+				android:text='@{String.format("%s", data.releaseDate)}'
+				style="@style/SecondaryText" />
 
+			<!--RATING-->
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:src="@drawable/ic_star_yellow_24dp" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					style="@style/SecondaryText"
+					android:paddingLeft="@dimen/icon_label_spacing_2"
+					android:text="@{Double.toString(data.voteAverage)}" />
+
+			</LinearLayout>
 		</LinearLayout>
+
+		<!-- divider -->
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dip"
+			android:background="@color/colorLightGrey" />
 	</LinearLayout>
 </layout>
