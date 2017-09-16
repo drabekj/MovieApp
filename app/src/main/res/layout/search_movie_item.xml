@@ -19,7 +19,7 @@
 			android:layout_height="80dp"
 			android:adjustViewBounds="true"
 			android:scaleType="centerCrop"
-			imageUrl='@{String.format("https://image.tmdb.org/t/p/w300/5qcUGqWoWhEsoQwNUrtf3y3fcWn.jpg")}' />
+			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, data.posterPath)}' />
 
 		<LinearLayout
 			android:layout_width="wrap_content"

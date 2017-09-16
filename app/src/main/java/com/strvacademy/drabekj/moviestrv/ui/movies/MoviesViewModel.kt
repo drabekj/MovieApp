@@ -2,7 +2,6 @@ package com.strvacademy.drabekj.moviestrv.ui.movies
 
 import android.database.MatrixCursor
 import android.databinding.ObservableArrayList
-import android.databinding.ObservableField
 import android.support.v4.widget.CursorAdapter
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
@@ -63,14 +62,18 @@ class MoviesViewModel : BaseViewModel<MoviesView>() {
 	}
 
 	fun createResultsCursor(): MatrixCursor {
-		var data = searchResults
-
-		val cursor = MatrixCursor(arrayOf("_id", "text"))
-		val temp = arrayOfNulls<String>(2)
-		var id = 0
-		for (item in data) {
-			temp[0] = Integer.toString(id++)
+		val fields = arrayOf(
+				SearchResultAdapter.RESULT_COLUMN_ID,
+				SearchResultAdapter.RESULT_COLUMN_TITLE,
+				SearchResultAdapter.RESULT_COLUMN_POSTER_PATH,
+				SearchResultAdapter.RESULT_COLUMN_RELEASE_DATE)
+		val cursor = MatrixCursor(fields)
+		val temp = arrayOfNulls<String>(fields.size)
+		for (item in searchResults) {
+			temp[0] = Integer.toString(item.id!!)
 			temp[1] = item.title
+			temp[2] = item.posterPath
+			temp[3] = item.releaseDate
 			cursor.addRow(temp)
 		}
 

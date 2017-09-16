@@ -14,6 +14,12 @@ import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 
 
 class SearchResultAdapter(context: Context?, c: Cursor?, flags: Int) : CursorAdapter(context, c, flags) {
+	companion object {
+		val RESULT_COLUMN_ID = "_id"
+		val RESULT_COLUMN_TITLE = "title"
+		val RESULT_COLUMN_POSTER_PATH = "posterPath"
+		val RESULT_COLUMN_RELEASE_DATE = "releaseDate"
+	}
 
 	override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup?): View {
 		val searchMovieItemBinding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(context), R.layout.search_movie_item, parent, false)
@@ -25,8 +31,10 @@ class SearchResultAdapter(context: Context?, c: Cursor?, flags: Int) : CursorAda
 		val binding = DataBindingUtil.getBinding<ViewDataBinding>(view)
 
 		val movie = MovieEntity()
-		movie.title = cursor?.getString( 1 )
-		movie.id = cursor?.getString( 0 )!!.toInt()
+		movie.id = cursor?.getInt( cursor.getColumnIndex(RESULT_COLUMN_ID) )
+		movie.title = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_TITLE) )
+		movie.posterPath = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_POSTER_PATH) )
+		movie.releaseDate = cursor?.getString( cursor.getColumnIndex(RESULT_COLUMN_RELEASE_DATE) )
 		binding.setVariable(BR.data, movie)
 	}
 }
