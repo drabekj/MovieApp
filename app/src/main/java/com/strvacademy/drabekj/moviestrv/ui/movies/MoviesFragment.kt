@@ -2,6 +2,7 @@ package com.strvacademy.drabekj.moviestrv.ui.movies
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.database.MatrixCursor
 import android.os.Bundle
 import android.support.v7.widget.SearchView
@@ -14,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
 import org.alfonz.utility.Logcat
 import android.view.LayoutInflater
+import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
+import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
@@ -82,8 +85,10 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 
 			override fun onSuggestionClick(position: Int): Boolean {
 				val searchCursor = adapter.cursor
-				if (searchCursor.moveToPosition(position))
-					showToast("item click " + searchCursor.getString(1))
+				if (searchCursor.moveToPosition(position)) {
+					val id = searchCursor.getInt(searchCursor.getColumnIndex(SearchResultAdapter.RESULT_COLUMN_ID))
+					startMovieDetailActivity(id)
+				}
 
 				return true
 			}
@@ -94,7 +99,11 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		searchView?.suggestionsAdapter?.swapCursor(cursor)
 	}
 
-
+	private fun startMovieDetailActivity(id: Int) {
+		val intent = Intent(activity, MovieDetailActivity::class.java)
+		intent.putExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, id)
+		startActivity(intent)
+	}
 
 	companion object {
 		val TAG = "movies_fragment"
