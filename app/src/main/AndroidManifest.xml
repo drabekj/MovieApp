@@ -34,12 +34,6 @@
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity" />
 		<activity android:name=".ui.moviedetail.YouTubeFullscreenActivity" />
-		<activity android:name=".ui.SearchableActivity" android:launchMode="singleTop">
-			<intent-filter>
-				<action android:name="android.intent.action.SEARCH" />
-			</intent-filter>
-
-		</activity>
 
 	</application>
 

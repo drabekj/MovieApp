@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="data" type="com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity" />
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:padding="@dimen/global_spacing_8"
+		android:background="@color/colorLightGrey">
+
+		<ImageView
+			android:layout_width="55dp"
+			android:layout_height="80dp"
+			android:adjustViewBounds="true"
+			android:scaleType="centerCrop"
+			imageUrl='@{String.format("https://image.tmdb.org/t/p/w300/5qcUGqWoWhEsoQwNUrtf3y3fcWn.jpg")}' />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="@dimen/global_spacing_8">
+
+			<TextView
+				android:id="@+id/text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@android:color/black"
+				tools:text="@{data.title}" />
+
+			<TextView
+				android:id="@+id/item_id"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@android:color/black"
+				tools:text="Id" />
+
+		</LinearLayout>
+	</LinearLayout>
+</layout>

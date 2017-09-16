@@ -15,6 +15,6 @@ data class Movie(
 		@SerializedName("overview")
 		var description: String,
 		var rating: String,
-		var gallery: Array<String>,
-		var cast: Array<Actor>
+		var gallery: Array<String>?,
+		var cast: Array<Actor>?
 )

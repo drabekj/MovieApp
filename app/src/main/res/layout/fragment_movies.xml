@@ -12,7 +12,7 @@
 			android:layout_height="wrap_content">
 
 
-			<include layout="@layout/toolbar" />
+			<include android:id="@+id/toolbar" layout="@layout/toolbar" />
 
 			<android.support.design.widget.TabLayout
 				android:id="@+id/tab_layout"

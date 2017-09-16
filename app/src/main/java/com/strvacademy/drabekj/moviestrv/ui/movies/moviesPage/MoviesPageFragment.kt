@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesPageBinding
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
-import com.strvacademy.drabekj.moviestrv.model.Movie
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 

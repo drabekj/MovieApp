@@ -12,6 +12,7 @@ import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
 import org.alfonz.utility.Logcat
+import android.view.LayoutInflater
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {
@@ -35,40 +36,7 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		inflater!!.inflate(R.menu.toolbar_main, menu)
 		super.onCreateOptionsMenu(menu, inflater)
 
-		val searchManager = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-		val searchItem = menu!!.findItem(R.id.action_search)
-		val searchView = searchItem.actionView as SearchView
-
-		searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
-		searchView.isSubmitButtonEnabled = true
-		searchView.isSubmitButtonEnabled = true
-
-
-		searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-			override fun onQueryTextSubmit(query: String): Boolean {
-				Logcat.d("query submit: " + query)
-
-				return true
-			}
-
-			override fun onQueryTextChange(newText: String): Boolean {
-				Logcat.d("query changed: " + newText)
-
-				return true
-			}
-		})
-		searchView.setOnClickListener { view -> showToast("click") }
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-		when (item!!.itemId) {
-			R.id.action_search -> {
-				showToast("Search Action")
-				return true
-			}
-
-			else -> return super.onOptionsItemSelected(item)
-		}
+		setupSearchView(menu)
 	}
 
 	private fun setupToolbar() {
@@ -82,6 +50,44 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 		pager.adapter = mPagerAdapter
 		tab_layout.setupWithViewPager(pager)
 	}
+
+	private fun setupSearchView(menu: Menu?) {
+		val searchManager = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+		val searchItem = menu!!.findItem(R.id.action_search)
+		val searchView = searchItem.actionView as SearchView
+
+		searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.componentName))
+		val adapter = viewModel.createSearchAdapter()
+		searchView.suggestionsAdapter = adapter
+		searchView.isSubmitButtonEnabled = true
+
+		searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+			override fun onQueryTextSubmit(query: String): Boolean {
+				Logcat.d("query submit: " + query)
+				searchView.clearFocus()
+				return true
+			}
+
+			override fun onQueryTextChange(newText: String): Boolean {
+				Logcat.d("query changed: " + newText)
+				searchView.suggestionsAdapter.swapCursor(viewModel.createResultsCursor(newText))
+				return true
+			}
+		})
+		searchView.setOnSuggestionListener(object : SearchView.OnSuggestionListener {
+			override fun onSuggestionSelect(position: Int): Boolean { return false }
+
+			override fun onSuggestionClick(position: Int): Boolean {
+				val searchCursor = adapter.cursor
+				if (searchCursor.moveToPosition(position))
+					showToast("item click " + searchCursor.getString(1))
+
+				return true
+			}
+		})
+	}
+
+
 
 	companion object {
 		val TAG = "movies_fragment"
