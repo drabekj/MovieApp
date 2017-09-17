@@ -23,7 +23,7 @@ class MoviesViewModel : BaseViewModel<MoviesView>() {
 	var searchResults = ObservableArrayList<MovieEntity>()
 
 	fun createSearchAdapter(): CursorAdapter {
-		return SearchResultAdapter(MoviesApplication.getContext(), null, 0)
+		return SearchResultAdapter(MoviesApplication.context, null, 0)
 	}
 
 	fun loadData(query: String?) {
@@ -33,7 +33,7 @@ class MoviesViewModel : BaseViewModel<MoviesView>() {
 	}
 
 	private fun loadSearchResults(query: String) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.SEARCH_MOVIE_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call

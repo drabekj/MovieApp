@@ -7,6 +7,6 @@ import org.alfonz.mvvm.AlfonzActivity
 
 abstract class BaseActivity: AlfonzActivity() {
     fun showToast(message: String) {
-        Toast.makeText(MoviesApplication.getContext(), message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(MoviesApplication.context, message, Toast.LENGTH_SHORT).show()
     }
 }

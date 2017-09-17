@@ -56,7 +56,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	}
 
 	private fun loadMovie(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.MOVIE_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
@@ -97,7 +97,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	//	load Images
 	private fun loadMovieImages(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.MOVIE_IMAGES_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call
@@ -136,7 +136,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	//	load Credits
 	private fun loadMovieCredits(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call
@@ -180,7 +180,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	//	load Videos
 	private fun loadMovieVideos(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.MOVIE_VIDEOS_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call

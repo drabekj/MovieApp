@@ -18,7 +18,7 @@ class NowPlayingMoviesViewModel : MoviesPageViewModel() {
 	}
 
 	private fun loadNowPlayingMovies() {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.NOW_PLAYING_MOVIES_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
