@@ -10,6 +10,7 @@ import org.alfonz.utility.Logcat
 import java.security.KeyPairGenerator
 import java.security.KeyStore
 
+
 object KeyStoreUtil {
 	private val AndroidKeyStore = "AndroidKeyStore"
 	private val KEY_ALIAS = "MovieAPP_TMDBAuthKey"
@@ -35,5 +36,21 @@ object KeyStoreUtil {
 				Logcat.e(Log.getStackTraceString(e))
 			}
 		}
+	}
+
+	fun logKeys() {
+		val keyStore = KeyStore.getInstance(AndroidKeyStore)
+		val keyAliases = arrayListOf<String>()
+
+		try {
+			val aliases = keyStore.aliases()
+			while (aliases.hasMoreElements()) {
+				keyAliases.add(aliases.nextElement())
+			}
+		} catch (e: Exception) {
+		}
+
+		for (item in keyAliases)
+			Logcat.d("keyStore key: " + item)
 	}
 }
