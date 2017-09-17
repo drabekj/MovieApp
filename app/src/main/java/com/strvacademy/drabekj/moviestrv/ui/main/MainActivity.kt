@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.main
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.ui.actors.ActorsFragment
 import com.strvacademy.drabekj.moviestrv.ui.movies.MoviesFragment

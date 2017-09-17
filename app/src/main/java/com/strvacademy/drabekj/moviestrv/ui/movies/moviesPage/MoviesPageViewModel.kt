@@ -1,7 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage
 
 import android.databinding.ObservableArrayList
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import android.databinding.ObservableField
 import org.alfonz.view.StatefulLayout
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity

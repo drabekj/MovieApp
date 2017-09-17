@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.utils
+package com.strvacademy.drabekj.moviestrv.utils.basecomponents
 
 import org.alfonz.mvvm.AlfonzView
 

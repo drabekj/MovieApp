@@ -1,6 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.ui.signup
 
-import com.strvacademy.drabekj.moviestrv.utils.BaseView
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 import com.strvacademy.drabekj.moviestrv.ui.signup.SignUpViewModel.Companion.FieldCheck
 
 

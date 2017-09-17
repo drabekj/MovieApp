@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.login
 import android.databinding.ObservableField
 import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 
 class LoginViewModel: BaseViewModel<LoginView>() {
 //	val state = ObservableField<Int>()

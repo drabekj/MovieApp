@@ -13,7 +13,7 @@ import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.ActorServiceProvider
 import com.strvacademy.drabekj.moviestrv.ui.movies.SearchActorResultsAdapter
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import org.alfonz.rest.HttpException

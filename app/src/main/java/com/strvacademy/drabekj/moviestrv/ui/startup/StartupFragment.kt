@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentStartupBinding
 import com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity
 import com.strvacademy.drabekj.moviestrv.ui.signup.SignUpActivity
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
 // TODO !!! what if I don't need ViewModel?!
 class StartupFragment: BaseFragment<StartupView, StartupViewModel, FragmentStartupBinding>(), StartupView {

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
-import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 
 
 class MovieDetailActivity: BaseActivity() {

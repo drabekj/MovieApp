@@ -1,12 +1,11 @@
 package com.strvacademy.drabekj.moviestrv.ui.moviedetail
 
 import android.databinding.ObservableField
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import org.alfonz.view.StatefulLayout
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
-import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
@@ -14,7 +13,6 @@ import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
-import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.rest.HttpException
 import org.alfonz.rest.call.CallManager

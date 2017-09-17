@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.utils
+package com.strvacademy.drabekj.moviestrv.utils.basecomponents
 
 import android.databinding.ViewDataBinding
 import android.widget.Toast

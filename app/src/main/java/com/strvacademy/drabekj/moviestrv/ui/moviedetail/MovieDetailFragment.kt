@@ -1,24 +1,17 @@
 package com.strvacademy.drabekj.moviestrv.ui.moviedetail
 
-import android.app.FragmentTransaction
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.Toast
 import com.google.android.youtube.player.YouTubePlayerSupportFragment
 import com.strvacademy.drabekj.moviestrv.MoviesConfig
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMovieDetailBinding
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
-import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
 import org.alfonz.utility.Logcat
-import java.security.Provider
 
 
 class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, FragmentMovieDetailBinding>(),

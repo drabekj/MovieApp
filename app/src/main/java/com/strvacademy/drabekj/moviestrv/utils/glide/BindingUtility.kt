@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.utils
+package com.strvacademy.drabekj.moviestrv.utils.glide
 
 import android.graphics.drawable.Drawable
 import android.databinding.BindingAdapter
@@ -7,6 +7,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.utils.glide.GlideApp
 
 
 @BindingAdapter("imageUrl")

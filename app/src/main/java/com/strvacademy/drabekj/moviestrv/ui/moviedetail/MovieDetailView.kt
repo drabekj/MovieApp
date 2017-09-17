@@ -1,6 +1,6 @@
 package com.strvacademy.drabekj.moviestrv.ui.moviedetail
 
-import com.strvacademy.drabekj.moviestrv.utils.BaseView
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 
 
 interface MovieDetailView: BaseView {

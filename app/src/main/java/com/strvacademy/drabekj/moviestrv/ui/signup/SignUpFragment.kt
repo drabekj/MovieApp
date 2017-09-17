@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.signup
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentSignupBinding
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import com.strvacademy.drabekj.moviestrv.ui.signup.SignUpViewModel.Companion.FieldCheck
 import kotlinx.android.synthetic.main.fragment_signup.*
 

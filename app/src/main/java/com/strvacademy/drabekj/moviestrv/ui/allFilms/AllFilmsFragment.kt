@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.allFilms
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentAllFilmsBinding
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
 class AllFilmsFragment : BaseFragment<AllFilmsView, AllFilmsViewModel, FragmentAllFilmsBinding>(),
 		AllFilmsView {

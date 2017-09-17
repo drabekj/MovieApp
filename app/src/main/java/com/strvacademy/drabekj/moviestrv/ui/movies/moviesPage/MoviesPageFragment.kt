@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesPageBinding
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
 
 abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<MoviesPageView, VM, FragmentMoviesPageBinding>(), MoviesPageView {

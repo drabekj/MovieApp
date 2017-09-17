@@ -10,17 +10,13 @@ import android.view.*
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentMoviesBinding
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.ScreenSlidePagerAdapter
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.alfonz.mvvm.AlfonzActivity
-import org.alfonz.utility.Logcat
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageFragment
-import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
-
-
 
 
 class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesBinding>(), MoviesView {

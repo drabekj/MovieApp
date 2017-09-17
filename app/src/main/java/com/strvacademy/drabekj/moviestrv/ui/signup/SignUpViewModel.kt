@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.signup
 import android.databinding.ObservableField
 import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import org.alfonz.utility.Logcat
 
 class SignUpViewModel: BaseViewModel<SignUpView>() {

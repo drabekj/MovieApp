@@ -9,7 +9,7 @@ import com.strvacademy.drabekj.moviestrv.model.entity.MovieResultsEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import org.alfonz.rest.HttpException
 import org.alfonz.rest.call.CallManager
 import org.alfonz.rest.call.Callback

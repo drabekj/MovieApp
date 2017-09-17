@@ -2,7 +2,7 @@ package com.strvacademy.drabekj.moviestrv.ui.login
 
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentLoginBinding
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
 class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBinding>(), LoginView {
 

@@ -1,7 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.actordetail
 
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
-import com.strvacademy.drabekj.moviestrv.utils.BaseView
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 
 
 interface ActorDetailView: BaseView {

@@ -7,7 +7,7 @@ import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.Profile
 import com.strvacademy.drabekj.moviestrv.model.local.MovieDummyData
 import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import org.alfonz.view.StatefulLayout
 
 class ProfileViewModel: BaseViewModel<ProfileView>() {

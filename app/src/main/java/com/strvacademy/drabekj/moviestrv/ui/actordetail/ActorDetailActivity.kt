@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 import android.content.Intent
 
 

@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailFragment
-import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 
 class AllFilmsActivity : BaseActivity() {
 

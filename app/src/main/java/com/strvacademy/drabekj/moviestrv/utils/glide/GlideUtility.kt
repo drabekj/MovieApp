@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.utils
+package com.strvacademy.drabekj.moviestrv.utils.glide
 
 import org.alfonz.utility.Logcat
 import com.bumptech.glide.request.RequestListener
@@ -6,7 +6,6 @@ import android.graphics.Bitmap
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import android.graphics.drawable.Drawable
-import android.support.annotation.Nullable
 import android.widget.ImageView
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
@@ -15,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.Target
 import com.strvacademy.drabekj.moviestrv.MoviesConfig
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.model.remote.TheMovieDbApiProvider
+import com.strvacademy.drabekj.moviestrv.utils.glide.GlideRequest
 import org.alfonz.graphics.drawable.CircularDrawable
 
 

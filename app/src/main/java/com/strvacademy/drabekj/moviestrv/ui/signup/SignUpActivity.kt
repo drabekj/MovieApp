@@ -2,7 +2,7 @@ package com.strvacademy.drabekj.moviestrv.ui.signup
 
 import android.os.Bundle
 import com.strvacademy.drabekj.moviestrv.R
-import com.strvacademy.drabekj.moviestrv.utils.BaseActivity
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 
 class SignUpActivity: BaseActivity() {
 

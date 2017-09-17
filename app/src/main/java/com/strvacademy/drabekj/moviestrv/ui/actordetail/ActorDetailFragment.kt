@@ -7,7 +7,7 @@ import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorDetailBinding
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
 import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, FragmentActorDetailBinding>(), ActorDetailView {

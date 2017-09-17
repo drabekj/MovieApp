@@ -1,7 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.movies
 
 import android.database.MatrixCursor
-import com.strvacademy.drabekj.moviestrv.utils.BaseView
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 
 
 interface MoviesView : BaseView {

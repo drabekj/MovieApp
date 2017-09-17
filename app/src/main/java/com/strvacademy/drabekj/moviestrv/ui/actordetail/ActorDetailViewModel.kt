@@ -9,11 +9,10 @@ import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
 import com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
 import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
-import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.ActorServiceProvider
-import com.strvacademy.drabekj.moviestrv.utils.BaseViewModel
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 import org.alfonz.rest.HttpException

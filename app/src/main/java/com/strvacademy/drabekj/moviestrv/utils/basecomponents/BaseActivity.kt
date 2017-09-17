@@ -1,4 +1,4 @@
-package com.strvacademy.drabekj.moviestrv.utils
+package com.strvacademy.drabekj.moviestrv.utils.basecomponents
 
 import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication

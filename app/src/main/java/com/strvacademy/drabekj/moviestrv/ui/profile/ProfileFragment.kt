@@ -9,7 +9,7 @@ import android.view.MenuItem
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {

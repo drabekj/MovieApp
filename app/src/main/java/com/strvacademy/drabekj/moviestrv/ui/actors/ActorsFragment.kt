@@ -2,22 +2,19 @@ package com.strvacademy.drabekj.moviestrv.ui.actors
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.database.MatrixCursor
 import android.os.Bundle
 import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentActorsBinding
-import com.strvacademy.drabekj.moviestrv.model.Actor
 import com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity
 import com.strvacademy.drabekj.moviestrv.ui.movies.SearchActorResultsAdapter
-import com.strvacademy.drabekj.moviestrv.utils.BaseFragment
+import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
 
 
