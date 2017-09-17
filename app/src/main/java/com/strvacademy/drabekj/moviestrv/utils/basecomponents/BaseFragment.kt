@@ -10,6 +10,6 @@ abstract class BaseFragment<V: BaseView, VM: BaseViewModel<V>, DB: ViewDataBindi
         AlfonzBindingFragment<V, VM, DB>(), BaseView {
 
     override fun showToast(message: String) {
-        Toast.makeText(MoviesApplication.getContext(), message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(MoviesApplication.context, message, Toast.LENGTH_SHORT).show()
     }
 }

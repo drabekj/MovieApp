@@ -11,6 +11,6 @@ class LoginViewModel: BaseViewModel<LoginView>() {
 
 //	TODO CRITICAL (pattern Kotlin) how to reuse method form different class)
 	fun submitForm() {
-		Toast.makeText(MoviesApplication.getContext(), "Logging In...", Toast.LENGTH_SHORT).show()
+		Toast.makeText(MoviesApplication.context, "Logging In...", Toast.LENGTH_SHORT).show()
 	}
 }

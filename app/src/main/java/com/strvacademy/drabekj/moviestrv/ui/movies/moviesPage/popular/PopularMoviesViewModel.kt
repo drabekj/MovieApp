@@ -18,7 +18,7 @@ class PopularMoviesViewModel: MoviesPageViewModel() {
 	}
 
 	private fun loadPopularMovies() {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.POPULAR_MOVIES_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress

@@ -50,7 +50,7 @@ class ActorDetailViewModel : BaseViewModel<ActorDetailView>() {
 	}
 
 	private fun loadActor(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = ActorServiceProvider.ACTOR_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
@@ -88,7 +88,7 @@ class ActorDetailViewModel : BaseViewModel<ActorDetailView>() {
 	}
 
 	private fun loadKnownFor(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = ActorServiceProvider.ACTOR_MOVIES_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress

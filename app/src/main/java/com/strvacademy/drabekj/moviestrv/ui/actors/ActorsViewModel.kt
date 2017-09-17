@@ -52,7 +52,7 @@ class ActorsViewModel : BaseViewModel<ActorsView>() {
 	}
 
 	private fun loadPopularActors() {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = ActorServiceProvider.POPULAR_ACTORS_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// show progress
@@ -104,7 +104,7 @@ class ActorsViewModel : BaseViewModel<ActorsView>() {
 
 	//	SEARCH
 	fun createSearchAdapter(): CursorAdapter {
-		return SearchActorResultsAdapter(MoviesApplication.getContext(), null, 0)
+		return SearchActorResultsAdapter(MoviesApplication.context, null, 0)
 	}
 
 	fun loadData(query: String?) {
@@ -114,7 +114,7 @@ class ActorsViewModel : BaseViewModel<ActorsView>() {
 	}
 
 	private fun loadSearchResults(query: String) {
-		if (NetworkUtility.isOnline(MoviesApplication.getContext())) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = ActorServiceProvider.SEARCH_ACTOR_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call

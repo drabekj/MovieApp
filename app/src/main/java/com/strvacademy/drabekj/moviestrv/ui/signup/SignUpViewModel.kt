@@ -16,15 +16,15 @@ class SignUpViewModel: BaseViewModel<SignUpView>() {
 	// TODO make a class Validator to validate inputs signup/login
 	fun submitForm() {
 		if (!checkUsername()) {
-			Toast.makeText(MoviesApplication.getContext(), "username error", Toast.LENGTH_SHORT).show()
+			Toast.makeText(MoviesApplication.context, "username error", Toast.LENGTH_SHORT).show()
 			return
 		}
 		if (!checkEmail()) {
-			Toast.makeText(MoviesApplication.getContext(), "email error", Toast.LENGTH_SHORT).show()
+			Toast.makeText(MoviesApplication.context, "email error", Toast.LENGTH_SHORT).show()
 			return
 		}
 		if (!checkPassword()) {
-			Toast.makeText(MoviesApplication.getContext(), "password error", Toast.LENGTH_SHORT).show()
+			Toast.makeText(MoviesApplication.context, "password error", Toast.LENGTH_SHORT).show()
 			return
 		}
 	}
