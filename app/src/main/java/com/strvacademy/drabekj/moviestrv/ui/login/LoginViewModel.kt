@@ -6,7 +6,6 @@ import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 
 class LoginViewModel: BaseViewModel<LoginView>() {
-//	val state = ObservableField<Int>()
 	val username = ObservableField<String>()
 	val password = ObservableField<String>()
 
