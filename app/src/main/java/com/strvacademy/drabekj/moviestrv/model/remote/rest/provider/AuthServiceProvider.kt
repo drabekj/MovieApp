@@ -22,7 +22,11 @@ object AuthServiceProvider {
 		fun requestToken(): Call<RequestTokenEntity>
 
 		@GET("authentication/token/validate_with_login")
-		fun login(@Query("username") username: String, @Query("password") password: String): Call<LoginResponseEntity>
+		fun login(
+				@Query("username") username: String,
+				@Query("password") password: String,
+				@Query("request_token") requestToken: String
+		): Call<LoginResponseEntity>
 
 		@GET("authentication/session/new")
 		fun sessionId(@Query("request_token") requestToken: String): Call<SessionResponseEntity>
