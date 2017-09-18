@@ -2,6 +2,9 @@ package com.strvacademy.drabekj.moviestrv.ui.profile
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
+import android.view.View
+import android.widget.Toast
+import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
 import com.strvacademy.drabekj.moviestrv.model.Profile
@@ -12,6 +15,7 @@ import org.alfonz.view.StatefulLayout
 
 class ProfileViewModel: BaseViewModel<ProfileView>() {
 	val state = ObservableField<Int>()
+	val stateContent = ObservableField<Int>()
 	val profile = ObservableField<Profile>()
 	val favMovies = ObservableArrayList<String>()
 
@@ -20,13 +24,19 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 
 	override fun onStart() {
 		super.onStart()
+
+		if (!MoviesApplication.isUserLoggedIn()) {
+			state.set(StatefulLayout.EMPTY)
+			view?.setupLoggedOutState()
+		}
+
 		if (profile.get() == null)
 			loadData()
 	}
 
 	private fun loadData() {
 		// show progress
-		state.set(StatefulLayout.PROGRESS)
+		stateContent.set(StatefulLayout.PROGRESS)
 
 		// load data from data provider...
 		onLoadData(dataSource.getProfile())
@@ -40,8 +50,8 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 
 		// show content
 		if(profile.get() != null)
-			state.set(StatefulLayout.CONTENT)
+			stateContent.set(StatefulLayout.CONTENT)
 		else
-			state.set(StatefulLayout.EMPTY)
+			stateContent.set(StatefulLayout.EMPTY)
 	}
 }

@@ -3,13 +3,12 @@ package com.strvacademy.drabekj.moviestrv.ui.profile
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
+import android.widget.Button
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
+import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import cz.koto.keystorecompat.KeystoreCompat
 import org.alfonz.mvvm.AlfonzActivity
@@ -45,7 +44,8 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 				return true
 			}
 			R.id.action_logout -> {
-				showToast("Logout Action")
+				KeyStoreUtil.clearSecret()
+				showToast("Logged out")
 				return true
 			}
 			else -> return super.onOptionsItemSelected(item)
@@ -78,6 +78,12 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 
 	override fun onFavMovieClick(movie: String) {
 		showToast("Show movie detail " + movie)
+	}
+
+	override fun setupLoggedOutState() {
+		activity.findViewById<Button>(R.id.login_btn).setOnClickListener({
+			view -> showToast("login click!")
+		})
 	}
 
 	companion object {

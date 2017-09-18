@@ -43,6 +43,7 @@
 	<dimen name="movie_detail_toolbar_height_expanded">260dp</dimen>
 	<dimen name="btn_corner_radius">5dp</dimen>
 	<dimen name="btn_border_width">3px</dimen>
+	<dimen name="small_btn_width">150dp</dimen>
 	<dimen name="large_btn_width">250dp</dimen>
 	<dimen name="logo_size">120dp</dimen>
 </resources>

@@ -120,8 +120,8 @@ class LoginHelper(val viewModel: LoginViewModel) {
 	inner class SessionIDCallback(callManager: CallManager) : Callback<SessionResponseEntity>(callManager) {
 		override fun onSuccess(call: Call<SessionResponseEntity>, response: Response<SessionResponseEntity>) {
 			Logcat.d("get sessionID success " + response.body()?.success)
-			Logcat.d("sessionID: " + response.body()?.sessionId)
 
+			MoviesApplication.sessionID = response.body()?.sessionId
 			viewModel.loginSuccess()
 		}
 

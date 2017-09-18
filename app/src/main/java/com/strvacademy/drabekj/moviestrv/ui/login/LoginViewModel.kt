@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import org.alfonz.rest.call.CallManager
 
@@ -30,6 +31,10 @@ class LoginViewModel : BaseViewModel<LoginView>() {
 
 	fun loginSuccess() {
 		view?.onLoginSuccessful()
+
+		// save encrypted sessionID
+		if(MoviesApplication.sessionID != null)
+			KeyStoreUtil.storeSecret(MoviesApplication.sessionID!!)
 	}
 
 	fun loginFail() {
