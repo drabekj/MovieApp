@@ -2,6 +2,7 @@ package com.strvacademy.drabekj.moviestrv.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,7 +11,9 @@ import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
+import cz.koto.keystorecompat.KeystoreCompat
 import org.alfonz.mvvm.AlfonzActivity
+import org.alfonz.utility.Logcat
 
 class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {
 	private var mAdapter: ProfileFragmentAdapter? = null

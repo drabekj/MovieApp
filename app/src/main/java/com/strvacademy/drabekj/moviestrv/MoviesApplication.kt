@@ -2,6 +2,10 @@ package com.strvacademy.drabekj.moviestrv
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
+import cz.koto.keystorecompat.KeystoreCompat
+import cz.koto.keystorecompat.exception.ForceLockScreenMarshmallowException
+import cz.koto.keystorecompat.utility.forceAndroidAuth
 
 import org.alfonz.utility.Logcat
 
