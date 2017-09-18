@@ -6,6 +6,7 @@ import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import android.app.ProgressDialog
 import android.content.Context
 import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.ui.main.MainActivity
 
 
 class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBinding>(), LoginView {
@@ -27,17 +28,20 @@ class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBindin
 	}
 
 	override fun onLogInClick() {
-		showToast("Login click")
 		viewModel.submitForm()
 	}
 
 	override fun showLoadingDialog() {
 		progressDialog?.isIndeterminate = true
-		progressDialog?.setMessage("Authenticating...")
+		progressDialog?.setMessage(getString(R.string.authenticating))
 		progressDialog?.show()
 	}
 
 	override fun dismissLoadingDialog() {
 		progressDialog?.dismiss()
+	}
+
+	override fun onLoginSuccessful() {
+		MainActivity.startAsIntent(activity)
 	}
 }

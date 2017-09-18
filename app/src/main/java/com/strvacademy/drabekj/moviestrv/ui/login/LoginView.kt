@@ -7,4 +7,5 @@ interface LoginView: BaseView {
 	fun onLogInClick()
 	fun showLoadingDialog()
 	fun dismissLoadingDialog()
+	fun onLoginSuccessful()
 }

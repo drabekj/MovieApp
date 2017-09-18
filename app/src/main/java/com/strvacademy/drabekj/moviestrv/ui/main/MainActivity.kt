@@ -1,5 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.strvacademy.drabekj.moviestrv.R
@@ -12,6 +14,14 @@ import com.strvacademy.drabekj.moviestrv.ui.profile.ProfileFragment
 
 class MainActivity : BaseActivity() {
 	var mCurrentFragment: Fragment? = null
+
+
+	companion object {
+		fun startAsIntent(context: Context) {
+			val intent = Intent(context, MainActivity::class.java)
+			context.startActivity(intent)
+		}
+	}
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {

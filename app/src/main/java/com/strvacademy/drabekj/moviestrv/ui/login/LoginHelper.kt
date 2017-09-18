@@ -72,7 +72,7 @@ class LoginHelper(val viewModel: LoginViewModel) {
 		} else {
 			// offline
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 	}
 
@@ -89,14 +89,14 @@ class LoginHelper(val viewModel: LoginViewModel) {
 			viewModel.handleError(mCallManager.getHttpErrorMessage(exception))
 			Logcat.e("Error while logging in occurred: " + exception.toString())
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 
 		override fun onFail(call: Call<LoginResponseEntity>, throwable: Throwable) {
 			viewModel.handleError(mCallManager.getHttpErrorMessage(throwable))
 			Logcat.e("Error while logging in occurred: " + throwable.message)
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 	}
 
@@ -113,7 +113,7 @@ class LoginHelper(val viewModel: LoginViewModel) {
 		} else {
 			// offline
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 	}
 
@@ -122,21 +122,21 @@ class LoginHelper(val viewModel: LoginViewModel) {
 			Logcat.d("get sessionID success " + response.body()?.success)
 			Logcat.d("sessionID: " + response.body()?.sessionId)
 
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginSuccess()
 		}
 
 		override fun onError(call: Call<SessionResponseEntity>, exception: HttpException) {
 			viewModel.handleError(mCallManager.getHttpErrorMessage(exception))
 			Logcat.e("Error while getting SessionID in occurred: " + exception.toString())
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 
 		override fun onFail(call: Call<SessionResponseEntity>, throwable: Throwable) {
 			viewModel.handleError(mCallManager.getHttpErrorMessage(throwable))
 			Logcat.e("Error while getting SessionID in occurred: " + throwable.message)
 			// TODO handle case where request token not received
-			viewModel.view?.dismissLoadingDialog()
+			viewModel.loginFail()
 		}
 	}
 }
