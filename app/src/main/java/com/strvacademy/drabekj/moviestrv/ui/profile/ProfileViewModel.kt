@@ -2,8 +2,6 @@ package com.strvacademy.drabekj.moviestrv.ui.profile
 
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableField
-import android.view.View
-import android.widget.Toast
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.model.MovieDataSource
 import com.strvacademy.drabekj.moviestrv.model.MovieRepository
@@ -24,11 +22,6 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 
 	override fun onStart() {
 		super.onStart()
-
-		if (!MoviesApplication.isUserLoggedIn()) {
-			state.set(StatefulLayout.EMPTY)
-			view?.setupLoggedOutState()
-		}
 
 		if (profile.get() == null)
 			loadData()

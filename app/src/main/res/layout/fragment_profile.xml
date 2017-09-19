@@ -18,17 +18,20 @@
 		app:offlineLayout="@layout/placeholder_offline"
 		app:emptyLayout="@layout/placeholder_login"
 		app:state="@{viewModel.state}">
+
 		<android.support.design.widget.CoordinatorLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@color/colorSecondary">
 
 			<android.support.design.widget.AppBarLayout
+				android:fitsSystemWindows="true"
 				style="@style/MyToolbarHigh">
 
 				<android.support.design.widget.CollapsingToolbarLayout
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
+					android:fitsSystemWindows="true"
 					app:contentScrim="?attr/colorPrimary"
 					app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -82,7 +85,7 @@
 
 			<android.support.v4.widget.NestedScrollView
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="match_parent"
 				app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 

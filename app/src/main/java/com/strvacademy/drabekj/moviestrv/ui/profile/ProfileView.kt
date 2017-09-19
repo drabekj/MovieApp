@@ -7,6 +7,4 @@ interface ProfileView: BaseView {
 	fun onAllFavouriteClick()
 
 	fun onFavMovieClick(movie: String)
-
-	fun setupLoggedOutState()
 }
