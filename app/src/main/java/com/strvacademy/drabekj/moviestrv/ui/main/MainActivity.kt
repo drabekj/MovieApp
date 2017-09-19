@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,9 +20,17 @@ class MainActivity : BaseActivity() {
 
 
 	companion object {
-		fun startAsIntent(context: Context) {
+		val EXTRA_KEY_SKIP_LOGIN = "EXTRA_KEY_SKIP_LOGIN"
+
+		fun startAsIntent(context: Context, skipLogin: Boolean) {
+			val extras = Bundle()
+
+			extras.putBoolean(EXTRA_KEY_SKIP_LOGIN, skipLogin)
+
 			val intent = Intent(context, MainActivity::class.java)
+			intent.putExtras(extras)
 			intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
 			context.startActivity(intent)
 		}
 	}
@@ -29,8 +38,11 @@ class MainActivity : BaseActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		// show StartupActivity if user not logged in
-		if(!KeyStoreUtil.hasSecretLoadable())
-			StartupActivity.startAsIntent(this)
+		if(!MoviesApplication.isUserLoggedIn()) {
+			// user skipped login
+			if(!intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false))
+				StartupActivity.startAsIntent(this)
+		}
 
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)

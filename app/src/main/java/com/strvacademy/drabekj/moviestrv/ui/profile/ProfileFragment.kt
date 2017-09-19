@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
@@ -49,7 +50,6 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 			}
 			R.id.action_logout -> {
 				KeyStoreUtil.clearSecret()
-				viewModel.state.set(StatefulLayout.EMPTY)
 				setupLoggedOutState()
 				showToast("Logged out")
 				return true
@@ -87,6 +87,9 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 	}
 
 	private fun setupLoggedOutState() {
+		if (!MoviesApplication.isUserLoggedIn())
+			viewModel.state.set(StatefulLayout.EMPTY)
+
 		activity.findViewById<Button>(R.id.login_btn).setOnClickListener({
 			view -> StartupActivity.startAsIntent(activity)
 		})

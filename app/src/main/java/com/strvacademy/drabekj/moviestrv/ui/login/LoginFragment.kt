@@ -42,6 +42,6 @@ class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBindin
 	}
 
 	override fun onLoginSuccessful() {
-		MainActivity.startAsIntent(activity)
+		MainActivity.startAsIntent(context, skipLogin = true)
 	}
 }

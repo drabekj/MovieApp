@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentStartupBinding
 import com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity
+import com.strvacademy.drabekj.moviestrv.ui.main.MainActivity
 import com.strvacademy.drabekj.moviestrv.ui.signup.SignUpActivity
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
@@ -24,5 +25,9 @@ class StartupFragment: BaseFragment<StartupView, StartupViewModel, FragmentStart
 
 	override fun onLogInClick() {
 		startActivity(Intent(context, LoginActivity::class.java))
+	}
+
+	override fun onSkipClick() {
+		MainActivity.startAsIntent(context, skipLogin = true)
 	}
 }

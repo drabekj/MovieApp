@@ -6,4 +6,5 @@ import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 interface StartupView: BaseView {
 	fun onSignUpClick()
 	fun onLogInClick()
+	fun onSkipClick()
 }

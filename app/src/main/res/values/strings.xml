@@ -54,4 +54,5 @@
 	<string name="kc_lock_screen_description">Custom lock screen description</string>
 	<string name="kc_kitkat_admin_explanatory">"Custom explanatory, explain to the user, that your application needs DeviceAdmin rights. For API 19 (KitKat) only."</string>
 	<string name="authenticating">Authenticating...</string>
+	<string name="skip_log_in">Skip for now</string>
 </resources>
