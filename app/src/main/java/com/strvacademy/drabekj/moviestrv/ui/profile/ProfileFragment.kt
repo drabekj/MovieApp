@@ -7,6 +7,7 @@ import android.widget.Button
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
+import com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity
 import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 import org.alfonz.mvvm.AlfonzActivity
@@ -28,6 +29,11 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 
 		setupAdapter()
 		setupToolbar()
+	}
+
+	override fun onResume() {
+		super.onResume()
+		setupLoggedOutState()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -82,7 +88,7 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 
 	private fun setupLoggedOutState() {
 		activity.findViewById<Button>(R.id.login_btn).setOnClickListener({
-			view -> showToast("login click!")
+			view -> StartupActivity.startAsIntent(activity)
 		})
 	}
 
