@@ -9,6 +9,7 @@ import retrofit2.http.*
 object AccountServiceProvider {
 	val ACCOUNT_CALL_TYPE = "account"
 	val MARK_FAVOURITE_CALL_TYPE = "mark_favourite"
+	val FAVOURITES_CALL_TYPE = "favourite_movies"
 
 	@Volatile private var sService: AccountService? = null
 
@@ -18,7 +19,10 @@ object AccountServiceProvider {
 		fun account( @Query("session_id") sessionId : String): Call<AccountEntity>
 
 		@POST("account/{account_id}/favorite")
-		fun markAsFavourite(@Path("account_id") accountId: Int, @Query("session_id") sessionId : String, @Body body: FavouriteEntity): Call<FavouriteResponseEntity>
+		fun markAsFavourite(@Path("account_id") accountId: Int, @Query("session_id") sessionId : String, @Body body: FavouriteEntity): Call<SetFavouriteResponseEntity>
+
+		@GET("account/{account_id}/favorite/movies")
+		fun favourites(@Path("account_id") accountId: Int, @Query("session_id") sessionId : String): Call<GetFavouriteResponseEntity>
 	}
 
 

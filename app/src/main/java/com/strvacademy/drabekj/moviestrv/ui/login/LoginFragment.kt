@@ -42,6 +42,7 @@ class LoginFragment: BaseFragment<LoginView, LoginViewModel, FragmentLoginBindin
 	}
 
 	override fun onLoginSuccessful() {
+		dismissLoadingDialog()
 		MainActivity.startAsIntent(context, skipLogin = true)
 	}
 }

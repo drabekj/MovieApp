@@ -26,7 +26,7 @@ import retrofit2.Response
 class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	var id: Int? = null
 	var userLoggedIn = ObservableField<Boolean>(false)
-	var isFavourite = ObservableField<Boolean>(false)
+	var isFavourite = ObservableField<Boolean>()
 	val state = ObservableField<Int>()
 	val movie = ObservableField<MovieEntity>()
 
@@ -49,8 +49,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	override fun onStart() {
 		super.onStart()
 
-		if (MoviesApplication.isUserLoggedIn())
+		if (MoviesApplication.isUserLoggedIn()) {
 			userLoggedIn.set(true)
+			loadIsMoveFavourite()
+		}
 
 		if (movie.get() == null)
 			loadData()
@@ -89,7 +91,24 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-	// POST favourite
+	private fun loadIsMoveFavourite() {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
+			val callType = AccountServiceProvider.FAVOURITES_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// show progress
+				// TODO disable hearth button
+
+				// enqueue call
+				val call = AccountServiceProvider.service.favourites(6681212, MoviesApplication.sessionID!!)
+				val callback = FavouriteMoviesCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
 	private fun markAsFavourite(makeFavourite: Boolean) {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = AccountServiceProvider.MARK_FAVOURITE_CALL_TYPE
@@ -130,8 +149,23 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-	inner class MarkAsFavouriteCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<FavouriteResponseEntity>(callManager) {
-		override fun onSuccess(call: Call<FavouriteResponseEntity>, response: Response<FavouriteResponseEntity>) {
+	inner class FavouriteMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<GetFavouriteResponseEntity>(callManager) {
+		override fun onSuccess(call: Call<GetFavouriteResponseEntity>, response: Response<GetFavouriteResponseEntity>) {
+			findMovieInFavourites(response.body()?.results!!)
+			// TODO enable hearth button
+		}
+
+		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+		}
+
+		override fun onFail(call: Call<GetFavouriteResponseEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
+	inner class MarkAsFavouriteCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<SetFavouriteResponseEntity>(callManager) {
+		override fun onSuccess(call: Call<SetFavouriteResponseEntity>, response: Response<SetFavouriteResponseEntity>) {
 			if (response.body()?.statusCode == 1) {
 				Logcat.d("Mark as favourite finished with " + response.body()?.statusMessage)
 				isFavourite.set(true)
@@ -142,12 +176,24 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 			}
 		}
 
-		override fun onError(call: Call<FavouriteResponseEntity>, exception: HttpException) {
+		override fun onError(call: Call<SetFavouriteResponseEntity>, exception: HttpException) {
 			handleError(mCallManager.getHttpErrorMessage(exception))
 		}
 
-		override fun onFail(call: Call<FavouriteResponseEntity>, throwable: Throwable) {
+		override fun onFail(call: Call<SetFavouriteResponseEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
+		}
+	}
+
+	private fun findMovieInFavourites(favourites: List<MovieEntity>) {
+		if (favourites.isEmpty())
+			isFavourite.set(false)
+
+		for (item in favourites) {
+			if (item.id!! == id)
+				isFavourite.set(true)
+			else
+				isFavourite.set(false)
 		}
 	}
 
@@ -186,7 +232,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		val videosLimit = 1
 
 		var data = movie.get().videos?.results
-		if (data != null) {
+		if (data != null && data.isNotEmpty()) {
 			if (data.size > videosLimit)
 				data.sliceArray(0..videosLimit)
 

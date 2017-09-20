@@ -3,7 +3,7 @@ package com.strvacademy.drabekj.moviestrv.model.entity
 import com.google.gson.annotations.SerializedName
 
 
-class FavouriteResponseEntity {
+class SetFavouriteResponseEntity {
 
 	@SerializedName("status_code")
 	var statusCode: Int? = null
