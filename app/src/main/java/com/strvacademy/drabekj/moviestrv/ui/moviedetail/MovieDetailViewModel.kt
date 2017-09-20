@@ -12,6 +12,7 @@ import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
 import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.AccountServiceProvider
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.rest.HttpException
@@ -25,7 +26,7 @@ import retrofit2.Response
 class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	var id: Int? = null
 	var userLoggedIn = ObservableField<Boolean>(false)
-	var isFavourite = ObservableField<Boolean>()
+	var isFavourite = ObservableField<Boolean>(false)
 	val state = ObservableField<Int>()
 	val movie = ObservableField<MovieEntity>()
 
@@ -60,11 +61,14 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	}
 
 	fun setFavourite() {
-		if (MoviesApplication.isUserLoggedIn())
-			markAsFavourite(true)
-		else {
-			// TODO show toast -> you need to be logged in
+		if (MoviesApplication.isUserLoggedIn()) {
+			if (isFavourite.get())
+				markAsFavourite(false)
+			else
+				markAsFavourite(true)
 		}
+		else
+			view?.showNeedToBeLoggedInToast()
 	}
 
 	private fun loadMovieDetail() {
@@ -88,10 +92,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	// POST favourite
 	private fun markAsFavourite(makeFavourite: Boolean) {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = MovieServiceProvider.MARK_FAVOURITE_CALL_TYPE
+			val callType = AccountServiceProvider.MARK_FAVOURITE_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call
-				val call = MovieServiceProvider.service.markAsFavourite(
+				val call = AccountServiceProvider.service.markAsFavourite(
 						6681212,
 						MoviesApplication.sessionID!!,
 						FavouriteEntity("movie", id, makeFavourite))
@@ -128,10 +132,14 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	inner class MarkAsFavouriteCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<FavouriteResponseEntity>(callManager) {
 		override fun onSuccess(call: Call<FavouriteResponseEntity>, response: Response<FavouriteResponseEntity>) {
-			if (response.body()?.statusCode == 1)
+			if (response.body()?.statusCode == 1) {
 				Logcat.d("Mark as favourite finished with " + response.body()?.statusMessage)
-			else if (response.body()?.statusCode == 13)
+				isFavourite.set(true)
+			}
+			else if (response.body()?.statusCode == 13) {
 				Logcat.d("Remove from favourites finished with success: " + response.body()?.statusMessage)
+				isFavourite.set(false)
+			}
 		}
 
 		override fun onError(call: Call<FavouriteResponseEntity>, exception: HttpException) {

@@ -7,4 +7,5 @@ interface MovieDetailView: BaseView {
     fun onFullCastClick()
     fun startActorDetailActivity(actorId: Int)
     fun initializeYouTubePlayer(url_key: String)
+    fun showNeedToBeLoggedInToast()
 }

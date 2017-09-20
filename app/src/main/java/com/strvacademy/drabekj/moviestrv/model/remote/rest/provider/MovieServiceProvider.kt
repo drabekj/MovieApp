@@ -11,7 +11,6 @@ object MovieServiceProvider {
 	val POPULAR_MOVIES_CALL_TYPE = "movies_popular"
 	val NOW_PLAYING_MOVIES_CALL_TYPE = "movies_now_playing"
 	val SEARCH_MOVIE_CALL_TYPE = "search_movie"
-	val MARK_FAVOURITE_CALL_TYPE = "mark_favourite"
 
 	@Volatile private var sService: MovieService? = null
 
@@ -28,9 +27,6 @@ object MovieServiceProvider {
 
 		@GET("search/movie")
 		fun searchMovie(@Query("query") query : String): Call<MovieResultsEntity>
-
-		@POST("account/{account_id}/favorite")
-		fun markAsFavourite(@Path("account_id") accountId: Int, @Query("session_id") sessionId : String, @Body body: FavouriteEntity): Call<FavouriteResponseEntity>
 	}
 
 

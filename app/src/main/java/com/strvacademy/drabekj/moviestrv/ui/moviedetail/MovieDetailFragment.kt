@@ -56,7 +56,6 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 		when (item!!.itemId) {
 			R.id.action_favorite -> {
 				viewModel.setFavourite()
-				showToast("Mark as favorite")
 				return true
 			}
 
@@ -98,6 +97,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 
 	override fun startActorDetailActivity(actorId: Int) {
 		ActorDetailActivity.startAsIntent(activity, actorId)
+	}
+
+	override fun showNeedToBeLoggedInToast() {
+		showToast(getString(R.string.need_to_be_logged_in))
 	}
 
 	private fun setupToolbar() {
