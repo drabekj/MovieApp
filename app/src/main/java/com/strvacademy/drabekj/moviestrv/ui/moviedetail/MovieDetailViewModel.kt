@@ -99,7 +99,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 				// TODO disable hearth button
 
 				// enqueue call
-				val call = AccountServiceProvider.service.favourites(6681212, MoviesApplication.sessionID!!)
+				val call = AccountServiceProvider.service.favourites(MoviesApplication.accountID.get(), MoviesApplication.sessionID!!)
 				val callback = FavouriteMoviesCallback(mCallManager)
 				mCallManager.enqueueCall(call, callback, callType)
 			}
@@ -115,7 +115,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 			if (!mCallManager.hasRunningCall(callType)) {
 				// enqueue call
 				val call = AccountServiceProvider.service.markAsFavourite(
-						6681212,
+						MoviesApplication.accountID.get(),
 						MoviesApplication.sessionID!!,
 						FavouriteEntity("movie", id, makeFavourite))
 				val callback = MarkAsFavouriteCallback(mCallManager)

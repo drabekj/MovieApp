@@ -27,7 +27,7 @@ class MoviesApplication : Application() {
 	companion object {
 		private var sInstance: MoviesApplication? = null
 		var sessionID: String? = null
-		// TODO observable field
+		val accountID = ObservableField<Int>()
 
 
 		val context: Context
