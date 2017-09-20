@@ -7,6 +7,9 @@ import org.alfonz.utility.Logcat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import com.google.gson.annotations.Expose
+
+
 
 class MovieEntity {
 	// TODO how to modify data when creating (e.g. url -> append base, date -> change format)
@@ -76,6 +79,15 @@ class MovieEntity {
 
 	@SerializedName("vote_count")
 	var voteCount: Int? = null
+
+	@SerializedName("credits")
+	val credits: CreditsEntity? = null
+
+	@SerializedName("videos")
+	val videos: VideosResultsEntity? = null
+
+	@SerializedName("images")
+	val images: ImagesEntity? = null
 
 	val director = ObservableField<CrewEntity>()
 

@@ -6,4 +6,5 @@ import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseView
 interface MovieDetailView: BaseView {
     fun onFullCastClick()
     fun startActorDetailActivity(actorId: Int)
+    fun initializeYouTubePlayer(url_key: String)
 }
