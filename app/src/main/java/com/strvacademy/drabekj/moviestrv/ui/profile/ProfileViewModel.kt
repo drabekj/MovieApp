@@ -20,7 +20,7 @@ import org.alfonz.view.StatefulLayout
 import retrofit2.Call
 import retrofit2.Response
 import me.tatarka.bindingcollectionadapter2.ItemBinding
-
+import org.alfonz.utility.Logcat
 
 
 class ProfileViewModel: BaseViewModel<ProfileView>() {
@@ -107,6 +107,12 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 			favMovies.clear()
 			favMovies.addAll(response.body()?.results!!)
 			stateContent.set(StatefulLayout.CONTENT)
+
+
+			Logcat.d("---Favourite Movies---")
+			for (item in favMovies) {
+				Logcat.d("poster: " + String.format("%s%s", "https://image.tmdb.org/t/p/w300", item.posterPath))
+			}
 		}
 
 		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {

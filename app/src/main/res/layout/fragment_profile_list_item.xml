@@ -10,7 +10,7 @@
 
 	<!-- TODO ? How spacing in grid view-->
 	<FrameLayout
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="@dimen/global_grid_spacing_4"
 		android:layout_marginRight="@dimen/global_grid_spacing_4"
@@ -20,10 +20,11 @@
 
 		<ImageView
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:adjustViewBounds="true"
+			android:layout_height="wrap_content"
 			android:contentDescription="@{movie.title}"
-			android:src="@drawable/dummy_movie_image" />
+			android:adjustViewBounds="true"
+			imageUrl='@{String.format("%s%s", @string/TMDB_BASE_IMAGE_W300, movie.posterPath)}'
+			imagePlaceholder="@{@drawable/ic_image_black_placeholder_24dp}" />
 
 	</FrameLayout>
 </layout>
