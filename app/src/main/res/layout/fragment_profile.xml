@@ -125,7 +125,7 @@
 							app:itemBinding="@{viewModel.itemBindingFav}" />
 
 						<Button
-							android:text='@{String.format("VIEW ALL %d FAVOURITE", viewModel.favMovies.size)}'
+							android:text='@{String.format("VIEW ALL %s FAVOURITE", Integer.toString(viewModel.favMoviesCount))}'
 							android:onClick="@{() -> view.onAllFavouriteClick()}"
 							style="@style/ViewAllButton" />
 

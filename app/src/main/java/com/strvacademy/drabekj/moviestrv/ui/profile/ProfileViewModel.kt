@@ -20,13 +20,13 @@ import org.alfonz.view.StatefulLayout
 import retrofit2.Call
 import retrofit2.Response
 import me.tatarka.bindingcollectionadapter2.ItemBinding
-import org.alfonz.utility.Logcat
 
 
 class ProfileViewModel: BaseViewModel<ProfileView>() {
 	val state = ObservableField<Int>()
 	val stateContent = ObservableField<Int>()
 	val account = ObservableField<AccountEntity>()
+	val favMoviesCount: ObservableField<Int> = ObservableField(0)
 
 	val favMovies: ObservableArrayList<MovieEntity> = ObservableArrayList()
 	val onMovieClickListener = OnItemClickListener<MovieEntity> { movie -> view?.onFavMovieClick(movie) }
@@ -104,13 +104,12 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 
 	inner class FavouriteMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<GetFavouriteResponseEntity>(callManager) {
 		override fun onSuccess(call: Call<GetFavouriteResponseEntity>, response: Response<GetFavouriteResponseEntity>) {
-			favMovies.clear()
-			favMovies.addAll(response.body()?.results!!)
+			updateFavMovies(response.body()?.results!!)
 
-			if (response.body()?.results!!.isEmpty())
-				stateContent.set(StatefulLayout.EMPTY)
-			else
+			if (favMoviesCount.get() > 0)
 				stateContent.set(StatefulLayout.CONTENT)
+			else
+				stateContent.set(StatefulLayout.EMPTY)
 		}
 
 		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {
@@ -121,6 +120,19 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 		override fun onFail(call: Call<GetFavouriteResponseEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
 			stateContent.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	private fun updateFavMovies(data: List<MovieEntity>) {
+		val moviesDisplayLimit = 5
+		favMoviesCount.set(data.size)
+
+		if (data.isNotEmpty()) {
+			favMovies.clear()
+			if (data.size > moviesDisplayLimit)
+				favMovies.addAll(data.slice(0..moviesDisplayLimit))
+			else
+				favMovies.addAll(data)
 		}
 	}
 }
