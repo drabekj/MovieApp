@@ -5,6 +5,7 @@
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+		<import type="android.view.View" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileViewModel" />
 		<variable
@@ -93,16 +94,16 @@
 
 			<android.support.v4.widget.NestedScrollView
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="match_parent"
 				app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
 				<org.alfonz.view.StatefulLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:layout_height="match_parent"
 					app:progressLayout="@layout/placeholder_progress"
 					app:offlineLayout="@layout/placeholder_offline"
-					app:emptyLayout="@layout/placeholder_empty"
+					app:emptyLayout="@layout/fragment_profile_empty_state"
 					app:state="@{viewModel.stateContent}">
 
 					<LinearLayout

@@ -106,13 +106,11 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 		override fun onSuccess(call: Call<GetFavouriteResponseEntity>, response: Response<GetFavouriteResponseEntity>) {
 			favMovies.clear()
 			favMovies.addAll(response.body()?.results!!)
-			stateContent.set(StatefulLayout.CONTENT)
 
-
-			Logcat.d("---Favourite Movies---")
-			for (item in favMovies) {
-				Logcat.d("poster: " + String.format("%s%s", "https://image.tmdb.org/t/p/w300", item.posterPath))
-			}
+			if (response.body()?.results!!.isEmpty())
+				stateContent.set(StatefulLayout.EMPTY)
+			else
+				stateContent.set(StatefulLayout.CONTENT)
 		}
 
 		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {

@@ -56,4 +56,5 @@
 	<string name="authenticating">Authenticating...</string>
 	<string name="skip_log_in">Skip for now</string>
 	<string name="need_to_be_logged_in">You need to be logged in</string>
+	<string name="empty_favourites">You don\'t have any favourite movies yet</string>
 </resources>

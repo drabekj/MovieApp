@@ -40,6 +40,7 @@
 	<dimen name="global_grid_spacing_4">4dp</dimen>
 	<dimen name="profile_pic_size">80dp</dimen>
 	<dimen name="profile_pic_size_small">50dp</dimen>
+	<dimen name="medium_icon_size">80dp</dimen>
 	<dimen name="movie_detail_toolbar_height_expanded">260dp</dimen>
 	<dimen name="btn_corner_radius">5dp</dimen>
 	<dimen name="btn_border_width">3px</dimen>
