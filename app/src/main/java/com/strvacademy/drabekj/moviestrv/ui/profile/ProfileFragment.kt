@@ -9,6 +9,7 @@ import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
 import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
+import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity
 import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
