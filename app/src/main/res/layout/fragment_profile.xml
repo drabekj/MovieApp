@@ -75,8 +75,8 @@
 							<TextView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:text="Joined 11/08/2017"
-								tools:text="Joined 11/08/2017"
+								android:text="joined 11/08/2017"
+								tools:text="joined 11/08/2017"
 								style="@style/SecondaryText" />
 						</LinearLayout>
 					</LinearLayout>
