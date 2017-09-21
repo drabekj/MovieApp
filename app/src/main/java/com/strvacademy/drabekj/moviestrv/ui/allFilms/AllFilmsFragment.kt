@@ -3,6 +3,7 @@ package com.strvacademy.drabekj.moviestrv.ui.allFilms
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentAllFilmsBinding
+import com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseFragment
 
 class AllFilmsFragment : BaseFragment<AllFilmsView, AllFilmsViewModel, FragmentAllFilmsBinding>(),
@@ -21,6 +22,10 @@ class AllFilmsFragment : BaseFragment<AllFilmsView, AllFilmsViewModel, FragmentA
 
 		if (arguments != null)
 			viewModel.actorId = arguments.getInt(ARG_ACTOR_ID)
+	}
+
+	override fun onMovieClick(movieId: Int) {
+		MovieDetailActivity.startAsIntent(context, movieId)
 	}
 
 	companion object {
