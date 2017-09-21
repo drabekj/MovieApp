@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
+import com.strvacademy.drabekj.moviestrv.model.entity.AccountEntity
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.AccountServiceProvider
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import com.strvacademy.drabekj.moviestrv.ui.actors.ActorsFragment
@@ -13,6 +17,11 @@ import com.strvacademy.drabekj.moviestrv.ui.movies.MoviesFragment
 import com.strvacademy.drabekj.moviestrv.ui.profile.ProfileFragment
 import com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity
 import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
+import org.alfonz.rest.HttpException
+import org.alfonz.rest.call.CallManager
+import org.alfonz.utility.NetworkUtility
+import retrofit2.Call
+import retrofit2.Response
 
 
 class MainActivity : BaseActivity() {
@@ -37,11 +46,16 @@ class MainActivity : BaseActivity() {
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		// show StartupActivity if user not logged in
-		if(!MoviesApplication.isUserLoggedIn()) {
-			// user skipped login
-			if(!intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false))
+		// show StartupActivity if user not logged in or isn't in guest session
+		if(!intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false)) {
+			// neskippnul jsem
+			if (!MoviesApplication.isUserLoggedIn()) {
+				// neni loggly
 				StartupActivity.startAsIntent(this)
+			} else {
+				// load accountID
+				MainViewModel().loadAccountId()
+			}
 		}
 
 		super.onCreate(savedInstanceState)

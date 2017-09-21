@@ -7,6 +7,7 @@ import android.widget.Button
 import com.strvacademy.drabekj.moviestrv.MoviesApplication
 import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentProfileBinding
+import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity
 import com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity
 import com.strvacademy.drabekj.moviestrv.utils.KeyStoreUtil
@@ -15,7 +16,6 @@ import org.alfonz.mvvm.AlfonzActivity
 import org.alfonz.view.StatefulLayout
 
 class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProfileBinding>(), ProfileView {
-	private var mAdapter: ProfileFragmentAdapter? = null
 
 	override fun getViewModelClass(): Class<ProfileViewModel> {
 		return ProfileViewModel::class.java
@@ -27,8 +27,6 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
-
-		setupAdapter()
 		setupToolbar()
 	}
 
@@ -58,17 +56,6 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 		}
 	}
 
-	override fun onDetach() {
-		mAdapter = null
-
-		super.onDetach()
-	}
-
-	private fun setupAdapter() {
-		mAdapter = ProfileFragmentAdapter(this, viewModel)
-		binding.fragmentProfileListRecycler.adapter = mAdapter
-	}
-
 	private fun setupToolbar() {
 		(activity as AlfonzActivity).setupActionBar(AlfonzActivity.INDICATOR_NONE, "")
 		setHasOptionsMenu(true)
@@ -82,8 +69,8 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 		startActivity(Intent(context, AllFilmsActivity::class.java))
 	}
 
-	override fun onFavMovieClick(movie: String) {
-		showToast("Show movie detail " + movie)
+	override fun onFavMovieClick(movie: MovieEntity) {
+		showToast("Show movie detail " + movie.title)
 	}
 
 	private fun setupLoggedOutState() {

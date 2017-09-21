@@ -38,25 +38,6 @@ class LoginHelper(val viewModel: LoginViewModel) {
 		}
 	}
 
-	inner class RequestTokenCallback(callManager: CallManager) : Callback<RequestTokenEntity>(callManager) {
-		override fun onSuccess(call: Call<RequestTokenEntity>, response: Response<RequestTokenEntity>) {
-			requestToken.set(response.body()?.requestToken)
-			Logcat.d("request token received: " + requestToken.get())
-		}
-
-		override fun onError(call: Call<RequestTokenEntity>, exception: HttpException) {
-			viewModel.handleError(mCallManager.getHttpErrorMessage(exception))
-			Logcat.e("Error while getting request token occurred: " + exception.toString())
-			// TODO handle case where request token not received
-		}
-
-		override fun onFail(call: Call<RequestTokenEntity>, throwable: Throwable) {
-			viewModel.handleError(mCallManager.getHttpErrorMessage(throwable))
-			Logcat.e("Error while getting request token occurred: " + throwable.message)
-			// TODO handle case where request token not received
-		}
-	}
-
 	//	Login (Validate Request Token)
 	fun login(username: String, password: String) {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
@@ -73,6 +54,42 @@ class LoginHelper(val viewModel: LoginViewModel) {
 			// offline
 			// TODO handle case where request token not received
 			viewModel.loginFail()
+		}
+	}
+
+	// Get SessionID
+	private fun getSessionID() {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
+			val callType = AuthServiceProvider.SESSION_ID_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// enqueue call
+				val call = AuthServiceProvider.service.sessionId(requestToken.get())
+				val callback = SessionIDCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// offline
+			// TODO handle case where request token not received
+			viewModel.loginFail()
+		}
+	}
+
+	inner class RequestTokenCallback(callManager: CallManager) : Callback<RequestTokenEntity>(callManager) {
+		override fun onSuccess(call: Call<RequestTokenEntity>, response: Response<RequestTokenEntity>) {
+			requestToken.set(response.body()?.requestToken)
+			Logcat.d("request token received: " + requestToken.get())
+		}
+
+		override fun onError(call: Call<RequestTokenEntity>, exception: HttpException) {
+			viewModel.handleError(mCallManager.getHttpErrorMessage(exception))
+			Logcat.e("Error while getting request token occurred: " + exception.toString())
+			// TODO handle case where request token not received
+		}
+
+		override fun onFail(call: Call<RequestTokenEntity>, throwable: Throwable) {
+			viewModel.handleError(mCallManager.getHttpErrorMessage(throwable))
+			Logcat.e("Error while getting request token occurred: " + throwable.message)
+			// TODO handle case where request token not received
 		}
 	}
 
@@ -95,23 +112,6 @@ class LoginHelper(val viewModel: LoginViewModel) {
 		override fun onFail(call: Call<LoginResponseEntity>, throwable: Throwable) {
 			viewModel.handleError(mCallManager.getHttpErrorMessage(throwable))
 			Logcat.e("Error while logging in occurred: " + throwable.message)
-			// TODO handle case where request token not received
-			viewModel.loginFail()
-		}
-	}
-
-	// Get SessionID
-	private fun getSessionID() {
-		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = AuthServiceProvider.SESSION_ID_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = AuthServiceProvider.service.sessionId(requestToken.get())
-				val callback = SessionIDCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
-			}
-		} else {
-			// offline
 			// TODO handle case where request token not received
 			viewModel.loginFail()
 		}

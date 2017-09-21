@@ -4,6 +4,7 @@
 
 	<data>
 		<import type="org.alfonz.adapter.utility.BindingUtility" />
+		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<variable
 			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileViewModel" />
 		<variable
@@ -13,7 +14,7 @@
 	<!--TODO ? elevation?-->
 	<org.alfonz.view.StatefulLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		app:progressLayout="@layout/placeholder_progress"
 		app:offlineLayout="@layout/placeholder_offline"
 		app:emptyLayout="@layout/placeholder_login"
@@ -21,7 +22,7 @@
 
 		<android.support.design.widget.CoordinatorLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:background="@color/colorSecondary">
 
 			<android.support.design.widget.AppBarLayout
@@ -59,14 +60,21 @@
 							<TextView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:text="@{viewModel.profile.name}"
+								android:text="@{viewModel.account.name}"
 								tools:text="John Dow"
 								style="@style/HeadingText" />
 
 							<TextView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:text='@{String.format("Joined %s", viewModel.profile.joinedDate)}'
+								android:text="@{viewModel.account.username}"
+								tools:text="doejohn9"
+								style="@style/SecondaryHeadingText" />
+
+							<TextView
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:text="Joined 11/08/2017"
 								tools:text="Joined 11/08/2017"
 								style="@style/SecondaryText" />
 						</LinearLayout>
@@ -85,7 +93,7 @@
 
 			<android.support.v4.widget.NestedScrollView
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -108,14 +116,15 @@
 							style="@style/SecondaryHeadingText" />
 
 						<android.support.v7.widget.RecyclerView
-							android:id="@+id/fragment_profile_list_recycler"
+							android:id="@+id/fragment_actors_list_recycler"
 							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							app:recyclerLayout="@{BindingUtility.LAYOUT_GRID_VERTICAL}"
-							app:recyclerLayoutSpanCount="@{3}" />
+							android:layout_height="wrap_content"
+							app:layoutManager="@{LayoutManagers.grid(3)}"
+							app:items="@{viewModel.favMovies}"
+							app:itemBinding="@{viewModel.itemBindingFav}" />
 
 						<Button
-							android:text='@{String.format("VIEW ALL %d FAVOURITE", viewModel.profile.favMoviesArray.length)}'
+							android:text='@{String.format("VIEW ALL %d FAVOURITE", viewModel.favMovies.size)}'
 							android:onClick="@{() -> view.onAllFavouriteClick()}"
 							style="@style/ViewAllButton" />
 

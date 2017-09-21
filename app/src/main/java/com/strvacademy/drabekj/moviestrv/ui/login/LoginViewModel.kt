@@ -19,7 +19,6 @@ class LoginViewModel : BaseViewModel<LoginView>() {
 	val username = ObservableField<String>()
 	val password = ObservableField<String>()
 
-	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
 	val mLoginHelper = LoginHelper(this)
 
 
@@ -40,39 +39,10 @@ class LoginViewModel : BaseViewModel<LoginView>() {
 		if(MoviesApplication.sessionID != null)
 			KeyStoreUtil.storeSecret(MoviesApplication.sessionID!!)
 
-		// load accountID
-		loadAccountId()
-
 		view?.onLoginSuccessful()
 	}
 
 	fun loginFail() {
 		view?.dismissLoadingDialog()
-	}
-
-	private fun loadAccountId() {
-		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = AccountServiceProvider.FAVOURITES_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = AccountServiceProvider.service.account(MoviesApplication.sessionID!!)
-				val callback = AccountIDCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
-			}
-		}
-	}
-
-	inner class AccountIDCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<AccountEntity>(callManager) {
-		override fun onSuccess(call: Call<AccountEntity>, response: Response<AccountEntity>) {
-			MoviesApplication.accountID.set(response.body()?.id)
-		}
-
-		override fun onError(call: Call<AccountEntity>, exception: HttpException) {
-			handleError(mCallManager.getHttpErrorMessage(exception))
-		}
-
-		override fun onFail(call: Call<AccountEntity>, throwable: Throwable) {
-			handleError(mCallManager.getHttpErrorMessage(throwable))
-		}
 	}
 }
