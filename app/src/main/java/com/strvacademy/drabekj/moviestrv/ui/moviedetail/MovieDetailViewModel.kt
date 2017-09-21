@@ -56,6 +56,8 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 		if (movie.get() == null)
 			loadData()
+
+		Logcat.d("All set!")
 	}
 
 	fun loadData() {
@@ -64,10 +66,14 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	fun setFavourite() {
 		if (MoviesApplication.isUserLoggedIn()) {
-			if (isFavourite.get())
+			if (isFavourite.get()) {
 				markAsFavourite(false)
-			else
+				view?.showToast("Remove from favourites")
+			}
+			else {
 				markAsFavourite(true)
+				view?.showToast("Mark as favourite")
+			}
 		}
 		else
 			view?.showNeedToBeLoggedInToast()
@@ -174,6 +180,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 				Logcat.d("Remove from favourites finished with success: " + response.body()?.statusMessage)
 				isFavourite.set(false)
 			}
+			Logcat.d("Marked as favourite: statusCode=" + response.body()?.statusCode + " message=" + response.body()?.statusMessage)
 		}
 
 		override fun onError(call: Call<SetFavouriteResponseEntity>, exception: HttpException) {
@@ -190,8 +197,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 			isFavourite.set(false)
 
 		for (item in favourites) {
-			if (item.id!! == id)
+			if (item.id!! == id) {
 				isFavourite.set(true)
+				return
+			}
 			else
 				isFavourite.set(false)
 		}
