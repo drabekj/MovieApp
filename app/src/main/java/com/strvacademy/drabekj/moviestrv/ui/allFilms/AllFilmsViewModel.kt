@@ -27,7 +27,7 @@ class AllFilmsViewModel : BaseViewModel<AllFilmsView>() {
 	var actorId: Int? = null
 	val movies: ObservableArrayList<FilmItemViewModel> = ObservableArrayList()
 	val onItemClickListener = OnItemClickListener<FilmItemViewModel> {
-		item -> Toast.makeText(MoviesApplication.context, "click " + item.item.get().title, Toast.LENGTH_SHORT).show()
+		item -> view?.onMovieClick(item.item.get().id!!)
 	}
 	val itemBindingCast = ItemBinding.of<FilmItemViewModel>(BR.itemViewModel, R.layout.fragment_all_films_movie_list_item)
 			.bindExtra(BR.listener, onItemClickListener)!!

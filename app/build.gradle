@@ -84,6 +84,11 @@ dependencies {
 //	YouTube lib
 	compile files('libs/YouTubeAndroidPlayerApi.jar')
 
+//	Encrypt STRV lib
+	compile ('cz.koto:android-keystore-compat:1.2.0') {
+		exclude group: 'com.android.support'
+	}
+
 
 	kapt 'com.github.bumptech.glide:compiler:4.0.0'
 

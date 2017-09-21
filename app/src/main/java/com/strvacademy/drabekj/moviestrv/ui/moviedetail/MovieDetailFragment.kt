@@ -55,7 +55,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 		when (item!!.itemId) {
 			R.id.action_favorite -> {
-				showToast("Mark as favorite")
+				viewModel.setFavourite()
 				return true
 			}
 
@@ -68,7 +68,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 		}
 	}
 
-	fun initializeYouTubePlayer(url_key: String) {
+	override fun initializeYouTubePlayer(url_key: String) {
 		val youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance()
 		youTubePlayerFragment.initialize(MoviesConfig.YOUTUBE_API_KEY, object : YouTubePlayer.OnInitializedListener {
 
@@ -97,6 +97,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 
 	override fun startActorDetailActivity(actorId: Int) {
 		ActorDetailActivity.startAsIntent(activity, actorId)
+	}
+
+	override fun showNeedToBeLoggedInToast() {
+		showToast(getString(R.string.need_to_be_logged_in))
 	}
 
 	private fun setupToolbar() {

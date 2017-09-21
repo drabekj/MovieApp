@@ -42,10 +42,21 @@
 				android:id="@+id/login_btn"
 				android:layout_width="@dimen/large_btn_width"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="40dp"
+				android:layout_marginBottom="@dimen/global_spacing_8"
 				android:background="@drawable/shape_auth_btn_border"
 				android:text="@string/log_in"
 				android:onClick="@{() -> view.onLogInClick()}" />
+
+			<Button
+				android:id="@+id/skip_login_btn"
+				android:layout_width="@dimen/large_btn_width"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/global_spacing_8"
+				android:background="@android:color/transparent"
+				android:text="@string/skip_log_in"
+				android:textAllCaps="false"
+				android:onClick="@{() -> view.onSkipClick()}"
+				style="@style/SecondaryText" />
 
 		</LinearLayout>
 

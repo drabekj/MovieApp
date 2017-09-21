@@ -100,9 +100,7 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesViewModel, FragmentMoviesB
 	}
 
 	private fun startMovieDetailActivity(id: Int) {
-		val intent = Intent(activity, MovieDetailActivity::class.java)
-		intent.putExtra(MoviesPageFragment.EXTRA_KEY_MOVIE_ID, id)
-		startActivity(intent)
+		MovieDetailActivity.startAsIntent(activity, id)
 	}
 
 	companion object {

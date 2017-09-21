@@ -86,4 +86,10 @@
 		<item name="android:layout_marginStart">@dimen/global_spacing_16</item>
 		<item name="android:layout_marginEnd">@dimen/global_spacing_16</item>
 	</style>
+
+	<!--Progress Dialog-->
+	<style name="AuthenticationProgressDialog" parent="Theme.AppCompat.Dialog">
+		<item name="android:windowBackground">@color/colorLightGrey</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
 </resources>

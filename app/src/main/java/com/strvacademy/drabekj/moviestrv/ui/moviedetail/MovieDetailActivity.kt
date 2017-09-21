@@ -1,5 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.moviedetail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.strvacademy.drabekj.moviestrv.R
@@ -8,6 +10,22 @@ import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseActivity
 
 
 class MovieDetailActivity: BaseActivity() {
+
+    companion object {
+        val EXTRA_KEY_MOVIE_ID = "EXTRA_KEY_MOVIE_ID"
+
+        fun startAsIntent(context: Context, movieId: Int) {
+            val extras = Bundle()
+
+            extras.putInt(EXTRA_KEY_MOVIE_ID, movieId)
+
+            val intent = Intent(context, MovieDetailActivity::class.java)
+            intent.putExtras(extras)
+
+            context.startActivity(intent)
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

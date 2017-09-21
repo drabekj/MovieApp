@@ -12,6 +12,7 @@ import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
 import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.AccountServiceProvider
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.MovieServiceProvider
 import me.tatarka.bindingcollectionadapter2.BR
 import org.alfonz.rest.HttpException
@@ -24,6 +25,8 @@ import retrofit2.Response
 
 class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	var id: Int? = null
+	var userLoggedIn = ObservableField<Boolean>(false)
+	var isFavourite = ObservableField<Boolean>()
 	val state = ObservableField<Int>()
 	val movie = ObservableField<MovieEntity>()
 
@@ -32,7 +35,8 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	val cast: ObservableList<MovieCastItemViewModel> = ObservableArrayList()
 	val onCastClickListener = OnItemClickListener<MovieCastItemViewModel> {
-		item -> view?.startActorDetailActivity(item.actor.get().id!!)
+		item ->
+		view?.startActorDetailActivity(item.actor.get().id!!)
 	}
 	val itemBindingCast = ItemBinding.of<MovieCastItemViewModel>(BR.itemViewModel, R.layout.fragment_movie_detail_cast_list_item)
 			.bindExtra(BR.listener, onCastClickListener)!!
@@ -44,18 +48,32 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 
 	override fun onStart() {
 		super.onStart()
+
+		if (MoviesApplication.isUserLoggedIn()) {
+			userLoggedIn.set(true)
+			loadIsMoveFavourite()
+		}
+
 		if (movie.get() == null)
-			loadData(id!!)
+			loadData()
 	}
 
-	fun loadData(id: Int) {
-		// show progress
-		state.set(StatefulLayout.PROGRESS)
-
-		loadMovie(id)
+	fun loadData() {
+		loadMovieDetail()
 	}
 
-	private fun loadMovie(id: Int) {
+	fun setFavourite() {
+		if (MoviesApplication.isUserLoggedIn()) {
+			if (isFavourite.get())
+				markAsFavourite(false)
+			else
+				markAsFavourite(true)
+		}
+		else
+			view?.showNeedToBeLoggedInToast()
+	}
+
+	private fun loadMovieDetail() {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = MovieServiceProvider.MOVIE_CALL_TYPE
 			if (!mCallManager.hasRunningCall(callType)) {
@@ -63,8 +81,44 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 				state.set(StatefulLayout.PROGRESS)
 
 				// enqueue call
-				val call = MovieServiceProvider.service.movie(id)
+				val call = MovieServiceProvider.service.movieDetail(id!!)
 				val callback = MovieCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	private fun loadIsMoveFavourite() {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
+			val callType = AccountServiceProvider.FAVOURITES_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// show progress
+				// TODO disable hearth button
+
+				// enqueue call
+				val call = AccountServiceProvider.service.favourites(MoviesApplication.accountID.get(), MoviesApplication.sessionID!!)
+				val callback = FavouriteMoviesCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	private fun markAsFavourite(makeFavourite: Boolean) {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
+			val callType = AccountServiceProvider.MARK_FAVOURITE_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// enqueue call
+				val call = AccountServiceProvider.service.markAsFavourite(
+						MoviesApplication.accountID.get(),
+						MoviesApplication.sessionID!!,
+						FavouriteEntity("movie", id, makeFavourite))
+				val callback = MarkAsFavouriteCallback(mCallManager)
 				mCallManager.enqueueCall(call, callback, callType)
 			}
 		} else {
@@ -76,10 +130,10 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	inner class MovieCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<MovieEntity>(callManager) {
 		override fun onSuccess(call: Call<MovieEntity>, response: Response<MovieEntity>) {
 			movie.set(response.body())
-
-			loadMovieImages(response.body()!!.id!!)
-			loadMovieCredits(response.body()!!.id!!)
-			loadMovieVideos(response.body()!!.id!!)
+			updateDirector()
+			updateVideos()
+			updateGallery()
+			updateCast()
 
 			setState(movie)
 		}
@@ -95,128 +149,96 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		}
 	}
 
-	//	load Images
-	private fun loadMovieImages(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = MovieServiceProvider.MOVIE_IMAGES_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = MovieServiceProvider.service.movieImages(id)
-				val callback = MovieImagesCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
-			}
-		} else {
-			// show offline
-			state.set(StatefulLayout.OFFLINE)
-		}
-	}
-
-	inner class MovieImagesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<ImagesEntity>(callManager) {
-		override fun onSuccess(call: Call<ImagesEntity>, response: Response<ImagesEntity>) {
-			// save some cast from response
-			val data = response.body()!!.backdrops!!
-			if (data.isEmpty())
-				return
-
-			var galleryLimit = 5
-			if (data.size <= galleryLimit)
-				galleryLimit = data.size - 1
-
-			updateGallery(data.slice(0..galleryLimit))
+	inner class FavouriteMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<GetFavouriteResponseEntity>(callManager) {
+		override fun onSuccess(call: Call<GetFavouriteResponseEntity>, response: Response<GetFavouriteResponseEntity>) {
+			findMovieInFavourites(response.body()?.results!!)
+			// TODO enable hearth button
 		}
 
-		override fun onError(call: Call<ImagesEntity>, exception: HttpException) {
+		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {
 			handleError(mCallManager.getHttpErrorMessage(exception))
 		}
 
-		override fun onFail(call: Call<ImagesEntity>, throwable: Throwable) {
+		override fun onFail(call: Call<GetFavouriteResponseEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
 		}
 	}
 
-	//	load Credits
-	private fun loadMovieCredits(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = MovieServiceProvider.MOVIE_CREDITS_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = MovieServiceProvider.service.movieCredits(id)
-				val callback = MovieCreditsCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
+	inner class MarkAsFavouriteCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<SetFavouriteResponseEntity>(callManager) {
+		override fun onSuccess(call: Call<SetFavouriteResponseEntity>, response: Response<SetFavouriteResponseEntity>) {
+			if (response.body()?.statusCode == 1) {
+				Logcat.d("Mark as favourite finished with " + response.body()?.statusMessage)
+				isFavourite.set(true)
 			}
-		} else {
-			// show offline
-			state.set(StatefulLayout.OFFLINE)
-		}
-	}
-
-	inner class MovieCreditsCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<CreditsEntity>(callManager) {
-		override fun onSuccess(call: Call<CreditsEntity>, response: Response<CreditsEntity>) {
-			// save some cast from response
-			val dataCast = response.body()!!.cast!!
-			if (dataCast.isNotEmpty()) {
-				var castLimit = 5
-				if (dataCast.size <= castLimit)
-					castLimit = dataCast.size - 1
-
-				updateCast(dataCast.sliceArray(0..castLimit))
+			else if (response.body()?.statusCode == 13) {
+				Logcat.d("Remove from favourites finished with success: " + response.body()?.statusMessage)
+				isFavourite.set(false)
 			}
-
-			// save director from response
-			response.body()!!.crew!!
-					.filter { it.job.equals("Director") }
-					.forEach { movie.get().director.set(it) }
 		}
 
-		override fun onError(call: Call<CreditsEntity>, exception: HttpException) {
+		override fun onError(call: Call<SetFavouriteResponseEntity>, exception: HttpException) {
 			handleError(mCallManager.getHttpErrorMessage(exception))
 		}
 
-		override fun onFail(call: Call<CreditsEntity>, throwable: Throwable) {
+		override fun onFail(call: Call<SetFavouriteResponseEntity>, throwable: Throwable) {
 			handleError(mCallManager.getHttpErrorMessage(throwable))
 		}
 	}
 
+	private fun findMovieInFavourites(favourites: List<MovieEntity>) {
+		if (favourites.isEmpty())
+			isFavourite.set(false)
 
-	//	load Videos
-	private fun loadMovieVideos(id: Int) {
-		if (NetworkUtility.isOnline(MoviesApplication.context)) {
-			val callType = MovieServiceProvider.MOVIE_VIDEOS_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = MovieServiceProvider.service.movieVideos(id)
-				val callback = MovieVideosCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
-			}
-		} else {
-			// show offline
-			state.set(StatefulLayout.OFFLINE)
+		for (item in favourites) {
+			if (item.id!! == id)
+				isFavourite.set(true)
+			else
+				isFavourite.set(false)
 		}
 	}
 
-	inner class MovieVideosCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<VideosResultsEntity>(callManager) {
-		override fun onSuccess(call: Call<VideosResultsEntity>, response: Response<VideosResultsEntity>) {
-			Logcat.d("YouTube onSuccess callback")
-			// save some cast from response
-			val data = response.body()!!.results!!
-			if (data.isEmpty())
-				return
+	private fun updateDirector() {
+		val crew = movie.get().credits?.crew
+		crew?.filter { it.job.equals("Director") }?.forEach { movie.get().director.set(it) }
+	}
 
-			var videosLimit = 1
-			if (data.size <= videosLimit)
-				videosLimit = data.size - 1
+	private fun updateGallery() {
+		val galleryDisplayLimit = 5
 
-			updateVideos(data.sliceArray(0..videosLimit))
+		var data = movie.get().images?.backdrops
+		if (data != null) {
+			if (data.size > galleryDisplayLimit)
+				data = data.slice(0..galleryDisplayLimit)
 
-			(view as MovieDetailFragment).initializeYouTubePlayer(videos.first().key!!)
+			gallery.clear()
+			gallery.addAll(data)
 		}
+	}
 
-		override fun onError(call: Call<VideosResultsEntity>, exception: HttpException) {
-			handleError(mCallManager.getHttpErrorMessage(exception))
+	private fun updateCast() {
+		val castDisplayLimit = 5
+
+		var data = movie.get().credits?.cast
+		if (data != null) {
+			if (data.size > castDisplayLimit)
+				data = data.sliceArray(0..castDisplayLimit)
+
+			cast.clear()
+			data.mapTo(cast) { MovieCastItemViewModel(it) }
 		}
+	}
 
-		override fun onFail(call: Call<VideosResultsEntity>, throwable: Throwable) {
-			handleError(mCallManager.getHttpErrorMessage(throwable))
+	private fun updateVideos() {
+		val videosLimit = 1
+
+		var data = movie.get().videos?.results
+		if (data != null && data.isNotEmpty()) {
+			if (data.size > videosLimit)
+				data.sliceArray(0..videosLimit)
+
+			videos.clear()
+			videos.addAll(data)
+			view?.initializeYouTubePlayer(videos.first().key!!)
 		}
 	}
 
@@ -226,20 +248,5 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 		} else {
 			state.set(StatefulLayout.EMPTY)
 		}
-	}
-
-	private fun updateGallery(data: List<BackdropEntity>) {
-		gallery.clear()
-		gallery.addAll(data)
-	}
-
-	private fun updateCast(data: Array<CastEntity>) {
-		cast.clear()
-		data.mapTo(cast) { MovieCastItemViewModel(it) }
-	}
-
-	private fun updateVideos(data: Array<VideoEntity>) {
-		videos.clear()
-		videos.addAll(data)
 	}
 }

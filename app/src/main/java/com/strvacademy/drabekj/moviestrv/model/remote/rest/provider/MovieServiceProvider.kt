@@ -3,16 +3,11 @@ package com.strvacademy.drabekj.moviestrv.model.remote.rest.provider
 import com.strvacademy.drabekj.moviestrv.model.entity.*
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RetrofitClient
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 object MovieServiceProvider {
 	val MOVIE_CALL_TYPE = "movie"
-	val MOVIE_CREDITS_CALL_TYPE = "movie_credits"
-	val MOVIE_IMAGES_CALL_TYPE = "movie_images"
-	val MOVIE_VIDEOS_CALL_TYPE = "movie_videos"
 	val POPULAR_MOVIES_CALL_TYPE = "movies_popular"
 	val NOW_PLAYING_MOVIES_CALL_TYPE = "movies_now_playing"
 	val SEARCH_MOVIE_CALL_TYPE = "search_movie"
@@ -22,16 +17,7 @@ object MovieServiceProvider {
 
 	interface MovieService {
 		@GET("movie/{id}")
-		fun movie(@Path("id") id: Int): Call<MovieEntity>
-
-		@GET("movie/{id}/credits")
-		fun movieCredits(@Path("id") id: Int): Call<CreditsEntity>
-
-		@GET("movie/{id}/images")
-		fun movieImages(@Path("id") id: Int): Call<ImagesEntity>
-
-		@GET("movie/{id}/videos")
-		fun movieVideos(@Path("id") id: Int): Call<VideosResultsEntity>
+		fun movieDetail(@Path("id") id: Int, @Query("append_to_response") append_to_response : String = "credits,videos,images"): Call<MovieEntity>
 
 		@GET("discover/movie?sort_by=popularity.desc")
 		fun popularMovies(): Call<MovieResultsEntity>

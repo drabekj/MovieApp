@@ -42,9 +42,7 @@ class ActorDetailFragment: BaseFragment<ActorDetailView, ActorDetailViewModel, F
 	}
 
 	private fun startMovieDetailActivity(id: Int) {
-		val intent = Intent(activity, MovieDetailActivity::class.java)
-		intent.putExtra(EXTRA_KEY_MOVIE_ID, id)
-		startActivity(intent)
+		MovieDetailActivity.startAsIntent(activity, id)
 	}
 
 	fun startFavoriteFilmsActivity(id: Int) {

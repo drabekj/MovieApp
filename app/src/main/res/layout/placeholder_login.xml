@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@color/colorSecondary">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_above="@+id/login_btn"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="19dp"
+		android:textColor="@color/colorSecondaryText"
+		android:text="You need to login to access more features" />
+
+	<Button
+		android:id="@+id/login_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_centerVertical="true"
+		android:layout_centerHorizontal="true"
+		android:background="@drawable/shape_auth_btn_border_accent"
+		android:textColor="@color/colorAccent"
+		android:text="@string/log_in"
+		android:clickable="true"
+		android:onClick="onClickLogin" />
+
+</RelativeLayout>

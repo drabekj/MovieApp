@@ -24,12 +24,7 @@
 		</activity>
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.signup.SignUpActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity" />
 		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity" />
