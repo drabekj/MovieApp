@@ -15,6 +15,7 @@ import retrofit2.Response
 class MainViewModel : BaseViewModel<MainView>() {
 	val mCallManager = CallManager(RestResponseHandler(), RestHttpLogger())
 
+	// TODO  critical! if user is offline during onCreate in MainActivity, accountID will be null => crash on Profile/Favourite
 	fun loadAccountId() {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = AccountServiceProvider.FAVOURITES_CALL_TYPE
