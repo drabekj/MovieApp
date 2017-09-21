@@ -13,10 +13,19 @@
 		android:gravity="center"
 		android:padding="@dimen/global_keyline_16">
 
+		<ImageView
+			android:layout_width="@dimen/medium_icon_size"
+			android:layout_height="@dimen/medium_icon_size"
+			android:layout_gravity="center"
+			android:adjustViewBounds="true"
+			android:src="@drawable/ic_signal_wifi_off_grey_24dp" />
+
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/global_spacing_8"
 			android:gravity="center"
+			android:textColor="@color/colorLightGrey"
 			android:text="@string/placeholder_offline" />
 
 	</LinearLayout>
