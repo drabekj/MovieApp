@@ -14,6 +14,9 @@ class AccountEntity {
 	@SerializedName("name")
 	var name: String? = null
 
+	@SerializedName("avatar")
+	var avatar: AvatarEntity? = null
+
 	@SerializedName("include_adult")
 	var includeAdult: Boolean? = null
 

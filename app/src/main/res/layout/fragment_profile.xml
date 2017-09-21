@@ -49,7 +49,9 @@
 							android:layout_width="@dimen/profile_pic_size"
 							android:layout_height="@dimen/profile_pic_size"
 							android:contentDescription="@string/profile_picture"
-							android:src="@drawable/ic_account_circle_white_24dp" />
+							app:imageUrl='@{String.format("%s%s", @string/GRAVATAR_BASE_IMAGE, viewModel.account.avatar.gravatar.hash)}'
+							app:imagePlaceholder='@{@drawable/ic_account_circle_white_24dp}'
+							app:isCircle="@{true}" />
 
 						<LinearLayout
 							android:layout_width="wrap_content"
