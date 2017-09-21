@@ -71,7 +71,7 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 	}
 
 	override fun onFavMovieClick(movie: MovieEntity) {
-		showToast("Show movie detail " + movie.title)
+		MovieDetailActivity.startAsIntent(activity, movie.id!!)
 	}
 
 	private fun setupLoggedOutState() {
