@@ -68,4 +68,12 @@ class CastEntity {
 
 	@SerializedName("overview")
 	var overview: String? = null
+
+	constructor(id: Int?, title: String?, releaseDate: String?, posterPath: String?, voteAverage: Double?) {
+		this.id = id
+		this.title = title
+		this.releaseDate = releaseDate
+		this.posterPath = posterPath
+		this.voteAverage = voteAverage
+	}
 }

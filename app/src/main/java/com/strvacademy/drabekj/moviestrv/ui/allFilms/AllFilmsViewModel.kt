@@ -8,8 +8,11 @@ import com.strvacademy.drabekj.moviestrv.R
 import com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener
 import com.strvacademy.drabekj.moviestrv.model.entity.CastEntity
 import com.strvacademy.drabekj.moviestrv.model.entity.CreditsEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.GetFavouriteResponseEntity
+import com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestHttpLogger
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.RestResponseHandler
+import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.AccountServiceProvider
 import com.strvacademy.drabekj.moviestrv.model.remote.rest.provider.ActorServiceProvider
 import com.strvacademy.drabekj.moviestrv.utils.basecomponents.BaseViewModel
 import me.tatarka.bindingcollectionadapter2.BR
@@ -40,8 +43,10 @@ class AllFilmsViewModel : BaseViewModel<AllFilmsView>() {
 
 		super.onStart()
 		if (movies.isEmpty()) {
-			if (actorId == null || actorId == -1)
-//				TODO urgent
+			if (actorId == null || actorId == -1) {
+				// show Favourite movies
+				loadFavouriteMovies()
+			}
 			else
 				loadActorsMovies(actorId!!)
 
@@ -97,5 +102,52 @@ class AllFilmsViewModel : BaseViewModel<AllFilmsView>() {
 	private fun updateMovies(data: Array<CastEntity>) {
 		movies.clear()
 		data.mapTo(movies) { FilmItemViewModel(it) }
+	}
+
+	private fun updateMovies(data: List<MovieEntity>) {
+		movies.clear()
+		data.mapTo(movies) { FilmItemViewModel(CastEntity(it.id, it.title, it.releaseDate, it.posterPath, it.voteAverage)) }
+	}
+
+
+
+//	 favourite
+	private fun loadFavouriteMovies() {
+		if (NetworkUtility.isOnline(MoviesApplication.context)) {
+			val callType = AccountServiceProvider.FAVOURITES_CALL_TYPE
+			if (!mCallManager.hasRunningCall(callType)) {
+				// show progress
+				state.set(StatefulLayout.PROGRESS)
+
+				// enqueue call
+				val call = AccountServiceProvider.service.favourites(MoviesApplication.accountID.get(), MoviesApplication.sessionID!!)
+				val callback = FavouriteMoviesCallback(mCallManager)
+				mCallManager.enqueueCall(call, callback, callType)
+			}
+		} else {
+			// show offline
+			state.set(StatefulLayout.OFFLINE)
+		}
+	}
+
+	inner class FavouriteMoviesCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<GetFavouriteResponseEntity>(callManager) {
+		override fun onSuccess(call: Call<GetFavouriteResponseEntity>, response: Response<GetFavouriteResponseEntity>) {
+			updateMovies(response.body()?.results!!)
+
+			if (response.body()?.results!!.isEmpty())
+				state.set(StatefulLayout.EMPTY)
+			else
+				state.set(StatefulLayout.CONTENT)
+		}
+
+		override fun onError(call: Call<GetFavouriteResponseEntity>, exception: HttpException) {
+			handleError(mCallManager.getHttpErrorMessage(exception))
+			state.set(StatefulLayout.OFFLINE)
+		}
+
+		override fun onFail(call: Call<GetFavouriteResponseEntity>, throwable: Throwable) {
+			handleError(mCallManager.getHttpErrorMessage(throwable))
+			state.set(StatefulLayout.OFFLINE)
+		}
 	}
 }
