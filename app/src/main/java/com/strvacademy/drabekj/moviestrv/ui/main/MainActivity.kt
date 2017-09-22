@@ -47,22 +47,21 @@ class MainActivity : BaseActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		// show StartupActivity if user not logged in or isn't in guest session
-		if(!intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false)) {
-			// neskippnul jsem
-			if (!MoviesApplication.isUserLoggedIn()) {
-				// neni loggly
-				StartupActivity.startAsIntent(this)
-			} else {
-				// load accountID
-				MainViewModel().loadAccountId()
-			}
-		}
+		if (!MoviesApplication.isUserLoggedIn() && !intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false))
+			StartupActivity.startAsIntent(this)
 
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
 
 		setupBottomNavView()
 		replaceFragment(MoviesFragment.TAG)
+	}
+
+	override fun onResume() {
+		super.onResume()
+
+		if (MoviesApplication.isUserLoggedIn() && MoviesApplication.accountID.get() == null)
+			MainViewModel().loadAccountId()
 	}
 
 	private fun setupBottomNavView() {

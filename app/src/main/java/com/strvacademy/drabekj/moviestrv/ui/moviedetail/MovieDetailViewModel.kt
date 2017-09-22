@@ -30,7 +30,7 @@ class MovieDetailViewModel : BaseViewModel<MovieDetailView>() {
 	val state = ObservableField<Int>()
 	val movie = ObservableField<MovieEntity>()
 
-	val gallery: ObservableList<BackdropEntity> = ObservableArrayList()
+	val gallery: ObservableArrayList<BackdropEntity> = ObservableArrayList()
 	val itemBindingGallery = ItemBinding.of<BackdropEntity>(BR.item, R.layout.fragment_movie_detail_gallery_list_item)!!
 
 	val cast: ObservableList<MovieCastItemViewModel> = ObservableArrayList()
