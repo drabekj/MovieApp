@@ -116,12 +116,10 @@ class ActorsViewModel : BaseViewModel<ActorsView>() {
 	private fun loadSearchResults(query: String) {
 		if (NetworkUtility.isOnline(MoviesApplication.context)) {
 			val callType = ActorServiceProvider.SEARCH_ACTOR_CALL_TYPE
-			if (!mCallManager.hasRunningCall(callType)) {
-				// enqueue call
-				val call = ActorServiceProvider.service.searchActor(query)
-				val callback = SearchResultsCallback(mCallManager)
-				mCallManager.enqueueCall(call, callback, callType)
-			}
+			// enqueue call
+			val call = ActorServiceProvider.service.searchActor(query)
+			val callback = SearchResultsCallback(mCallManager)
+			mCallManager.enqueueCall(call, callback, callType)
 		}
 	}
 
