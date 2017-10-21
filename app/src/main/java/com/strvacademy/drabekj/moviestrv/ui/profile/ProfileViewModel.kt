@@ -26,6 +26,7 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 	val state = ObservableField<Int>()
 	val stateContent = ObservableField<Int>()
 	val account = ObservableField<AccountEntity>()
+	val avatarHash = ObservableField<String>()
 	val favMoviesCount: ObservableField<Int> = ObservableField(0)
 
 	val favMovies: ObservableArrayList<MovieEntity> = ObservableArrayList()
@@ -88,6 +89,8 @@ class ProfileViewModel: BaseViewModel<ProfileView>() {
 	inner class AccountDetailCallback(callManager: CallManager) : org.alfonz.rest.call.Callback<AccountEntity>(callManager) {
 		override fun onSuccess(call: Call<AccountEntity>, response: Response<AccountEntity>) {
 			account.set(response.body())
+			avatarHash.set(response.body()?.avatar?.gravatar?.hash)
+
 			state.set(StatefulLayout.CONTENT)
 		}
 
