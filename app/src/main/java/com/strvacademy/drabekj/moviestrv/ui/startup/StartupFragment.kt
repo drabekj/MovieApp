@@ -1,6 +1,7 @@
 package com.strvacademy.drabekj.moviestrv.ui.startup
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import com.strvacademy.drabekj.moviestrv.databinding.FragmentStartupBinding
 import com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity
@@ -21,6 +22,9 @@ class StartupFragment: BaseFragment<StartupView, StartupViewModel, FragmentStart
 
 	override fun onSignUpClick() {
 		startActivity(Intent(context, SignUpActivity::class.java))
+//		val uri = Uri.parse("http://www.google.com") // missing 'http://' will cause crashed
+//		val intent = Intent(Intent.ACTION_VIEW, uri)
+//		startActivity(intent)
 	}
 
 	override fun onLogInClick() {

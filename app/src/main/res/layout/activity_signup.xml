@@ -6,10 +6,10 @@
 
 	<include layout="@layout/toolbar" />
 
-	<fragment
-		android:id="@+id/fragment_container"
-		android:name="com.strvacademy.drabekj.moviestrv.ui.signup.SignUpFragment"
+
+	<WebView
+		android:id="@+id/webview"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
+		android:layout_height="match_parent" />
 
 </LinearLayout>
