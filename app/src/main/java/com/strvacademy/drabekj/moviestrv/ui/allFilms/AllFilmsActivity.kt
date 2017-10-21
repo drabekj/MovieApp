@@ -23,21 +23,22 @@ class AllFilmsActivity : BaseActivity() {
 		return super.onCreateOptionsMenu(menu)
 	}
 
-	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-		when (item!!.itemId) {
-			R.id.action_edit -> {
-				showToast("Edit action")
-				return true
-			}
-
-			R.id.action_share -> {
-				showToast("Share action")
-				return true
-			}
-
-			else -> return super.onOptionsItemSelected(item)
-		}
-	}
+//	TODO needs to be implemented
+//	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//		when (item!!.itemId) {
+//			R.id.action_edit -> {
+//				showToast("Edit action")
+//				return true
+//			}
+//
+//			R.id.action_share -> {
+//				showToast("Share action")
+//				return true
+//			}
+//
+//			else -> return super.onOptionsItemSelected(item)
+//		}
+//	}
 
 	private fun setupToolbar() {
 		setupActionBar(INDICATOR_BACK, getString(R.string.favorite_films))

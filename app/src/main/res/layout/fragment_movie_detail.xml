@@ -192,11 +192,12 @@
 							app:items="@{viewModel.cast}"
 							app:itemBinding="@{viewModel.itemBindingCast}" />
 
-						<Button
-							android:id="@+id/button_detail_full_cast"
-							android:text="@string/full_cast_amp_crew"
-							android:onClick="@{() -> view.onFullCastClick()}"
-							style="@style/ViewAllButton" />
+						<!--TODO needs to be implemented-->
+						<!--<Button-->
+							<!--android:id="@+id/button_detail_full_cast"-->
+							<!--android:text="@string/full_cast_amp_crew"-->
+							<!--android:onClick="@{() -> view.onFullCastClick()}"-->
+							<!--style="@style/ViewAllButton" />-->
 
 					</LinearLayout>
 

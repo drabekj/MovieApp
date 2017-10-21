@@ -8,10 +8,11 @@
 		android:title="@string/action_favorite"
 		app:showAsAction="ifRoom" />
 
-	<item
-		android:id="@+id/action_share"
-		android:icon="@drawable/ic_share_white_24dp"
-		android:title="@string/action_share"
-		app:showAsAction="ifRoom" />
+	<!--TODO needs to be implemented-->
+	<!--<item-->
+		<!--android:id="@+id/action_share"-->
+		<!--android:icon="@drawable/ic_share_white_24dp"-->
+		<!--android:title="@string/action_share"-->
+		<!--app:showAsAction="ifRoom" />-->
 
 </menu>

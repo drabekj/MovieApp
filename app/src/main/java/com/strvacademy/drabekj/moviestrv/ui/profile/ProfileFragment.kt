@@ -43,10 +43,10 @@ class ProfileFragment : BaseFragment<ProfileView, ProfileViewModel, FragmentProf
 
 	override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 		when (item!!.itemId) {
-			R.id.action_settings -> {
-				showToast("Settings Action")
-				return true
-			}
+//			R.id.action_settings -> {
+//				showToast("Settings Action")
+//				return true
+//			}
 			R.id.action_logout -> {
 				KeyStoreUtil.clearSecret()
 				setupLoggedOutState()

@@ -59,10 +59,10 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailViewModel, 
 				return true
 			}
 
-			R.id.action_share -> {
-				showToast("Share action")
-				return true
-			}
+//			R.id.action_share -> {
+//				showToast("Share action")
+//				return true
+//			}
 
 			else -> return super.onOptionsItemSelected(item)
 		}
