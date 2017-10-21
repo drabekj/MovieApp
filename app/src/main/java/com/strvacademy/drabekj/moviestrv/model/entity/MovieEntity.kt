@@ -63,7 +63,7 @@ class MovieEntity {
 	var popularity: Double? = null
 
 	@SerializedName("revenue")
-	var revenue: Int? = null
+	var revenue: Long? = null
 
 	@SerializedName("runtime")
 	var runtime: Int? = null
