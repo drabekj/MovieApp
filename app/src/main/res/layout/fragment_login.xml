@@ -3,9 +3,9 @@
 
 	<data>
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.login.LoginView" />
+			name="view" type="com.strvacademy.drabekj.movieapp.ui.login.LoginView" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.login.LoginViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.movieapp.ui.login.LoginViewModel" />
 	</data>
 
 

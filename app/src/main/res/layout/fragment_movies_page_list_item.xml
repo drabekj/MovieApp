@@ -4,9 +4,9 @@
 
 	<data>
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.movies.moviesPage.MoviesPageView" />
+			name="view" type="com.strvacademy.drabekj.movieapp.ui.movies.moviesPage.MoviesPageView" />
 		<variable
-			name="data" type="com.strvacademy.drabekj.moviestrv.model.entity.MovieEntity" />
+			name="data" type="com.strvacademy.drabekj.movieapp.model.entity.MovieEntity" />
 	</data>
 
 	<LinearLayout

@@ -3,7 +3,7 @@
 
 	<data>
 		<variable
-			name="data" type="com.strvacademy.drabekj.moviestrv.model.entity.ActorEntity" />
+			name="data" type="com.strvacademy.drabekj.movieapp.model.entity.ActorEntity" />
 	</data>
 
 	<LinearLayout

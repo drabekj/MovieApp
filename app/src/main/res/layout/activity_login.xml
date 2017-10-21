@@ -8,7 +8,7 @@
 
 	<fragment
 		android:id="@+id/fragment"
-		android:name="com.strvacademy.drabekj.moviestrv.ui.login.LoginFragment"
+		android:name="com.strvacademy.drabekj.movieapp.ui.login.LoginFragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
 

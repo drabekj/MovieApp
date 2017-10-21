@@ -7,9 +7,9 @@
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<import type="android.view.View" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.movieapp.ui.profile.ProfileViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.profile.ProfileView" />
+			name="view" type="com.strvacademy.drabekj.movieapp.ui.profile.ProfileView" />
 	</data>
 
 	<!--TODO ? elevation?-->

@@ -3,9 +3,9 @@
 
 	<data>
 		<variable
-			name="item" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorMovieItemViewModel" />
+			name="item" type="com.strvacademy.drabekj.movieapp.ui.actordetail.ActorMovieItemViewModel" />
 		<variable
-			name="listener" type="com.strvacademy.drabekj.moviestrv.listener.OnItemClickListener" />
+			name="listener" type="com.strvacademy.drabekj.movieapp.listener.OnItemClickListener" />
 	</data>
 
 	<!-- TODO ? How spacing in grid view-->

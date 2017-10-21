@@ -6,9 +6,9 @@
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<import type="android.view.View" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.movieapp.ui.actordetail.ActorDetailViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailView" />
+			name="view" type="com.strvacademy.drabekj.movieapp.ui.actordetail.ActorDetailView" />
 	</data>
 
 	<org.alfonz.view.StatefulLayout

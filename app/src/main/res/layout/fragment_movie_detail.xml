@@ -7,9 +7,9 @@
 		<import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
 		<import type="android.view.View" />
 		<variable
-			name="viewModel" type="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailViewModel" />
+			name="viewModel" type="com.strvacademy.drabekj.movieapp.ui.moviedetail.MovieDetailViewModel" />
 		<variable
-			name="view" type="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailView" />
+			name="view" type="com.strvacademy.drabekj.movieapp.ui.moviedetail.MovieDetailView" />
 	</data>
 
 	<android.support.design.widget.CoordinatorLayout

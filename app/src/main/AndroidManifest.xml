@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.strvacademy.drabekj.moviestrv">
+	package="com.strvacademy.drabekj.movieapp">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 	<application
-		android:name=".MoviesApplication"
+		android:name="com.strvacademy.drabekj.movieapp.MoviesApplication"
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.main.MainActivity"
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.main.MainActivity"
 			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -23,14 +23,14 @@
 				android:name="android.app.searchable"
 				android:resource="@xml/searchable" />
 		</activity>
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.moviedetail.MovieDetailActivity" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.actordetail.ActorDetailActivity" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.startup.StartupActivity"
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.moviedetail.MovieDetailActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.actordetail.ActorDetailActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.startup.StartupActivity"
 			android:screenOrientation="portrait" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.signup.SignUpActivity" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.login.LoginActivity" />
-		<activity android:name="com.strvacademy.drabekj.moviestrv.ui.allFilms.AllFilmsActivity" />
-		<activity android:name=".ui.moviedetail.YouTubeFullscreenActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.signup.SignUpActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.login.LoginActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.allFilms.AllFilmsActivity" />
+		<activity android:name="com.strvacademy.drabekj.movieapp.ui.moviedetail.YouTubeFullscreenActivity" />
 
 	</application>
 
