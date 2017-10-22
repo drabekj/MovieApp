@@ -13,7 +13,8 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity android:name="com.strvacademy.drabekj.movieapp.ui.main.MainActivity"
+		<activity
+			android:name="com.strvacademy.drabekj.movieapp.ui.main.MainActivity"
 			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -25,13 +26,17 @@
 		</activity>
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.moviedetail.MovieDetailActivity" />
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.actordetail.ActorDetailActivity" />
-		<activity android:name="com.strvacademy.drabekj.movieapp.ui.startup.StartupActivity"
+		<activity
+			android:name="com.strvacademy.drabekj.movieapp.ui.startup.StartupActivity"
 			android:screenOrientation="portrait" />
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.signup.SignUpActivity" />
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.login.LoginActivity" />
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.allFilms.AllFilmsActivity" />
 		<activity android:name="com.strvacademy.drabekj.movieapp.ui.moviedetail.YouTubeFullscreenActivity" />
 
+		<meta-data
+			android:name="io.fabric.ApiKey"
+			android:value="4057c58e2257e2cfc66c494d16481df76234f390" />
 	</application>
 
 </manifest>

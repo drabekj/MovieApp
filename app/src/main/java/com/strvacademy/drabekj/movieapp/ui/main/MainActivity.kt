@@ -12,6 +12,10 @@ import com.strvacademy.drabekj.movieapp.ui.actors.ActorsFragment
 import com.strvacademy.drabekj.movieapp.ui.movies.MoviesFragment
 import com.strvacademy.drabekj.movieapp.ui.profile.ProfileFragment
 import com.strvacademy.drabekj.movieapp.ui.startup.StartupActivity
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.CustomEvent
 
 
 class MainActivity : BaseActivity() {
@@ -36,6 +40,11 @@ class MainActivity : BaseActivity() {
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
+		// Initialize Fabric Crashlytics
+		Fabric.with(this, Crashlytics())
+		Fabric.with(this, Answers())
+		appStartMetric()
+
 		// show StartupActivity if user not logged in or isn't in guest session
 		if (!MoviesApplication.isUserLoggedIn() && !intent.getBooleanExtra(EXTRA_KEY_SKIP_LOGIN, false))
 			StartupActivity.startAsIntent(this)
@@ -97,5 +106,9 @@ class MainActivity : BaseActivity() {
 		}
 		transaction.commitAllowingStateLoss()
 		mCurrentFragment = fragment
+	}
+
+	private fun appStartMetric() {
+		Answers.getInstance().logCustom(CustomEvent("Application launched"))
 	}
 }

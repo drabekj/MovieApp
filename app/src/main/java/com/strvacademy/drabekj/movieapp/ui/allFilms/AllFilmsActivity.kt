@@ -3,6 +3,8 @@ package com.strvacademy.drabekj.movieapp.ui.allFilms
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import com.crashlytics.android.answers.Answers
+import com.crashlytics.android.answers.ContentViewEvent
 import com.strvacademy.drabekj.movieapp.R
 import com.strvacademy.drabekj.movieapp.ui.actordetail.ActorDetailFragment
 import com.strvacademy.drabekj.movieapp.utils.basecomponents.BaseActivity
@@ -53,9 +55,19 @@ class AllFilmsActivity : BaseActivity() {
 			// get actorId from bundle
 			val actorId = intent.getIntExtra(ActorDetailFragment.EXTRA_KEY_ACTOR_ID, -1)
 
+			// Metrics
+			allFilmsMetric(actorId)
+
 			// setup fragment
 			val allMoviesFragment: AllFilmsFragment = AllFilmsFragment.newInstance(actorId)
 			supportFragmentManager.beginTransaction().add(R.id.fragment_container, allMoviesFragment).commit()
 		}
+	}
+
+	private fun allFilmsMetric(id: Int) {
+		Answers.getInstance().logContentView(ContentViewEvent()
+				.putContentType("screen")
+				.putContentName("AllFilms")
+				.putContentId(id.toString()))
 	}
 }

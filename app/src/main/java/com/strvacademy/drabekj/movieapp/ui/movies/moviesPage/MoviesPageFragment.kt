@@ -7,7 +7,6 @@ import com.strvacademy.drabekj.movieapp.databinding.FragmentMoviesPageBinding
 import com.strvacademy.drabekj.movieapp.ui.moviedetail.MovieDetailActivity
 import com.strvacademy.drabekj.movieapp.model.entity.MovieEntity
 import com.strvacademy.drabekj.movieapp.utils.basecomponents.BaseFragment
-import org.alfonz.utility.Logcat
 
 
 abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<MoviesPageView, VM, FragmentMoviesPageBinding>(), MoviesPageView {
@@ -29,7 +28,6 @@ abstract class MoviesPageFragment<VM : MoviesPageViewModel> : BaseFragment<Movie
 	}
 
 	override fun onItemClick(movie: MovieEntity) {
-		Logcat.d("DEBUG - movie id:" + movie.id!!)
 		startMovieDetailActivity(movie.id!!)
 	}
 
