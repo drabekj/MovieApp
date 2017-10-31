@@ -20,7 +20,7 @@ The app main functionality of the app is to serve the user information about Mov
 * Google Play Services
 
 ## Screenshots
-![App overview](/promo_img/app_android_1.png "App overview")
+<img src="/promo_img/app_android_1.png" width="250"><img src="/promo_img/app_android_2.png" width="250"><img src="/promo_img/app_android_3.png" width="250"><img src="/promo_img/app_android_4.png" width="250"><img src="/promo_img/app_android_5.png" width="250">
 
 ## Getting Started
 * (recommended) You can easily download the app from the Google Play Store.
